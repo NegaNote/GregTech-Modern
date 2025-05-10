@@ -93,7 +93,7 @@ public class FuelRecipes {
         // diesel generator fuels
         COMBUSTION_GENERATOR_FUELS.recipeBuilder("naphtha")
                 .inputFluids(Naphtha.getFluid(1))
-                .duration(10)
+                .duration(6)
                 .EUt(-V[LV])
                 .save(provider);
 
