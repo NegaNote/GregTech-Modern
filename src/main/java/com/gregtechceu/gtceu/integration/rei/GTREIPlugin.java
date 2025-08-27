@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluidHelper;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.rei.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.rei.multipage.MultiblockInfoDisplayCategory;
 import com.gregtechceu.gtceu.integration.rei.oreprocessing.GTOreProcessingDisplayCategory;
@@ -50,7 +51,7 @@ public class GTREIPlugin implements REIClientPlugin {
             registry.add(new GTOreProcessingDisplayCategory());
         registry.add(new GTOreVeinDisplayCategory());
         registry.add(new GTBedrockFluidDisplayCategory());
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             registry.add(new GTBedrockOreDisplayCategory());
         for (GTRecipeCategory category : GTRegistries.RECIPE_CATEGORIES) {
             if (category.shouldRegisterDisplays()) {
@@ -65,7 +66,7 @@ public class GTREIPlugin implements REIClientPlugin {
             GTOreProcessingDisplayCategory.registerWorkstations(registry);
         GTOreVeinDisplayCategory.registerWorkstations(registry);
         GTBedrockFluidDisplayCategory.registerWorkstations(registry);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreDisplayCategory.registerWorkstations(registry);
         registry.addWorkstations(GTRecipeREICategory.CATEGORIES.apply(GTRecipeTypes.CHEMICAL_RECIPES.getCategory()),
                 EntryStacks.of(GTMultiMachines.LARGE_CHEMICAL_REACTOR.asStack()));
@@ -79,7 +80,7 @@ public class GTREIPlugin implements REIClientPlugin {
             GTOreProcessingDisplayCategory.registerDisplays(registry);
         GTOreVeinDisplayCategory.registerDisplays(registry);
         GTBedrockFluidDisplayCategory.registerDisplays(registry);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreDisplayCategory.registerDisplays(registry);
         registry.add(new GTProgrammedCircuitCategory.GTProgrammedCircuitDisplay());
     }

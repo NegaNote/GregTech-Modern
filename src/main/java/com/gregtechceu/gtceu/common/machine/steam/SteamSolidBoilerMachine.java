@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.steam.SteamBoilerMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.boilers.SmallBoilerConfig;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
@@ -84,8 +85,8 @@ public class SteamSolidBoilerMachine extends SteamBoilerMachine implements IMach
 
     @Override
     protected long getBaseSteamOutput() {
-        return isHighPressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpSolidBoilerBaseOutput :
-                ConfigHolder.INSTANCE.machines.smallBoilers.solidBoilerBaseOutput;
+        return isHighPressure ? SmallBoilerConfig.HP_SOLID_BOILER_BASE_OUTPUT.get() :
+                SmallBoilerConfig.SOLID_BOILER_BASE_OUTPUT.get();
     }
 
     @Override

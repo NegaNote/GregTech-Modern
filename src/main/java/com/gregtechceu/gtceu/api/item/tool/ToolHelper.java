@@ -23,6 +23,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.DummyMachineBlockEntity;
 import com.gregtechceu.gtceu.utils.InfiniteEnergyContainer;
 
@@ -205,7 +206,7 @@ public class ToolHelper {
             if (!(user instanceof Player player) || !player.isCreative()) {
                 RandomSource random = user == null ? GTValues.RNG : user.getRandom();
                 if (tool.isElectric()) {
-                    int electricDamage = damage * ConfigHolder.INSTANCE.machines.energyUsageMultiplier;
+                    int electricDamage = damage * MachineConfig.ENERGY_USAGE_MULTIPLIER.get();
                     IElectricItem electricItem = GTCapabilityHelper.getElectricItem(stack);
                     if (electricItem != null) {
                         electricItem.discharge(electricDamage, tool.getElectricTier(), true, false, false);

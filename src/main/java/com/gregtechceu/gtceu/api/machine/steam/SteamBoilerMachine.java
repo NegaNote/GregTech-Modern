@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
@@ -217,7 +218,7 @@ public abstract class SteamBoilerMachine extends SteamWorkableMachine
                             getFrontFacing().getStepY() / 2.0,
                             getFrontFacing().getStepZ() / 2.0, 0.1);
 
-                    if (ConfigHolder.INSTANCE.machines.machineSounds) {
+                    if (MachineConfig.MACHINE_SOUNDS.get()) {
                         getLevel().playSound(null, x, y, z, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0f,
                                 1.0f);
                     }

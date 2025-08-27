@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.steam.SteamBoilerMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
+import com.gregtechceu.gtceu.config.boilers.SmallBoilerConfig;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
@@ -68,8 +69,8 @@ public class SteamLiquidBoilerMachine extends SteamBoilerMachine {
 
     @Override
     protected long getBaseSteamOutput() {
-        return isHighPressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpLiquidBoilerBaseOutput :
-                ConfigHolder.INSTANCE.machines.smallBoilers.liquidBoilerBaseOutput;
+        return isHighPressure ? SmallBoilerConfig.HP_LIQUID_BOILER_BASE_OUTPUT.get() :
+                SmallBoilerConfig.LIQUID_BOILER_BASE_OUTPUT.get();
     }
 
     @Override

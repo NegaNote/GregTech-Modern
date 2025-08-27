@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.bedrockfluid.FluidVeinWorldEntry;
 import com.gregtechceu.gtceu.api.data.worldgen.bedrockore.BedrockOreVeinSavedData;
 import com.gregtechceu.gtceu.api.gui.texture.ProspectingTexture;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -308,7 +309,7 @@ public abstract class ProspectorMode<T> {
         @Override
         public IGuiTexture getItemIcon(OreInfo item) {
             Material material = item.material;
-            ItemStack stack = ChemicalHelper.get(TagPrefix.get(ConfigHolder.INSTANCE.machines.bedrockOreDropTagPrefix),
+            ItemStack stack = ChemicalHelper.get(TagPrefix.get(MachineConfig.BEDROCK_ORE_DROP_TAG_PREFIX.get()),
                     material);
             if (stack.isEmpty()) stack = ChemicalHelper.get(TagPrefix.crushed, material); // backup 1: crushed; if raw
                                                                                           // ore doesn't exist

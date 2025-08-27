@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.steam.SteamBoilerMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.config.boilers.SmallBoilerConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
@@ -28,8 +29,8 @@ public class SteamSolarBoiler extends SteamBoilerMachine {
 
     @Override
     protected long getBaseSteamOutput() {
-        return isHighPressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpSolarBoilerBaseOutput :
-                ConfigHolder.INSTANCE.machines.smallBoilers.solarBoilerBaseOutput;
+        return isHighPressure ? SmallBoilerConfig.HP_SOLAR_BOILER_BASE_OUTPUT.get() :
+                SmallBoilerConfig.SOLAR_BOILER_BASE_OUTPUT.get();
     }
 
     @Override

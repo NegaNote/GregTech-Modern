@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluidHelper;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.emi.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.emi.multipage.MultiblockInfoEmiCategory;
 import com.gregtechceu.gtceu.integration.emi.oreprocessing.GTOreProcessingEmiCategory;
@@ -47,7 +48,7 @@ public class GTEMIPlugin implements EmiPlugin {
             registry.addCategory(GTOreProcessingEmiCategory.CATEGORY);
         registry.addCategory(GTOreVeinEmiCategory.CATEGORY);
         registry.addCategory(GTBedrockFluidEmiCategory.CATEGORY);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             registry.addCategory(GTBedrockOreEmiCategory.CATEGORY);
         for (GTRecipeCategory category : GTRegistries.RECIPE_CATEGORIES) {
             if (category.shouldRegisterDisplays()) {
@@ -70,7 +71,7 @@ public class GTEMIPlugin implements EmiPlugin {
             GTOreProcessingEmiCategory.registerDisplays(registry);
         GTOreVeinEmiCategory.registerDisplays(registry);
         GTBedrockFluidEmiCategory.registerDisplays(registry);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreEmiCategory.registerDisplays(registry);
         GTProgrammedCircuitCategory.registerDisplays(registry);
 
@@ -80,7 +81,7 @@ public class GTEMIPlugin implements EmiPlugin {
             GTOreProcessingEmiCategory.registerWorkStations(registry);
         GTOreVeinEmiCategory.registerWorkStations(registry);
         GTBedrockFluidEmiCategory.registerWorkStations(registry);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreEmiCategory.registerWorkStations(registry);
         registry.addWorkstation(GTRecipeEMICategory.CATEGORIES.apply(GTRecipeTypes.CHEMICAL_RECIPES.getCategory()),
                 EmiStack.of(GTMultiMachines.LARGE_CHEMICAL_REACTOR.asStack()));

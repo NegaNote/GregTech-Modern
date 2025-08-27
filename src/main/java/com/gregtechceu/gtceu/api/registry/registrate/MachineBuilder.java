@@ -25,6 +25,7 @@ import com.gregtechceu.gtceu.client.renderer.BlockEntityWithBERModelRenderer;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.model.builder.MachineModelBuilder;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -297,7 +298,7 @@ public class MachineBuilder<DEFINITION extends MachineDefinition> extends Builde
     }
 
     public MachineBuilder<DEFINITION> overlaySteamHullModel(ResourceLocation overlayModel) {
-        modelProperty(GTMachineModelProperties.IS_STEEL_MACHINE, ConfigHolder.INSTANCE.machines.steelSteamMultiblocks);
+        modelProperty(GTMachineModelProperties.IS_STEEL_MACHINE, MachineConfig.STEEL_STEAM_MULTIBLOCKS.get());
         return model(createOverlaySteamHullMachineModel(overlayModel));
     }
 

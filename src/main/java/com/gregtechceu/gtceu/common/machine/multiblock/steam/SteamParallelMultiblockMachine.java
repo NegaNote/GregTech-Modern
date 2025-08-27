@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
@@ -48,7 +49,7 @@ public class SteamParallelMultiblockMachine extends WorkableMultiblockMachine im
 
     @Getter
     @Setter
-    private int maxParallels = ConfigHolder.INSTANCE.machines.steamMultiParallelAmount;
+    private int maxParallels = MachineConfig.STEAM_MULTI_PARALLEL_AMOUNT.get();
 
     @Nullable
     private SteamEnergyRecipeHandler steamEnergy = null;
@@ -160,7 +161,7 @@ public class SteamParallelMultiblockMachine extends WorkableMultiblockMachine im
 
     @Override
     public IGuiTexture getScreenTexture() {
-        return GuiTextures.DISPLAY_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks);
+        return GuiTextures.DISPLAY_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get());
     }
 
     @Override
@@ -171,10 +172,10 @@ public class SteamParallelMultiblockMachine extends WorkableMultiblockMachine im
                 .setMaxWidthLimit(150)
                 .clickHandler(this::handleDisplayClick));
         return new ModularUI(176, 216, this, entityPlayer)
-                .background(GuiTextures.BACKGROUND_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks))
+                .background(GuiTextures.BACKGROUND_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get()))
                 .widget(screen)
                 .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(),
-                        GuiTextures.SLOT_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks), 7, 134,
+                        GuiTextures.SLOT_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get()), 7, 134,
                         true));
     }
 }

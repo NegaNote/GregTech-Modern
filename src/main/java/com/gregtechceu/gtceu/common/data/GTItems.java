@@ -30,6 +30,7 @@ import com.gregtechceu.gtceu.common.item.modules.ImageModuleBehaviour;
 import com.gregtechceu.gtceu.common.item.modules.TextModuleBehaviour;
 import com.gregtechceu.gtceu.common.item.tool.behavior.LighterBehavior;
 import com.gregtechceu.gtceu.common.item.tool.behavior.MetaMachineConfigCopyBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -2145,7 +2146,7 @@ public class GTItems {
             .onRegister(attach(ElectricStats.createElectricItem(1_600_000L, GTValues.HV),
                     new ProspectorScannerBehavior(3, GTValues.V[GTValues.HV] / 16L, ProspectorMode.ORE,
                             ProspectorMode.FLUID,
-                            ConfigHolder.INSTANCE.machines.doBedrockOres ? ProspectorMode.BEDROCK_ORE : null)))
+                            MachineConfig.DO_BEDROCK_ORES.get() ? ProspectorMode.BEDROCK_ORE : null)))
             .register();
     public static ItemEntry<ComponentItem> PROSPECTOR_LuV = REGISTRATE.item("prospector.luv", ComponentItem::create)
             .lang("Super Prospector (LuV)")
@@ -2153,7 +2154,7 @@ public class GTItems {
             .onRegister(attach(ElectricStats.createElectricItem(1_000_000_000L, GTValues.LuV),
                     new ProspectorScannerBehavior(5, GTValues.V[GTValues.LuV] / 16L, ProspectorMode.ORE,
                             ProspectorMode.FLUID,
-                            ConfigHolder.INSTANCE.machines.doBedrockOres ? ProspectorMode.BEDROCK_ORE : null)))
+                            MachineConfig.DO_BEDROCK_ORES.get() ? ProspectorMode.BEDROCK_ORE : null)))
             .register();
 
     public static ItemEntry<ComponentItem> ITEM_MAGNET_LV = REGISTRATE.item("lv_item_magnet", ComponentItem::create)

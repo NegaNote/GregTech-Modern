@@ -31,6 +31,8 @@ import com.gregtechceu.gtceu.common.machine.steam.SteamSolidBoilerMachine;
 import com.gregtechceu.gtceu.common.machine.storage.*;
 import com.gregtechceu.gtceu.common.pipelike.fluidpipe.longdistance.LDFluidEndpointMachine;
 import com.gregtechceu.gtceu.common.pipelike.item.longdistance.LDItemEndpointMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.boilers.SmallBoilerConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.integration.kjs.GTRegistryInfo;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -77,8 +79,8 @@ public class GTMachines {
                     .recipeModifier(SteamBoilerMachine::recipeModifier)
                     .workableSteamHullModel(pressure, GTCEu.id("block/generators/boiler/coal"))
                     .tooltips(Component.translatable("gtceu.universal.tooltip.produces_fluid",
-                            (pressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpSolidBoilerBaseOutput :
-                                    ConfigHolder.INSTANCE.machines.smallBoilers.solidBoilerBaseOutput) *
+                            (pressure ? SmallBoilerConfig.HP_SOLID_BOILER_BASE_OUTPUT.get() :
+                                    SmallBoilerConfig.SOLID_BOILER_BASE_OUTPUT.get()) *
                                     FluidType.BUCKET_VOLUME / 20000))
                     .register());
 
@@ -90,8 +92,8 @@ public class GTMachines {
                     .recipeModifier(SteamBoilerMachine::recipeModifier)
                     .workableSteamHullModel(pressure, GTCEu.id("block/generators/boiler/lava"))
                     .tooltips(Component.translatable("gtceu.universal.tooltip.produces_fluid",
-                            (pressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpLiquidBoilerBaseOutput :
-                                    ConfigHolder.INSTANCE.machines.smallBoilers.liquidBoilerBaseOutput) *
+                            (pressure ? SmallBoilerConfig.HP_LIQUID_BOILER_BASE_OUTPUT.get() :
+                                    SmallBoilerConfig.LIQUID_BOILER_BASE_OUTPUT.get()) *
                                     FluidType.BUCKET_VOLUME / 20000))
                     .register());
 
@@ -103,8 +105,8 @@ public class GTMachines {
                     .recipeModifier(SteamBoilerMachine::recipeModifier)
                     .workableSteamHullModel(pressure, GTCEu.id("block/generators/boiler/solar"))
                     .tooltips(Component.translatable("gtceu.universal.tooltip.produces_fluid",
-                            (pressure ? ConfigHolder.INSTANCE.machines.smallBoilers.hpSolarBoilerBaseOutput :
-                                    ConfigHolder.INSTANCE.machines.smallBoilers.solarBoilerBaseOutput) *
+                            (pressure ? SmallBoilerConfig.HP_SOLAR_BOILER_BASE_OUTPUT.get() :
+                                    SmallBoilerConfig.SOLAR_BOILER_BASE_OUTPUT.get()) *
                                     FluidType.BUCKET_VOLUME / 20000))
                     .register());
 
@@ -309,9 +311,9 @@ public class GTMachines {
             .blockModel(GTModels.createModelBlockState(GTCEu.id("block/machine/long_distance_item_pipeline_endpoint")))
             .tooltips(LangHandler.getMultiLang("gtceu.machine.endpoint.tooltip"))
             .tooltipBuilder((stack, tooltip) -> {
-                if (ConfigHolder.INSTANCE.machines.ldItemPipeMinDistance > 0) {
+                if (MachineConfig.LONG_DISTANCE_ITEM_PIPE_MIN_DISTANCE.get() > 0) {
                     tooltip.add(Component.translatable("gtceu.machine.endpoint.tooltip.min_length",
-                            ConfigHolder.INSTANCE.machines.ldItemPipeMinDistance));
+                            MachineConfig.LONG_DISTANCE_ITEM_PIPE_MIN_DISTANCE.get()));
                 }
             })
             .register();
@@ -326,9 +328,9 @@ public class GTMachines {
                     Component.translatable("gtceu.machine.endpoint.tooltip.1"),
                     Component.translatable("gtceu.machine.endpoint.tooltip.2"))
             .tooltipBuilder((stack, tooltip) -> {
-                if (ConfigHolder.INSTANCE.machines.ldFluidPipeMinDistance > 0) {
+                if (MachineConfig.LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE.get() > 0) {
                     tooltip.add(Component.translatable("gtceu.machine.endpoint.tooltip.min_length",
-                            ConfigHolder.INSTANCE.machines.ldItemPipeMinDistance));
+                            MachineConfig.LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE.get()));
                 }
             })
             .register();
@@ -398,7 +400,7 @@ public class GTMachines {
             LV, MV, HV, EV);
 
     public static final MachineDefinition[] MINER = registerTieredMachines("miner",
-            (holder, tier) -> new MinerMachine(holder, tier, ConfigHolder.INSTANCE.machines.minerSpeed / (tier * 2),
+            (holder, tier) -> new MinerMachine(holder, tier, MachineConfig.MINER_SPEED.get() / (tier * 2),
                     tier * 8, tier),
             (tier, builder) -> builder
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -409,7 +411,7 @@ public class GTMachines {
                     .tooltipBuilder((stack, tooltip) -> {
                         int maxArea = IMiner.getWorkingArea(tier * 8);
                         long energyPerTick = GTValues.V[tier - 1];
-                        int tickSpeed = ConfigHolder.INSTANCE.machines.minerSpeed / (tier * 2);
+                        int tickSpeed = MachineConfig.MINER_SPEED.get() / (tier * 2);
                         tooltip.add(Component.translatable("gtceu.machine.miner.tooltip", maxArea, maxArea));
                         tooltip.add(Component.translatable("gtceu.universal.tooltip.uses_per_tick", energyPerTick)
                                 .append(Component.literal(", ").withStyle(ChatFormatting.GRAY))

@@ -37,6 +37,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.primitive.CokeOvenMachine
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveBlastFurnaceMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitivePumpMachine;
 import com.gregtechceu.gtceu.common.machine.trait.CleanroomLogic;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -379,7 +380,7 @@ public class CleanroomMachine extends WorkableElectricMultiblockMachine
         TraceabilityPredicate basePredicate = Predicates.abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)
                 .setMaxGlobalLimited(2)
                 .or(blocks(GTMachines.MAINTENANCE_HATCH.get(), GTMachines.AUTO_MAINTENANCE_HATCH.get())
-                        .setMinGlobalLimited(ConfigHolder.INSTANCE.machines.enableMaintenance ? 1 : 0)
+                        .setMinGlobalLimited(MachineConfig.ENABLE_MAINTENANCE.get() ? 1 : 0)
                         .setMaxGlobalLimited(1))
                 // limit pass through hatches to a quarter of the floor area
                 .or(abilities(PartAbility.PASSTHROUGH_HATCH).setMaxGlobalLimited(area / 4));

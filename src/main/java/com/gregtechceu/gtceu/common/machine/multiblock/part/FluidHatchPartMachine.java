@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
 import com.lowdragmc.lowdraglib.gui.widget.ImageWidget;
@@ -117,7 +118,7 @@ public class FluidHatchPartMachine extends TieredIOPartMachine implements IMachi
 
     @Override
     public void onMachineRemoved() {
-        if (!ConfigHolder.INSTANCE.machines.ghostCircuit) {
+        if (!MachineConfig.GHOST_CIRCUIT.get()) {
             clearInventory(circuitInventory.storage);
         }
     }
@@ -149,7 +150,7 @@ public class FluidHatchPartMachine extends TieredIOPartMachine implements IMachi
     @Override
     public void addedToController(IMultiController controller) {
         if (!controller.allowCircuitSlots()) {
-            if (!ConfigHolder.INSTANCE.machines.ghostCircuit) {
+            if (!MachineConfig.GHOST_CIRCUIT.get()) {
                 clearInventory(circuitInventory.storage);
             } else {
                 circuitInventory.setStackInSlot(0, ItemStack.EMPTY);

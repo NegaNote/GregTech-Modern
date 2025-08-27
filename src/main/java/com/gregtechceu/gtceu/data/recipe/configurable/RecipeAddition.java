@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidContainerIngredient;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -50,7 +51,7 @@ public class RecipeAddition {
     }
 
     private static void steelSteamMultiblocks(Consumer<FinishedRecipe> provider) {
-        if (ConfigHolder.INSTANCE.machines.steelSteamMultiblocks) {
+        if (MachineConfig.STEEL_STEAM_MULTIBLOCKS.get()) {
             VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_oven",
                     GTMultiMachines.STEAM_OVEN.asStack(),
                     "CGC", "FMF", "CGC",

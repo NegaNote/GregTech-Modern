@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.common.block.BatteryBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.PowerSubstationMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 
@@ -179,7 +180,7 @@ public class Predicates {
         TraceabilityPredicate predicate = new TraceabilityPredicate();
         if (checkMaintenance) {
             predicate = predicate.or(abilities(PartAbility.MAINTENANCE)
-                    .setMinGlobalLimited(ConfigHolder.INSTANCE.machines.enableMaintenance ? 1 : 0)
+                    .setMinGlobalLimited(MachineConfig.ENABLE_MAINTENANCE.get() ? 1 : 0)
                     .setMaxGlobalLimited(1));
         }
         if (checkMuffler) {
@@ -262,7 +263,7 @@ public class Predicates {
 
     public static TraceabilityPredicate dataHatchPredicate(TraceabilityPredicate def) {
         // if research is enabled, require the data hatch, otherwise use a grate instead
-        if (ConfigHolder.INSTANCE.machines.enableResearch) {
+        if (MachineConfig.ENABLE_RESEARCH.get()) {
             return abilities(PartAbility.DATA_ACCESS, PartAbility.OPTICAL_DATA_RECEPTION)
                     .setExactLimit(1)
                     .or(def);

@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IHasCircuitSlot;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.gui.factory.HeldItemUIFactory;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
@@ -145,7 +146,7 @@ public class IntCircuitBehaviour implements IItemUIFactory, IAddInformation {
                     circuitMachine.getCircuitInventory().getSlots() > 0) {
                 setCircuitConfig(circuitMachine.getCircuitInventory(), circuitSetting);
             }
-            if (!ConfigHolder.INSTANCE.machines.ghostCircuit)
+            if (!MachineConfig.GHOST_CIRCUIT.get())
                 stack.shrink(1);
             return InteractionResult.SUCCESS;
         }

@@ -22,6 +22,7 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.*;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.gregtechceu.gtceu.common.recipe.condition.*;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.integration.kjs.recipe.components.CapabilityMap;
 import com.gregtechceu.gtceu.integration.kjs.recipe.components.ExtendedOutputItem;
@@ -980,7 +981,7 @@ public interface GTRecipeSchema {
         }
 
         private boolean applyResearchProperty(ResearchData.ResearchEntry researchEntry) {
-            if (!ConfigHolder.INSTANCE.machines.enableResearch) return false;
+            if (!MachineConfig.ENABLE_RESEARCH.get()) return false;
             if (researchEntry == null) {
                 throw new RecipeExceptionJS("Assembly Line Research Entry cannot be empty.",
                         new IllegalArgumentException());

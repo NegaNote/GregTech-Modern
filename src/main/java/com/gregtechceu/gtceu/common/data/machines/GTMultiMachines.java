@@ -29,6 +29,8 @@ import com.gregtechceu.gtceu.common.machine.multiblock.primitive.CokeOvenMachine
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveBlastFurnaceMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitivePumpMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.boilers.LargeBoilerConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -73,24 +75,24 @@ public class GTMultiMachines {
     public static final MultiblockMachineDefinition LARGE_BOILER_BRONZE = registerLargeBoiler("bronze",
             CASING_BRONZE_BRICKS, CASING_BRONZE_PIPE, FIREBOX_BRONZE,
             GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), BoilerFireboxType.BRONZE_FIREBOX,
-            ConfigHolder.INSTANCE.machines.largeBoilers.bronzeBoilerMaxTemperature,
-            ConfigHolder.INSTANCE.machines.largeBoilers.bronzeBoilerHeatSpeed);
+            LargeBoilerConfig.BRONZE_BOILER_MAX_TEMPERATURE.get(),
+            LargeBoilerConfig.BRONZE_BOILER_HEAT_SPEED.get());
     public static final MultiblockMachineDefinition LARGE_BOILER_STEEL = registerLargeBoiler("steel",
             CASING_STEEL_SOLID, CASING_STEEL_PIPE, FIREBOX_STEEL,
             GTCEu.id("block/casings/solid/machine_casing_solid_steel"), BoilerFireboxType.STEEL_FIREBOX,
-            ConfigHolder.INSTANCE.machines.largeBoilers.steelBoilerMaxTemperature,
-            ConfigHolder.INSTANCE.machines.largeBoilers.steelBoilerHeatSpeed);
+            LargeBoilerConfig.STEEL_BOILER_MAX_TEMPERATURE.get(),
+            LargeBoilerConfig.STEEL_BOILER_HEAT_SPEED.get());
     public static final MultiblockMachineDefinition LARGE_BOILER_TITANIUM = registerLargeBoiler("titanium",
             CASING_TITANIUM_STABLE, CASING_TITANIUM_PIPE, FIREBOX_TITANIUM,
             GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), BoilerFireboxType.TITANIUM_FIREBOX,
-            ConfigHolder.INSTANCE.machines.largeBoilers.titaniumBoilerMaxTemperature,
-            ConfigHolder.INSTANCE.machines.largeBoilers.titaniumBoilerHeatSpeed);
+            LargeBoilerConfig.TITANIUM_BOILER_MAX_TEMPERATURE.get(),
+            LargeBoilerConfig.TITANIUM_BOILER_HEAT_SPEED.get());
     public static final MultiblockMachineDefinition LARGE_BOILER_TUNGSTENSTEEL = registerLargeBoiler("tungstensteel",
             CASING_TUNGSTENSTEEL_ROBUST, CASING_TUNGSTENSTEEL_PIPE, FIREBOX_TUNGSTENSTEEL,
             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
             BoilerFireboxType.TUNGSTENSTEEL_FIREBOX,
-            ConfigHolder.INSTANCE.machines.largeBoilers.tungstensteelBoilerMaxTemperature,
-            ConfigHolder.INSTANCE.machines.largeBoilers.tungstensteelBoilerHeatSpeed);
+            LargeBoilerConfig.TUNGSTENSTEEL_BOILER_MAX_TEMPERATURE.get(),
+            LargeBoilerConfig.TUNGSTENSTEEL_BOILER_HEAT_SPEED.get());
 
     public static final MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CokeOvenMachine::new)
             .rotationState(RotationState.ALL)
@@ -540,7 +542,7 @@ public class GTMultiMachines {
                     .aisle("FOF", "RTR", "DAG", "#Y#")
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
                     .where('F', blocks(CASING_STEEL_SOLID.get())
-                            .or(!ConfigHolder.INSTANCE.machines.orderedAssemblyLineFluids ?
+                            .or(!MachineConfig.ORDERED_ASSEMBLY_LINE_FLUIDS.get() ?
                                     Predicates.abilities(PartAbility.IMPORT_FLUIDS_1X,
                                             PartAbility.IMPORT_FLUIDS_4X, PartAbility.IMPORT_FLUIDS_9X) :
                                     Predicates.abilities(PartAbility.IMPORT_FLUIDS_1X).setMaxGlobalLimited(4)))
@@ -869,7 +871,7 @@ public class GTMultiMachines {
                             .or(blocks(GTBlocks.CLEANROOM_GLASS.get()))
                             .or(abilities(PartAbility.PASSTHROUGH_HATCH).setMaxGlobalLimited(30, 3))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3, 2))
-                            .or(blocks(ConfigHolder.INSTANCE.machines.enableMaintenance ?
+                            .or(blocks(MachineConfig.ENABLE_MAINTENANCE.get() ?
                                     GTMachines.MAINTENANCE_HATCH.getBlock() : PLASTCRETE.get()).setExactLimit(1))
                             .or(blocks(Blocks.IRON_DOOR).setMaxGlobalLimited(8)))
                     .where('S', controller(blocks(definition.getBlock())))
@@ -900,7 +902,7 @@ public class GTMultiMachines {
                                         .setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER))
                         .where('R', Blocks.IRON_DOOR.defaultBlockState().setValue(DoorBlock.FACING, Direction.NORTH)
                                 .setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER));
-                if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+                if (MachineConfig.ENABLE_MAINTENANCE.get()) {
                     builder.where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH);
                 } else {
                     builder.where('M', GTBlocks.PLASTCRETE.get());
@@ -1027,7 +1029,7 @@ public class GTMultiMachines {
                         .where('O', GTMachines.ENERGY_OUTPUT_HATCH[HV], Direction.NORTH)
                         .where('T', GTMachines.SUBSTATION_ENERGY_OUTPUT_HATCH[EV], Direction.NORTH)
                         .where('M',
-                                ConfigHolder.INSTANCE.machines.enableMaintenance ?
+                                MachineConfig.ENABLE_MAINTENANCE.get() ?
                                         GTMachines.MAINTENANCE_HATCH.getBlock().defaultBlockState().setValue(
                                                 GTMachines.MAINTENANCE_HATCH.get().getRotationState().property,
                                                 Direction.NORTH) :

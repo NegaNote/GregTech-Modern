@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -76,7 +77,7 @@ public class EnergyHatchPartMachine extends TieredIOPartMachine implements IExpl
     public void onLoad() {
         super.onLoad();
         // if machine need do check explosion conditions
-        if (ConfigHolder.INSTANCE.machines.shouldWeatherOrTerrainExplosion && shouldWeatherOrTerrainExplosion()) {
+        if (MachineConfig.SHOULD_WEATHER_OR_TERRAIN_CAUSE_EXPLOSIONS.get() && shouldWeatherOrTerrainExplosion()) {
             energyListener = energyContainer.addChangedListener(this::updateExplosionSubscription);
             updateExplosionSubscription();
         }
@@ -96,7 +97,7 @@ public class EnergyHatchPartMachine extends TieredIOPartMachine implements IExpl
     //////////////////////////////////////
 
     protected void updateExplosionSubscription() {
-        if (ConfigHolder.INSTANCE.machines.shouldWeatherOrTerrainExplosion && shouldWeatherOrTerrainExplosion() &&
+        if (MachineConfig.SHOULD_WEATHER_OR_TERRAIN_CAUSE_EXPLOSIONS.get() && shouldWeatherOrTerrainExplosion() &&
                 energyContainer.getEnergyStored() > 0) {
             explosionSubs = subscribeServerTick(explosionSubs, this::checkExplosion);
         } else if (explosionSubs != null) {

@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.TieredEnergyMachine;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
@@ -259,7 +260,7 @@ public class WorldAcceleratorMachine extends TieredEnergyMachine implements ICon
 
     private static void generateWorldAcceleratorBlacklist() {
         if (!gatheredClasses) {
-            for (String name : ConfigHolder.INSTANCE.machines.worldAcceleratorBlacklist) {
+            for (String name : MachineConfig.WORLD_ACCELERATOR_BLACKLIST.get()) {
                 if (!blacklistedClasses.containsKey(name)) {
                     try {
                         blacklistedClasses.put(name, Class.forName(name));

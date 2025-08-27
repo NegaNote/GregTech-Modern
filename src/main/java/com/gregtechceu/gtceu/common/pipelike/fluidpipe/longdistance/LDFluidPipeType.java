@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.common.pipelike.fluidpipe.longdistance;
 
 import com.gregtechceu.gtceu.api.pipenet.longdistance.LongDistancePipeType;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 public class LDFluidPipeType extends LongDistancePipeType {
 
@@ -12,6 +13,6 @@ public class LDFluidPipeType extends LongDistancePipeType {
 
     @Override
     public int getMinLength() {
-        return ConfigHolder.INSTANCE.machines.ldFluidPipeMinDistance;
+        return MachineConfig.LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE.get();
     }
 }

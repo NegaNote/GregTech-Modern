@@ -54,6 +54,7 @@ import com.gregtechceu.gtceu.common.machine.storage.CrateMachine;
 import com.gregtechceu.gtceu.common.machine.storage.DrumMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumChestMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumTankMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
@@ -707,7 +708,7 @@ public class GTMachineUtils {
                                     .setPreviewCount(1))
                             .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1));
 
-                    if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+                    if (MachineConfig.ENABLE_MAINTENANCE.get()) {
                         fireboxPred = fireboxPred.or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1));
                     }
 
@@ -881,7 +882,7 @@ public class GTMachineUtils {
 
     // Tooltips
     public static Component explosion() {
-        if (ConfigHolder.INSTANCE.machines.shouldWeatherOrTerrainExplosion)
+        if (MachineConfig.SHOULD_WEATHER_OR_TERRAIN_CAUSE_EXPLOSIONS.get())
             return Component.translatable("gtceu.universal.tooltip.terrain_resist");
         return null;
     }

@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.gui.widget.TankWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.ImageWidget;
@@ -23,7 +24,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class SteamHatchPartMachine extends FluidHatchPartMachine {
 
     public static final int INITIAL_TANK_CAPACITY = 64 * FluidType.BUCKET_VOLUME;
-    public static final boolean IS_STEEL = ConfigHolder.INSTANCE.machines.steelSteamMultiblocks;
+    public static final boolean IS_STEEL = MachineConfig.STEEL_STEAM_MULTIBLOCKS.get();
 
     public SteamHatchPartMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, 0, IO.IN, SteamHatchPartMachine.INITIAL_TANK_CAPACITY, 1, args);

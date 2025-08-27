@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.core.BlockPos;
@@ -108,7 +109,7 @@ public interface IExhaustVentMachine extends IMachineFeature {
         double posZ = pos.getZ() + 0.5 + ventingDirection.getStepZ() * 0.6;
         createVentingParticles(level, posX, posY, posZ);
 
-        if (ConfigHolder.INSTANCE.machines.machineSounds) {
+        if (MachineConfig.MACHINE_SOUNDS.get()) {
             playVentingSound(level, posX, posY, posZ);
         }
 

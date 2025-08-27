@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.ui.GTRecipeTypeUI;
 import com.gregtechceu.gtceu.common.recipe.condition.ResearchCondition;
 import com.gregtechceu.gtceu.common.valueprovider.*;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.core.mixins.IngredientAccessor;
 import com.gregtechceu.gtceu.core.mixins.TagValueAccessor;
 import com.gregtechceu.gtceu.core.mixins.forge.IntersectionIngredientAccessor;
@@ -441,7 +442,7 @@ public class ItemRecipeCapability extends RecipeCapability<Ingredient> {
                 // 1 over container size.
                 // If in a recipe viewer and a research slot can be added, add it.
                 if (isXEI && recipeType.isHasResearchSlot() && index == items.getSlots()) {
-                    if (ConfigHolder.INSTANCE.machines.enableResearch) {
+                    if (MachineConfig.ENABLE_RESEARCH.get()) {
                         ResearchCondition condition = recipeHolder.conditions().stream()
                                 .filter(ResearchCondition.class::isInstance).findAny()
                                 .map(ResearchCondition.class::cast).orElse(null);

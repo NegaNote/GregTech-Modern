@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.capability.EnvironmentalHazardSavedData;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -103,8 +104,8 @@ public class GTRecipeModifiers {
 
     public static @NotNull ModifierFunction batchMode(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof IMultiController controller && controller.isFormed() && controller.isBatchEnabled()) {
-            if (recipe.duration < ConfigHolder.INSTANCE.machines.batchDuration) {
-                int parallel = ConfigHolder.INSTANCE.machines.batchDuration / recipe.duration;
+            if (recipe.duration < MachineConfig.BATCH_DURATION.get()) {
+                int parallel = MachineConfig.BATCH_DURATION.get() / recipe.duration;
                 parallel = ParallelLogic.getParallelAmountWithoutEU(machine, recipe, parallel);
 
                 if (parallel == 0) return ModifierFunction.NULL;

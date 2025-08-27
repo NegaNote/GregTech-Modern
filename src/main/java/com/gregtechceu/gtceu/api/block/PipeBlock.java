@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.client.renderer.block.PipeBlockRenderer;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -158,7 +159,7 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
             Direction facing = GTUtil.getFacingToNeighbor(pos, neighbor);
             if (facing == null) return;
             CoverBehavior cover = pipeTile.getCoverContainer().getCoverAtSide(facing);
-            if (!ConfigHolder.INSTANCE.machines.gt6StylePipesCables) {
+            if (!MachineConfig.GT6_STYLE_PIPES_CABLES.get()) {
                 boolean open = pipeTile.isConnected(facing);
                 boolean canConnect = cover != null ||
                         canConnect(pipeTile, facing);
@@ -252,7 +253,7 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
         if (pipeTile != null) {
             Direction facing = GTUtil.getFacingToNeighbor(pos, fromPos);
             if (facing == null) return;
-            if (!ConfigHolder.INSTANCE.machines.gt6StylePipesCables) {
+            if (!MachineConfig.GT6_STYLE_PIPES_CABLES.get()) {
                 boolean open = pipeTile.isConnected(facing);
                 boolean canConnect = pipeTile.getCoverContainer().getCoverAtSide(facing) != null ||
                         this.canConnect(pipeTile, facing);

@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.transfer.item.NotifiableAccountedInvWrapper;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -178,10 +179,10 @@ public class MinerLogic extends RecipeLogic implements IRecipeCapabilityHolder {
     private static BlockState findMiningReplacementBlock(Level level) {
         try {
             return BlockStateParser.parseForBlock(level.holderLookup(Registries.BLOCK),
-                    ConfigHolder.INSTANCE.machines.replaceMinedBlocksWith, false).blockState();
+                    MachineConfig.REPLACE_MINED_BLOCKS_WITH.get(), false).blockState();
         } catch (CommandSyntaxException ignored) {
             GTCEu.LOGGER.error("failed to parse replaceMinedBlocksWith, invalid BlockState: {}",
-                    ConfigHolder.INSTANCE.machines.replaceMinedBlocksWith);
+                    MachineConfig.REPLACE_MINED_BLOCKS_WITH.get());
             return Blocks.COBBLESTONE.defaultBlockState();
         }
     }

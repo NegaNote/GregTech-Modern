@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.common.data.GTRecipeConditions;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.network.chat.Component;
 
@@ -51,10 +52,10 @@ public class CleanroomCondition extends RecipeCondition {
 
     @Override
     public boolean testCondition(@NotNull GTRecipe recipe, @NotNull RecipeLogic recipeLogic) {
-        if (!ConfigHolder.INSTANCE.machines.enableCleanroom) return true;
+        if (!MachineConfig.ENABLE_CLEANROOM.get()) return true;
         MetaMachine machine = recipeLogic.getMachine();
         if (machine instanceof ICleanroomReceiver receiver && this.cleanroom != null) {
-            if (ConfigHolder.INSTANCE.machines.cleanMultiblocks && machine instanceof IMultiController) return true;
+            if (MachineConfig.CLEAN_MULTIBLOCKS.get() && machine instanceof IMultiController) return true;
 
             ICleanroomProvider provider = receiver.getCleanroom();
             if (provider == null) return false;

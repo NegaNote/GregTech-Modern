@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.ingredient.IntProviderFluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.IntProviderIngredient;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -534,7 +535,7 @@ public class MultiblockDisplayText {
          * Will check the config setting for if maintenance is enabled automatically.
          */
         public Builder addMaintenanceProblemLines(byte maintenanceProblems) {
-            if (!isStructureFormed || !ConfigHolder.INSTANCE.machines.enableMaintenance)
+            if (!isStructureFormed || !MachineConfig.ENABLE_MAINTENANCE.get())
                 return this;
             if (maintenanceProblems <= 0b111111 && maintenanceProblems > 0) {
                 addMaintenanceProblemHeader();

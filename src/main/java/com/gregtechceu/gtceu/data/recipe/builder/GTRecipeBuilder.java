@@ -24,6 +24,7 @@ import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.gregtechceu.gtceu.common.recipe.condition.*;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.gregtechceu.gtceu.utils.ResearchManager;
 
@@ -1286,7 +1287,7 @@ public class GTRecipeBuilder {
     }
 
     private boolean applyResearchProperty(ResearchData.ResearchEntry researchEntry) {
-        if (!ConfigHolder.INSTANCE.machines.enableResearch) return false;
+        if (!MachineConfig.ENABLE_RESEARCH.get()) return false;
         if (researchEntry == null) {
             GTCEu.LOGGER.error("Research Entry cannot be empty.", new IllegalArgumentException());
             return false;

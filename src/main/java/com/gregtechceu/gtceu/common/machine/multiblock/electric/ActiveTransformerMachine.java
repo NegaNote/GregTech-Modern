@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
@@ -143,7 +144,7 @@ public class ActiveTransformerMachine extends WorkableElectricMultiblockMachine
     @Override
     public void onStructureInvalid() {
         if ((isWorkingEnabled() && recipeLogic.getStatus() == RecipeLogic.Status.WORKING) &&
-                !ConfigHolder.INSTANCE.machines.harmlessActiveTransformers) {
+                !MachineConfig.HARMLESS_ACTIVE_TRANSFORMERS.get()) {
             doExplosion(6f + getTier());
         }
         super.onStructureInvalid();
@@ -186,7 +187,7 @@ public class ActiveTransformerMachine extends WorkableElectricMultiblockMachine
                 textList.add(Component
                         .translatable("gtceu.multiblock.active_transformer.average_out",
                                 FormattingUtil.formatNumbers(Math.abs(powerOutput.getOutputPerSec() / 20))));
-                if (!ConfigHolder.INSTANCE.machines.harmlessActiveTransformers) {
+                if (!MachineConfig.HARMLESS_ACTIVE_TRANSFORMERS.get()) {
                     textList.add(Component
                             .translatable("gtceu.multiblock.active_transformer.danger_enabled"));
                 }

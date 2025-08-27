@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.api.item;
 import com.gregtechceu.gtceu.api.block.PipeBlock;
 import com.gregtechceu.gtceu.api.capability.ICoverable;
 import com.gregtechceu.gtceu.api.pipenet.IPipeNode;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -85,7 +86,7 @@ public class PipeBlockItem extends BlockItem {
                             otherPipe.setConnection(facing.getOpposite(), false, true);
                         }
                     }
-                } else if (!ConfigHolder.INSTANCE.machines.gt6StylePipesCables &&
+                } else if (!MachineConfig.GT6_STYLE_PIPES_CABLES.get() &&
                         selfTile.getPipeBlock().canPipeConnectToBlock(selfTile, facing, te)) {
                             selfTile.setConnection(facing, true, false);
                         }

@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.MachineTrait;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
@@ -301,7 +302,7 @@ public class PowerSubstationMachine extends WorkableMultiblockMachine
     }
 
     public long getPassiveDrain() {
-        if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+        if (MachineConfig.ENABLE_MAINTENANCE.get()) {
             if (maintenance == null) {
                 for (IMultiPart part : getParts()) {
                     if (part instanceof IMaintenanceMachine maintenanceMachine) {

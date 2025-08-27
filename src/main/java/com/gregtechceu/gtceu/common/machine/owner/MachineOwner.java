@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.common.machine.owner;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -86,16 +87,16 @@ public abstract sealed class MachineOwner permits PlayerOwner, FTBOwner, Argonau
     }
 
     public static boolean canOpenOwnerMachine(Player player, MetaMachine machine) {
-        if (!ConfigHolder.INSTANCE.machines.onlyOwnerGUI) return true;
-        if (player.hasPermissions(ConfigHolder.INSTANCE.machines.ownerOPBypass)) return true;
+        if (!MachineConfig.ONLY_OWNER_GUI.get()) return true;
+        if (player.hasPermissions(MachineConfig.OWNER_OP_BYPASS.get())) return true;
         var owner = machine.getOwner();
         if (owner == null) return true;
         return owner.isPlayerInTeam(player) || owner.isPlayerFriendly(player);
     }
 
     public static boolean canBreakOwnerMachine(Player player, MetaMachine machine) {
-        if (!ConfigHolder.INSTANCE.machines.onlyOwnerBreak) return true;
-        if (player.hasPermissions(ConfigHolder.INSTANCE.machines.ownerOPBypass)) return true;
+        if (!MachineConfig.ONLY_OWNER_BREAK.get()) return true;
+        if (player.hasPermissions(MachineConfig.OWNER_OP_BYPASS.get())) return true;
         var owner = machine.getOwner();
         if (owner == null) return true;
         return owner.isPlayerInTeam(player);

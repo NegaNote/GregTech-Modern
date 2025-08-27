@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.boilers.LargeBoilerConfig;
 
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
@@ -123,7 +124,7 @@ public class LargeBoilerMachine extends WorkableMultiblockMachine implements IEx
 
         if (isFormed() && getOffsetTimer() % TICKS_PER_STEAM_GENERATION == 0) {
             var maxDrain = currentTemperature * throttle * TICKS_PER_STEAM_GENERATION /
-                    (ConfigHolder.INSTANCE.machines.largeBoilers.steamPerWater * 100);
+                    (LargeBoilerConfig.STEAM_PER_WATER.get() * 100);
             if (currentTemperature < 100) {
                 steamGenerated = 0;
             } else if (maxDrain > 0) { // if maxDrain is 0 because throttle is too low, skip trying to make steam
@@ -141,7 +142,7 @@ public class LargeBoilerMachine extends WorkableMultiblockMachine implements IEx
                 var drained = (drainWater == null || drainWater.isEmpty()) ? maxDrain :
                         maxDrain - drainWater.get(0).getAmount();
 
-                steamGenerated = drained * ConfigHolder.INSTANCE.machines.largeBoilers.steamPerWater;
+                steamGenerated = drained * LargeBoilerConfig.STEAM_PER_WATER.get();
 
                 if (drained > 0) {
                     // fill steam

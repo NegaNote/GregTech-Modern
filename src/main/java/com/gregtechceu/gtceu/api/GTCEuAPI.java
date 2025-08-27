@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.IBatteryData;
 import com.gregtechceu.gtceu.api.registry.GTRegistry;
 import com.gregtechceu.gtceu.common.block.BatteryBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -45,7 +46,7 @@ public class GTCEuAPI {
     @ApiStatus.Internal
     public static void initializeHighTier() {
         if (highTierInitialized) throw new IllegalStateException("High-Tier is already initialized.");
-        highTier = ConfigHolder.INSTANCE.machines.highTierContent ||
+        highTier = MachineConfig.HIGH_TIER_CONTENT.get() ||
                 AddonFinder.getAddons().stream().anyMatch(IGTAddon::requiresHighTier) || GTCEu.isDev();
         highTierInitialized = true;
 

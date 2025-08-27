@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.gui.fancy.IFancyTooltip;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -84,7 +85,7 @@ public interface IMaintenanceMachine extends IMultiPart {
      */
     default boolean calculateTime(int duration) {
         setTimeActive(duration + getTimeActive());
-        var value = getTimeActive() - ConfigHolder.INSTANCE.machines.maintenanceTime;
+        var value = getTimeActive() - MachineConfig.MAINTENANCE_TIME.get();
         if (value > 0) {
             setTimeActive(value);
             return true;
@@ -98,7 +99,7 @@ public interface IMaintenanceMachine extends IMultiPart {
      * @param duration in ticks to add to the counter of active time
      */
     default void calculateMaintenance(IMaintenanceMachine maintenanceMachine, int duration) {
-        if (!ConfigHolder.INSTANCE.machines.enableMaintenance || maintenanceMachine.isFullAuto()) {
+        if (!MachineConfig.ENABLE_MAINTENANCE.get() || maintenanceMachine.isFullAuto()) {
             return;
         }
 
@@ -111,11 +112,11 @@ public interface IMaintenanceMachine extends IMultiPart {
     }
 
     default int getNumMaintenanceProblems() {
-        return ConfigHolder.INSTANCE.machines.enableMaintenance ? 6 - Integer.bitCount(getMaintenanceProblems()) : 0;
+        return MachineConfig.ENABLE_MAINTENANCE.get() ? 6 - Integer.bitCount(getMaintenanceProblems()) : 0;
     }
 
     default boolean hasMaintenanceProblems() {
-        return ConfigHolder.INSTANCE.machines.enableMaintenance && this.getMaintenanceProblems() < 63;
+        return MachineConfig.ENABLE_MAINTENANCE.get() && this.getMaintenanceProblems() < 63;
     }
 
     default void setMaintenanceFixed(int index) {
@@ -129,7 +130,7 @@ public interface IMaintenanceMachine extends IMultiPart {
 
     @Override
     default boolean afterWorking(IWorkableMultiController controller) {
-        if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+        if (MachineConfig.ENABLE_MAINTENANCE.get()) {
             calculateMaintenance(this, controller.getRecipeLogic().getProgress());
             if (hasMaintenanceProblems()) {
                 controller.getRecipeLogic().markLastRecipeDirty();
@@ -141,7 +142,7 @@ public interface IMaintenanceMachine extends IMultiPart {
 
     @Override
     default GTRecipe modifyRecipe(GTRecipe recipe) {
-        if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+        if (MachineConfig.ENABLE_MAINTENANCE.get()) {
             if (hasMaintenanceProblems()) {
                 return null;
             }
@@ -165,7 +166,7 @@ public interface IMaintenanceMachine extends IMultiPart {
 
     @Override
     default void attachTooltips(TooltipsPanel tooltipsPanel) {
-        if (ConfigHolder.INSTANCE.machines.enableMaintenance) {
+        if (MachineConfig.ENABLE_MAINTENANCE.get()) {
             tooltipsPanel.attachTooltips(new IFancyTooltip.Basic(() -> GuiTextures.MAINTENANCE_ICON, () -> {
                 var tooltips = new ArrayList<Component>();
                 tooltips.add(Component.translatable("gtceu.multiblock.universal.has_problems_header")

@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.jei.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.jei.multipage.MultiblockInfoCategory;
 import com.gregtechceu.gtceu.integration.jei.oreprocessing.GTOreProcessingInfoCategory;
@@ -58,7 +59,7 @@ public class GTJEIPlugin implements IModPlugin {
             registry.addRecipeCategories(new GTOreProcessingInfoCategory(jeiHelpers));
         registry.addRecipeCategories(new GTOreVeinInfoCategory(jeiHelpers));
         registry.addRecipeCategories(new GTBedrockFluidInfoCategory(jeiHelpers));
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             registry.addRecipeCategories(new GTBedrockOreInfoCategory(jeiHelpers));
         for (GTRecipeCategory category : GTRegistries.RECIPE_CATEGORIES) {
             if (category.shouldRegisterDisplays()) {
@@ -76,7 +77,7 @@ public class GTJEIPlugin implements IModPlugin {
             GTOreProcessingInfoCategory.registerRecipeCatalysts(registration);
         GTOreVeinInfoCategory.registerRecipeCatalysts(registration);
         GTBedrockFluidInfoCategory.registerRecipeCatalysts(registration);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreInfoCategory.registerRecipeCatalysts(registration);
         registration.addRecipeCatalyst(GTMultiMachines.LARGE_CHEMICAL_REACTOR.asStack(),
                 GTRecipeJEICategory.TYPES.apply(GTRecipeTypes.CHEMICAL_RECIPES.getCategory()));
@@ -93,7 +94,7 @@ public class GTJEIPlugin implements IModPlugin {
             GTOreProcessingInfoCategory.registerRecipes(registration);
         GTOreVeinInfoCategory.registerRecipes(registration);
         GTBedrockFluidInfoCategory.registerRecipes(registration);
-        if (ConfigHolder.INSTANCE.machines.doBedrockOres)
+        if (MachineConfig.DO_BEDROCK_ORES.get())
             GTBedrockOreInfoCategory.registerRecipes(registration);
         registration.addRecipes(GTProgrammedCircuitCategory.RECIPE_TYPE,
                 List.of(new GTProgrammedCircuitCategory.GTProgrammedCircuitWrapper()));

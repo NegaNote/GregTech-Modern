@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
@@ -117,7 +118,7 @@ public class ItemBusPartMachine extends TieredIOPartMachine
     public void onMachineRemoved() {
         clearInventory(getInventory().storage);
 
-        if (!ConfigHolder.INSTANCE.machines.ghostCircuit) {
+        if (!MachineConfig.GHOST_CIRCUIT.get()) {
             clearInventory(circuitInventory.storage);
         }
     }
@@ -156,7 +157,7 @@ public class ItemBusPartMachine extends TieredIOPartMachine
     @Override
     public void addedToController(IMultiController controller) {
         if (hasCircuitSlot && !controller.allowCircuitSlots()) {
-            if (!ConfigHolder.INSTANCE.machines.ghostCircuit) {
+            if (!MachineConfig.GHOST_CIRCUIT.get()) {
                 clearInventory(circuitInventory.storage);
             } else {
                 circuitInventory.setStackInSlot(0, ItemStack.EMPTY);

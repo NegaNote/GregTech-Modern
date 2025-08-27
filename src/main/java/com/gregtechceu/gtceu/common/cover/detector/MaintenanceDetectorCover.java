@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.capability.ICoverable;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMaintenanceMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import net.minecraft.core.Direction;
 
@@ -15,7 +16,7 @@ public class MaintenanceDetectorCover extends DetectorCover {
 
     @Override
     public boolean canAttach() {
-        if (!ConfigHolder.INSTANCE.machines.enableMaintenance) {
+        if (!MachineConfig.ENABLE_MAINTENANCE.get()) {
             return false;
         }
 

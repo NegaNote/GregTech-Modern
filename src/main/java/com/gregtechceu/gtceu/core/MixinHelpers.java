@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.api.registry.registrate.forge.GTClientFluidTypeExtensions;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.config.WorldgenConfig;
 import com.gregtechceu.gtceu.core.mixins.BlockBehaviourAccessor;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -160,7 +161,7 @@ public class MixinHelpers {
                                 .contains(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)) {
                             tagMap.computeIfAbsent(CustomTags.MINEABLE_WITH_WRENCH.location(),
                                     path -> new ArrayList<>()).addAll(entries);
-                            if (!ConfigHolder.INSTANCE.machines.requireGTToolsForBlocks) {
+                            if (!MachineConfig.REQUIRE_GT_TOOLS_FOR_BLOCKS.get()) {
                                 tagMap.computeIfAbsent(BlockTags.MINEABLE_WITH_AXE.location(),
                                         path -> new ArrayList<>())
                                         .addAll(entries);
@@ -184,7 +185,7 @@ public class MixinHelpers {
             });
 
             // if config is NOT enabled, add the "configurable" mineability tags to the pickaxe tag
-            if (!ConfigHolder.INSTANCE.machines.requireGTToolsForBlocks) {
+            if (!MachineConfig.REQUIRE_GT_TOOLS_FOR_BLOCKS.get()) {
                 var tagList = tagMap.computeIfAbsent(BlockTags.MINEABLE_WITH_PICKAXE.location(),
                         path -> new ArrayList<>());
 

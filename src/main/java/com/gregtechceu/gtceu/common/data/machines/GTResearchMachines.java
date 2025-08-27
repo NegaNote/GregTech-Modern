@@ -26,6 +26,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.ObjectHolderMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.OpticalComputationHatchMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.OpticalDataHatchMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.hpca.*;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
@@ -99,7 +100,7 @@ public class GTResearchMachines {
                     .where('P', COMPUTER_CASING.get())
                     .where('O', GTResearchMachines.COMPUTATION_HATCH_RECEIVER, Direction.SOUTH)
                     .where('E', GTMachines.ENERGY_INPUT_HATCH[GTValues.LuV], Direction.SOUTH)
-                    .where('M', ConfigHolder.INSTANCE.machines.enableMaintenance ?
+                    .where('M', MachineConfig.ENABLE_MAINTENANCE.get() ?
                             GTMachines.MAINTENANCE_HATCH.getBlock().defaultBlockState().setValue(
                                     GTMachines.MAINTENANCE_HATCH.get().getRotationState().property, Direction.SOUTH) :
                             COMPUTER_CASING.getDefaultState())
@@ -232,7 +233,7 @@ public class GTResearchMachines {
                         .where('E', GTMachines.ENERGY_INPUT_HATCH[GTValues.LuV], Direction.SOUTH)
                         .where('H', GTMachines.FLUID_IMPORT_HATCH[GTValues.LV], Direction.SOUTH)
                         .where('O', GTResearchMachines.COMPUTATION_HATCH_TRANSMITTER, Direction.NORTH)
-                        .where('M', ConfigHolder.INSTANCE.machines.enableMaintenance ?
+                        .where('M', MachineConfig.ENABLE_MAINTENANCE.get() ?
                                 GTMachines.MAINTENANCE_HATCH.defaultBlockState().setValue(
                                         GTMachines.MAINTENANCE_HATCH.get().getRotationState().property,
                                         Direction.SOUTH) :

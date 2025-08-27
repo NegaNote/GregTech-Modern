@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.gui.widget.ToggleButtonWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
@@ -34,14 +35,14 @@ public class SteamItemBusPartMachine extends ItemBusPartMachine {
         int xOffset = rowSize == 10 ? 9 : 0;
         var modular = new ModularUI(176 + xOffset * 2,
                 18 + 18 * rowSize + 105, this, entityPlayer)
-                .background(GuiTextures.BACKGROUND_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks))
+                .background(GuiTextures.BACKGROUND_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get()))
                 .widget(new LabelWidget(10, 5, getBlockState().getBlock().getDescriptionId()))
                 .widget(new ToggleButtonWidget(7 + xOffset, 18 + 18 * rowSize, 18, 18,
                         GuiTextures.BUTTON_ITEM_OUTPUT, this::isWorkingEnabled, this::setWorkingEnabled)
                         .setShouldUseBaseBackground() // TODO: Steamify background
                         .setTooltipText(autoTooltipKey))
                 .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(),
-                        GuiTextures.SLOT_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks),
+                        GuiTextures.SLOT_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get()),
                         7 + xOffset, 18 + 18 * rowSize + 24, true));
 
         for (int y = 0; y < rowSize; y++) {
@@ -50,7 +51,7 @@ public class SteamItemBusPartMachine extends ItemBusPartMachine {
                 modular.widget(new SlotWidget(getInventory().storage, index,
                         (88 - rowSize * 9 + x * 18) + xOffset, 18 + y * 18 + 6, true, io.support(IO.IN))
                         .setBackgroundTexture(
-                                GuiTextures.SLOT_STEAM.get(ConfigHolder.INSTANCE.machines.steelSteamMultiblocks)));
+                                GuiTextures.SLOT_STEAM.get(MachineConfig.STEEL_STEAM_MULTIBLOCKS.get())));
             }
         }
 

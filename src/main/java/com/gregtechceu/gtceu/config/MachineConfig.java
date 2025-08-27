@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.config;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 
+import net.minecraft.commands.Commands;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import static com.gregtechceu.gtceu.config.ConfigUtil.createConfigValue;
@@ -47,6 +48,11 @@ public class MachineConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Integer> LONG_DISTANCE_ITEM_PIPE_MIN_DISTANCE;
     public static final ForgeConfigSpec.ConfigValue<Integer> LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE;
+
+    public static final ForgeConfigSpec.BooleanValue ONLY_OWNER_GUI;
+    public static final ForgeConfigSpec.BooleanValue ONLY_OWNER_BREAK;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> OWNER_OP_BYPASS;
 
     /**
      * <strong>Addons mods should not reference this config directly.</strong>
@@ -125,6 +131,13 @@ public class MachineConfig {
                 "Minimum distance between Long Distance Item Pipe Endpoints");
         LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE = createConfigValue(BUILDER, "long_distance_fluid_pipe_min_distance", 50,
                 "Minimum distance between Long Distance Fluid Pipe Endpoints");
+
+        ONLY_OWNER_GUI = createConfigValue(BUILDER, "only_owner_gui", false,
+                "Whether ONLY owners can open a machine gui");
+        ONLY_OWNER_BREAK = createConfigValue(BUILDER, "only_owner_break", false,
+                "Whether ONLY owners can break a machine");
+        OWNER_OP_BYPASS = createConfigValue(BUILDER, "owner_op_bypass", Commands.LEVEL_GAMEMASTERS, Commands.LEVEL_ALL,
+                Commands.LEVEL_OWNERS, "Minimum op level to bypass the ownership checks");
 
         HIGH_TIER_CONTENT = createConfigValue(BUILDER, "high_tier_content", false,
                 "If High Tier (>UV-tier) GT content should be registered.",

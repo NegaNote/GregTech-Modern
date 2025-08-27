@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
+import com.gregtechceu.gtceu.config.MachineConfig;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -46,11 +47,12 @@ public class AssemblyLineMachine extends WorkableElectricMultiblockMachine {
         if (recipe == null) return false;
         if (!super.beforeWorking(recipe)) return false;
 
-        var config = ConfigHolder.INSTANCE.machines;
-        if (!config.orderedAssemblyLineItems && !config.orderedAssemblyLineFluids) return true;
+        var orderedItems = MachineConfig.ORDERED_ASSEMBLY_LINE_ITEMS.get();
+        var orderedFluids = MachineConfig.ORDERED_ASSEMBLY_LINE_FLUIDS.get();
+        if (!orderedItems && !orderedFluids) return true;
         if (!checkItemInputs(recipe)) return false;
 
-        if (!config.orderedAssemblyLineFluids) return true;
+        if (!orderedFluids) return true;
         return checkFluidInputs(recipe);
     }
 

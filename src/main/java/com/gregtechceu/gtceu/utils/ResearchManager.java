@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -117,7 +118,7 @@ public final class ResearchManager {
      */
     public static void createDefaultResearchRecipe(@NotNull GTRecipeBuilder builder,
                                                    Consumer<FinishedRecipe> provider) {
-        if (!ConfigHolder.INSTANCE.machines.enableResearch) return;
+        if (!MachineConfig.ENABLE_RESEARCH.get()) return;
 
         for (GTRecipeBuilder.ResearchRecipeEntry entry : builder.researchRecipeEntries()) {
             if (entry.researchItem().isEmpty() && entry.researchFluid().isEmpty())
@@ -134,7 +135,7 @@ public final class ResearchManager {
                                                    @NotNull ItemStack dataItem,
                                                    int duration, EnergyStack eut, int CWUt,
                                                    Consumer<FinishedRecipe> provider) {
-        if (!ConfigHolder.INSTANCE.machines.enableResearch) return;
+        if (!MachineConfig.ENABLE_RESEARCH.get()) return;
 
         CompoundTag compound = dataItem.getOrCreateTag();
         writeResearchToNBT(compound, researchId, recipeType);

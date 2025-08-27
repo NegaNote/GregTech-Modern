@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.BedrockOreMinerMachine;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -71,7 +72,7 @@ public class BedrockOreMinerLogic extends RecipeLogic {
             WeightedMaterial wm = GTUtil.getRandomItem(serverLevel.random, veinMaterials);
             if (wm == null) return null;
             Material material = wm.material();
-            ItemStack stack = ChemicalHelper.get(TagPrefix.get(ConfigHolder.INSTANCE.machines.bedrockOreDropTagPrefix),
+            ItemStack stack = ChemicalHelper.get(TagPrefix.get(MachineConfig.BEDROCK_ORE_DROP_TAG_PREFIX.get()),
                     material, getOreToProduce());
             if (stack.isEmpty()) stack = ChemicalHelper.get(TagPrefix.crushed, material, getOreToProduce()); // backup
                                                                                                              // 1:

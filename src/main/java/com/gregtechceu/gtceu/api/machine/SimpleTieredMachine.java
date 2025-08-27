@@ -21,6 +21,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.ui.GTRecipeTypeUI;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
@@ -304,7 +305,7 @@ public class SimpleTieredMachine extends WorkableTieredMachine
     public void onMachineRemoved() {
         super.onMachineRemoved();
         clearInventory(chargerInventory);
-        if (!ConfigHolder.INSTANCE.machines.ghostCircuit) {
+        if (!MachineConfig.GHOST_CIRCUIT.get()) {
             clearInventory(circuitInventory.storage);
         }
     }
@@ -370,7 +371,7 @@ public class SimpleTieredMachine extends WorkableTieredMachine
                 group.addWidget(template);
 
                 // TODO fix this.
-                // if (ConfigHolder.INSTANCE.machines.ghostCircuit) {
+                // if (MachineConfig.GHOST_CIRCUIT.get()) {
                 // SlotWidget circuitSlot = createCircuitConfigurator().createDefault();
                 // circuitSlot.setSelfPosition(new Position(120, 62));
                 // group.addWidget(circuitSlot);
