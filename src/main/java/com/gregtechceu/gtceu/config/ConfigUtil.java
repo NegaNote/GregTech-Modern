@@ -27,19 +27,39 @@ public class ConfigUtil {
         return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
     }
 
-    public static ForgeConfigSpec.IntValue createConfigValue(ForgeConfigSpec.Builder builder, String path,
-                                                             int defaultValue, int min, int max, String... comments) {
+    public static ForgeConfigSpec.ConfigValue<Integer> createConfigValue(ForgeConfigSpec.Builder builder, String path,
+                                                                         int defaultValue, int min, int max,
+                                                                         String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
         commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
         return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
     }
 
-    public static ForgeConfigSpec.IntValue createConfigValueExtraDefault(ForgeConfigSpec.Builder builder, String path,
-                                                                         int defaultValue, int min, int max,
-                                                                         String extraDefaultText, String... comments) {
+    public static ForgeConfigSpec.ConfigValue<Integer> createConfigValueExtraDefault(ForgeConfigSpec.Builder builder,
+                                                                                     String path,
+                                                                                     int defaultValue, int min, int max,
+                                                                                     String extraDefaultText,
+                                                                                     String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
         commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
         return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
+    }
+
+    public static <T> ForgeConfigSpec.ConfigValue<T> createConfigValue(ForgeConfigSpec.Builder builder, String path,
+                                                                       T defaultValue, String... comments) {
+        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
+        return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
+    }
+
+    public static <T> ForgeConfigSpec.ConfigValue<T> createConfigValueExtraDefault(ForgeConfigSpec.Builder builder,
+                                                                                   String path,
+                                                                                   T defaultValue,
+                                                                                   String extraDefaultText,
+                                                                                   String... comments) {
+        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
+        return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
     }
 
     public static ForgeConfigSpec.ConfigValue<Float> createConfigValue(ForgeConfigSpec.Builder builder, String path,

@@ -45,20 +45,20 @@ public class WorldgenConfig {
                     "Prevents regular vanilla ores from being generated outside GregTech ore veins");
             OreVeinConfig.REMOVE_VANILLA_LARGE_ORE_VEINS = createConfigValue(BUILDER, "remove_vanilla_large_ore_veins",
                     true, "Prevents vanilla's large ore veins from being generated");
-            OreVeinConfig.BEDROCK_ORE_DISTANCE = createConfigValue(BUILDER, "bedrock_ore_distance", 16, 4, 256,
+            OreVeinConfig.BEDROCK_ORE_DISTANCE = createConfigValue(BUILDER, "bedrock_ore_distance", 16,
                     "Distance between bedrock ore veins in chunks, if enabled.");
             OreVeinConfig.INFINITE_BEDROCK_ORES_FLUIDS = createConfigValue(BUILDER, "infinite_bedrock_ores_fluids",
                     false, "Make bedrock ore/fluid veins infinite?");
             OreVeinConfig.ORE_INDICATORS = createConfigValue(BUILDER, "ore_indicators", true,
                     "Generate ores indicators above ore veins");
             OreVeinConfig.ORE_GENERATION_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
-                    "ore_generation_chunk_cache_size", 512, 1, Integer.MAX_VALUE,
+                    "ore_generation_chunk_cache_size", 512,
                     "(requires restarting the server / re-opening the world)",
                     "Sets the maximum number of chunks that may be cached for ore vein generation.",
                     "Higher values may improve world generation performance, but at the cost of more RAM usage.",
                     "If you substantially increase the ore vein grid size, random vein offset, or have very large (custom) veins, you may need to increase this value as well.");
             OreVeinConfig.ORE_INDICATOR_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
-                    "ore_indicator_chunk_cache_size", 2048, 1, Integer.MAX_VALUE,
+                    "ore_indicator_chunk_cache_size", 2048,
                     "(requires restarting the server / re-opening the world)",
                     "Sets the maximum number of chunks for which ore indicators may be cached.",
                     "If you register any custom veins with very large indicator ranges (or modify existing ones that way), you may need to increase this value.");

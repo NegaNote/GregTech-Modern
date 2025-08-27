@@ -27,7 +27,7 @@ public class RecipeConfig {
     public static final ForgeConfigSpec.BooleanValue FLINT_AND_STEEL_REQUIRE_STEEL;
     public static final ForgeConfigSpec.BooleanValue REMOVE_VANILLA_BLOCK_RECIPES;
     public static final ForgeConfigSpec.BooleanValue REMOVE_VANILLA_TNT_RECIPE;
-    public static final ForgeConfigSpec.IntValue CASINGS_PER_CRAFT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> CASINGS_PER_CRAFT;
     public static final ForgeConfigSpec.BooleanValue HARDER_CIRCUIT_RECIPES;
     public static final ForgeConfigSpec.BooleanValue HARD_MULTI_RECIPES;
     public static final ForgeConfigSpec.BooleanValue ENCHANTED_TOOLS;
