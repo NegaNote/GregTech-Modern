@@ -1,5 +1,7 @@
 package com.gregtechceu.gtceu.api.data.worldgen.ores;
 
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
@@ -86,7 +88,7 @@ public class OrePlacer {
     }
 
     private void placeIndicators(ChunkAccess chunk, BulkSectionAccess access, GeneratedIndicators generatedVein) {
-        if (!ConfigHolder.INSTANCE.worldgen.oreVeins.oreIndicators) return;
+        if (!OreVeinConfig.ORE_INDICATORS.get()) return;
         generatedVein.consumeIndicators(chunk.getPos()).forEach(placer -> {
             placer.placeIndicators(access);
         });

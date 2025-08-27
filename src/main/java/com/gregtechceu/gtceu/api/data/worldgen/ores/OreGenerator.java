@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.IWorldGenLayer;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGeneratorUtils;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 import com.gregtechceu.gtceu.integration.map.cache.server.ServerCache;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -52,8 +53,8 @@ public class OreGenerator {
                 .map(OreGenerator::logVeinGeneration)
                 .map(entry -> entry.data)
                 .peek(data -> {
-                    int gridX = Math.floorDiv(chunkPos.x, ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
-                    int gridZ = Math.floorDiv(chunkPos.z, ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
+                    int gridX = Math.floorDiv(chunkPos.x, OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
+                    int gridZ = Math.floorDiv(chunkPos.z, OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
                     ServerCache.instance.addVein(level.getLevel().dimension(), gridX, gridZ, data);
                 })
                 .toList();

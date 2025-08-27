@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.WorldgenConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -46,7 +47,7 @@ public final class OreRecipeHandler {
         }
 
         for (TagPrefix ore : ORES.keySet()) {
-            if (ConfigHolder.INSTANCE.worldgen.allUniqueStoneTypes || ORES.get(ore).shouldDropAsItem()) {
+            if (WorldgenConfig.ALL_UNIQUE_STONE_TYPES.get() || ORES.get(ore).shouldDropAsItem()) {
                 processOre(provider, ore, property, material);
             }
         }

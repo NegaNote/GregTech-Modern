@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.api.data.worldgen.bedrockore;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGeneratorUtils;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 import com.gregtechceu.gtceu.utils.GTMath;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -86,7 +87,7 @@ public class BedrockOreVeinSavedData extends SavedData {
     public OreVeinWorldEntry getOreVeinWorldEntry(int chunkX, int chunkZ) {
         ChunkPos pos = new ChunkPos(chunkX, chunkZ);
         if (!veinOres.containsKey(pos)) {
-            int minDistance = ConfigHolder.INSTANCE.worldgen.oreVeins.bedrockOreDistance;
+            int minDistance = OreVeinConfig.BEDROCK_ORE_DISTANCE.get();
             if (chunkX % minDistance != 0 || chunkZ % minDistance != 0) {
                 OreVeinWorldEntry entry = new OreVeinWorldEntry(null, 0, MAXIMUM_VEIN_OPERATIONS);
                 veinOres.put(pos, entry);

@@ -36,6 +36,7 @@ import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.WorldgenConfig;
 import com.gregtechceu.gtceu.core.mixins.registrate.AbstractRegistrateAccessor;
 import com.gregtechceu.gtceu.data.GregTechDatagen;
 import com.gregtechceu.gtceu.data.lang.MaterialLangGenerator;
@@ -104,7 +105,8 @@ public class CommonProxy {
         GTCEuAPI.materialManager = MaterialRegistryManager.getInstance();
 
         // Register various configurations
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipesConfig.SPEC, "gtceu-common-recipes.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipesConfig.SPEC, "gtceu-recipes.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu-worldgen.toml");
         GTCEuAPI.initializeHighTier();
         if (GTCEu.isDev()) {
             RecipesConfig.GENERATE_LOW_QUALITY_GEMS.set(true);

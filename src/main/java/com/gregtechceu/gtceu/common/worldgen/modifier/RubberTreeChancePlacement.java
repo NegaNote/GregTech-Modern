@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.common.worldgen.modifier;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.WorldgenConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -23,7 +24,7 @@ public class RubberTreeChancePlacement extends RepeatingPlacement {
 
     @Override
     protected int count(RandomSource random, BlockPos pos) {
-        return random.nextFloat() < ConfigHolder.INSTANCE.worldgen.rubberTreeSpawnChance ? 1 : 0;
+        return random.nextFloat() < WorldgenConfig.RUBBER_TREE_SPAWN_CHANCE.get() ? 1 : 0;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.api.data.worldgen.bedrockore;
 
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -33,7 +34,7 @@ public class OreVeinWorldEntry {
     }
 
     public void decreaseOperations(int amount) {
-        operationsRemaining = ConfigHolder.INSTANCE.worldgen.oreVeins.infiniteBedrockOresFluids ? operationsRemaining :
+        operationsRemaining = OreVeinConfig.INFINITE_BEDROCK_ORES_FLUIDS.get() ? operationsRemaining :
                 Math.max(0, operationsRemaining - amount);
     }
 

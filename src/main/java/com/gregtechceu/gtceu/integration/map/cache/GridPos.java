@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.map.cache;
 
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 import com.gregtechceu.gtceu.utils.GTMath;
 
 import net.minecraft.core.BlockPos;
@@ -16,13 +17,13 @@ public class GridPos {
     }
 
     public GridPos(ChunkPos chunk) {
-        this.x = Math.floorDiv(chunk.x, ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
-        this.z = Math.floorDiv(chunk.z, ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
+        this.x = Math.floorDiv(chunk.x, OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
+        this.z = Math.floorDiv(chunk.z, OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
     }
 
     public GridPos(BlockPos block) {
-        this.x = Math.floorDiv((block.getX() >> 4), ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
-        this.z = Math.floorDiv((block.getZ() >> 4), ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
+        this.x = Math.floorDiv((block.getX() >> 4), OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
+        this.z = Math.floorDiv((block.getZ() >> 4), OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
     }
 
     public ChunkPos getChunk(int x, int z) {
@@ -56,7 +57,7 @@ public class GridPos {
     }
 
     public static int blockToGridCoords(int c) {
-        return Math.floorDiv((c >> 4), ConfigHolder.INSTANCE.worldgen.oreVeins.oreVeinGridSize);
+        return Math.floorDiv((c >> 4), OreVeinConfig.ORE_VEIN_GRID_SIZE.get());
     }
 
     public static GridPos fromChunkCoords(int cx, int cz) {

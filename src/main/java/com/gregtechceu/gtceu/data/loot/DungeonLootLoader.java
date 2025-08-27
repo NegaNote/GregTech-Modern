@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.WorldgenConfig;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -15,11 +16,11 @@ public class DungeonLootLoader {
     private DungeonLootLoader() {}
 
     public static void init() {
-        if (ConfigHolder.INSTANCE.worldgen.addLoot || ConfigHolder.INSTANCE.worldgen.increaseDungeonLoot) {
+        if (WorldgenConfig.ADD_LOOT.get() || WorldgenConfig.INCREASE_DUNGEON_LOOT.get()) {
             GTCEu.LOGGER.info("Registering dungeon loot...");
             ChestGenHooks.init();
         }
-        if (ConfigHolder.INSTANCE.worldgen.addLoot) {
+        if (WorldgenConfig.ADD_LOOT.get()) {
             ChestGenHooks.addItem(BuiltInLootTables.SPAWN_BONUS_CHEST, GTItems.BOTTLE_PURPLE_DRINK.asStack(), 8, 16, 2);
 
             ChestGenHooks.addItem(BuiltInLootTables.SIMPLE_DUNGEON, GTItems.BOTTLE_PURPLE_DRINK.asStack(), 4, 8, 80);
@@ -151,7 +152,7 @@ public class DungeonLootLoader {
             ChestGenHooks.addItem(BuiltInLootTables.STRONGHOLD_CORRIDOR,
                     ChemicalHelper.get(TagPrefix.ingot, GTMaterials.DamascusSteel), 3, 12, 6);
         }
-        if (ConfigHolder.INSTANCE.worldgen.increaseDungeonLoot) {
+        if (WorldgenConfig.INCREASE_DUNGEON_LOOT.get()) {
             ChestGenHooks.addRolls(BuiltInLootTables.SPAWN_BONUS_CHEST, 2, 4);
             ChestGenHooks.addRolls(BuiltInLootTables.SIMPLE_DUNGEON, 1, 3);
             ChestGenHooks.addRolls(BuiltInLootTables.DESERT_PYRAMID, 2, 4);

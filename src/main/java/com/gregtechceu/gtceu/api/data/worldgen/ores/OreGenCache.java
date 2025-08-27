@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.api.data.worldgen.ores;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.level.ChunkPos;
@@ -34,11 +35,9 @@ public class OreGenCache {
     @Getter
     private final OreGenerator oreGenerator = new OreGenerator();
 
-    private final int oreGenerationCacheSize = ConfigHolder.INSTANCE != null ?
-            ConfigHolder.INSTANCE.worldgen.oreVeins.oreGenerationChunkCacheSize : 512;
+    private final int oreGenerationCacheSize = OreVeinConfig.ORE_GENERATION_CHUNK_CACHE_SIZE.get();
 
-    private final int oreIndicatorCacheSize = ConfigHolder.INSTANCE != null ?
-            ConfigHolder.INSTANCE.worldgen.oreVeins.oreIndicatorChunkCacheSize : 512;
+    private final int oreIndicatorCacheSize = OreVeinConfig.ORE_INDICATOR_CHUNK_CACHE_SIZE.get();
 
     private final int veinMetadataCacheSize = Math.max(oreGenerationCacheSize, oreIndicatorCacheSize);
 

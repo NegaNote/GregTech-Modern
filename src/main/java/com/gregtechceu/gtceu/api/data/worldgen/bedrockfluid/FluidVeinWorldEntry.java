@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.api.data.worldgen.bedrockfluid;
 
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 import com.gregtechceu.gtceu.utils.memoization.GTMemoizer;
 import com.gregtechceu.gtceu.utils.memoization.MemoizedSupplier;
 
@@ -54,7 +55,7 @@ public class FluidVeinWorldEntry {
     }
 
     public void decreaseOperations(int amount) {
-        operationsRemaining = ConfigHolder.INSTANCE.worldgen.oreVeins.infiniteBedrockOresFluids ? operationsRemaining :
+        operationsRemaining = OreVeinConfig.INFINITE_BEDROCK_ORES_FLUIDS.get() ? operationsRemaining :
                 Math.max(0, operationsRemaining - amount);
     }
 

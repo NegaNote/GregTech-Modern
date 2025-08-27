@@ -1,5 +1,7 @@
 package com.gregtechceu.gtceu.core.mixins;
 
+import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
+
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.NoiseChunk;
 import net.minecraft.world.level.levelgen.OreVeinifier;
@@ -20,7 +22,7 @@ public class OreVeinifierMixin {
     private static void gtceu$create(DensityFunction function1, DensityFunction function2, DensityFunction function3,
                                      PositionalRandomFactory random,
                                      CallbackInfoReturnable<NoiseChunk.BlockStateFiller> cir) {
-        if (ConfigHolder.INSTANCE != null && ConfigHolder.INSTANCE.worldgen.oreVeins.removeVanillaLargeOreVeins)
+        if (OreVeinConfig.REMOVE_VANILLA_LARGE_ORE_VEINS.get())
             cir.setReturnValue(functionContext -> null);
     }
 }

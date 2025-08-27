@@ -39,7 +39,7 @@ public class RecipesConfig {
     public static final ForgeConfigSpec.ConfigValue<Float> EXTRACTOR_RECYCLING_YIELD;
 
     static {
-        BUILDER.push("Recipe configs for GTCEu");
+        BUILDER.push("recipes");
 
         GENERATE_LOW_QUALITY_GEMS = createConfigValue(BUILDER, "generate_low_quality_gems", false,
                 "Whether to generate Flawed and Chipped Gems for materials and recipes involving them.",

@@ -17,10 +17,28 @@ public class ConfigUtil {
         return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
     }
 
+    public static ForgeConfigSpec.BooleanValue createConfigValueExtraDefault(ForgeConfigSpec.Builder builder,
+                                                                             String path,
+                                                                             boolean defaultValue,
+                                                                             String extraDefaultText,
+                                                                             String... comments) {
+        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
+        return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
+    }
+
     public static ForgeConfigSpec.IntValue createConfigValue(ForgeConfigSpec.Builder builder, String path,
                                                              int defaultValue, int min, int max, String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
         commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
+        return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
+    }
+
+    public static ForgeConfigSpec.IntValue createConfigValueExtraDefault(ForgeConfigSpec.Builder builder, String path,
+                                                                         int defaultValue, int min, int max,
+                                                                         String extraDefaultText, String... comments) {
+        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
         return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
     }
 
