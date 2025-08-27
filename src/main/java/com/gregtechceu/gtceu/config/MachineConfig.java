@@ -5,6 +5,8 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import static com.gregtechceu.gtceu.config.ConfigUtil.createConfigValue;
+import static com.gregtechceu.gtceu.config.boilers.LargeBoilerConfig.*;
+import static com.gregtechceu.gtceu.config.boilers.SmallBoilerConfig.*;
 
 public class MachineConfig {
 
@@ -139,11 +141,52 @@ public class MachineConfig {
         {
             BUILDER.push("small_boilers");
 
+            SOLID_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "solid_boiler_base_output", 120,
+                    "The amount of steam a Steam Solid Boiler produces per second at max temperature.");
+            HP_SOLID_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "hp_solid_boiler_base_output",
+                    300,
+                    "The amount of steam a High Pressure Steam Solid Boiler produces per second at max temperature.");
+
+            LIQUID_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "liquid_boiler_base_output", 240,
+                    "The amount of steam a Steam Liquid Boiler produces per second at max temperature.");
+            HP_LIQUID_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "hp_liquid_boiler_base_output",
+                    600,
+                    "The amount of steam a High Pressure Steam Liquid Boiler produces per second at max temperature.");
+
+            SOLAR_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "solar_boiler_base_output", 120,
+                    "The amount of steam a Steam Solar Boiler produces per second at max temperature.");
+            HP_SOLAR_BOILER_BASE_OUTPUT = createConfigValue(BUILDER, "hp_solar_boiler_base_output",
+                    360,
+                    "The amount of steam a High Pressure Steam Solar Boiler produces per second at max temperature.");
+
             BUILDER.pop();
         }
 
         {
             BUILDER.push("large_boilers");
+
+            STEAM_PER_WATER = createConfigValue(BUILDER, "steam_per_water", 160,
+                    "The conversion rate between water and steam in Large Boilers.");
+
+            BRONZE_BOILER_MAX_TEMPERATURE = createConfigValue(BUILDER, "bronze_boiler_max_temperature", 800,
+                    "The max temperature of the Large Bronze Boiler.");
+            BRONZE_BOILER_HEAT_SPEED = createConfigValue(BUILDER, "bronze_boiler_max_temperature", 1,
+                    "The heat speed of the Large Bronze Boiler.");
+
+            STEEL_BOILER_MAX_TEMPERATURE = createConfigValue(BUILDER, "steel_boiler_max_temperature", 1800,
+                    "The max temperature of the Large Steel Boiler.");
+            STEEL_BOILER_HEAT_SPEED = createConfigValue(BUILDER, "steel_boiler_max_temperature", 1,
+                    "The heat speed of the Large Steel Boiler.");
+
+            TITANIUM_BOILER_MAX_TEMPERATURE = createConfigValue(BUILDER, "titanium_boiler_max_temperature", 3200,
+                    "The max temperature of the Large Titanium Boiler.");
+            TITANIUM_BOILER_HEAT_SPEED = createConfigValue(BUILDER, "titanium_boiler_max_temperature", 1,
+                    "The heat speed of the Large Titanium Boiler.");
+
+            TUNGSTENSTEEL_BOILER_MAX_TEMPERATURE = createConfigValue(BUILDER, "tungstensteel_boiler_max_temperature",
+                    6400, "The max temperature of the Large Tungstensteel Boiler.");
+            TUNGSTENSTEEL_BOILER_HEAT_SPEED = createConfigValue(BUILDER, "tungstensteel_boiler_max_temperature", 2,
+                    "The heat speed of the Large Tungstensteel Boiler.");
 
             BUILDER.pop();
         }

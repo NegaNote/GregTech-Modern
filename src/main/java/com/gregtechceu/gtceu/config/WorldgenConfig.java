@@ -1,11 +1,10 @@
 package com.gregtechceu.gtceu.config;
 
-import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
-
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import static com.gregtechceu.gtceu.config.ConfigUtil.createConfigValue;
 import static com.gregtechceu.gtceu.config.ConfigUtil.createConfigValueExtraDefault;
+import static com.gregtechceu.gtceu.config.worldgen.OreVeinConfig.*;
 
 public class WorldgenConfig {
 
@@ -37,27 +36,27 @@ public class WorldgenConfig {
             BUILDER.comment("Ore vein configs");
             BUILDER.push("ore_veins");
 
-            OreVeinConfig.ORE_VEIN_GRID_SIZE = createConfigValue(BUILDER, "ore_vein_grid_size", 3, 1, 32,
+            ORE_VEIN_GRID_SIZE = createConfigValue(BUILDER, "ore_vein_grid_size", 3, 1, 32,
                     "The grid size (in chunks) for ore vein generation");
-            OreVeinConfig.ORE_VEIN_RANDOM_OFFSET = createConfigValue(BUILDER, "ore_vein_random_offset", 12, 0, 32 * 16,
+            ORE_VEIN_RANDOM_OFFSET = createConfigValue(BUILDER, "ore_vein_random_offset", 12, 0, 32 * 16,
                     "The maximum random offset (in blocks) from the grid for generating an ore vein.");
-            OreVeinConfig.REMOVE_VANILLA_ORE_GEN = createConfigValue(BUILDER, "remove_vanilla_ore_gen", true,
+            REMOVE_VANILLA_ORE_GEN = createConfigValue(BUILDER, "remove_vanilla_ore_gen", true,
                     "Prevents regular vanilla ores from being generated outside GregTech ore veins");
-            OreVeinConfig.REMOVE_VANILLA_LARGE_ORE_VEINS = createConfigValue(BUILDER, "remove_vanilla_large_ore_veins",
+            REMOVE_VANILLA_LARGE_ORE_VEINS = createConfigValue(BUILDER, "remove_vanilla_large_ore_veins",
                     true, "Prevents vanilla's large ore veins from being generated");
-            OreVeinConfig.BEDROCK_ORE_DISTANCE = createConfigValue(BUILDER, "bedrock_ore_distance", 16,
+            BEDROCK_ORE_DISTANCE = createConfigValue(BUILDER, "bedrock_ore_distance", 16,
                     "Distance between bedrock ore veins in chunks, if enabled.");
-            OreVeinConfig.INFINITE_BEDROCK_ORES_FLUIDS = createConfigValue(BUILDER, "infinite_bedrock_ores_fluids",
+            INFINITE_BEDROCK_ORES_FLUIDS = createConfigValue(BUILDER, "infinite_bedrock_ores_fluids",
                     false, "Make bedrock ore/fluid veins infinite?");
-            OreVeinConfig.ORE_INDICATORS = createConfigValue(BUILDER, "ore_indicators", true,
+            ORE_INDICATORS = createConfigValue(BUILDER, "ore_indicators", true,
                     "Generate ores indicators above ore veins");
-            OreVeinConfig.ORE_GENERATION_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
+            ORE_GENERATION_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
                     "ore_generation_chunk_cache_size", 512,
                     "(requires restarting the server / re-opening the world)",
                     "Sets the maximum number of chunks that may be cached for ore vein generation.",
                     "Higher values may improve world generation performance, but at the cost of more RAM usage.",
                     "If you substantially increase the ore vein grid size, random vein offset, or have very large (custom) veins, you may need to increase this value as well.");
-            OreVeinConfig.ORE_INDICATOR_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
+            ORE_INDICATOR_CHUNK_CACHE_SIZE = createConfigValueExtraDefault(BUILDER,
                     "ore_indicator_chunk_cache_size", 2048,
                     "(requires restarting the server / re-opening the world)",
                     "Sets the maximum number of chunks for which ore indicators may be cached.",
