@@ -1,6 +1,6 @@
 package com.gregtechceu.gtceu.data.recipe.misc;
 
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
@@ -23,7 +23,7 @@ public class AssemblerRecipeLoader {
                 .inputItems(gear, Bronze, 2)
                 .inputItems(frameGt, Bronze)
                 .circuitMeta(4)
-                .outputItems(CASING_BRONZE_GEARBOX.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_BRONZE_GEARBOX.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("steel_gearbox_casing")
@@ -31,7 +31,7 @@ public class AssemblerRecipeLoader {
                 .inputItems(gear, Steel, 2)
                 .inputItems(frameGt, Steel)
                 .circuitMeta(4)
-                .outputItems(CASING_STEEL_GEARBOX.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_STEEL_GEARBOX.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("stainless_steel_gearbox_casing")
@@ -39,7 +39,7 @@ public class AssemblerRecipeLoader {
                 .inputItems(gear, StainlessSteel, 2)
                 .inputItems(frameGt, StainlessSteel)
                 .circuitMeta(4)
-                .outputItems(CASING_STAINLESS_STEEL_GEARBOX.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_STAINLESS_STEEL_GEARBOX.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("titanium_gearbox_casing")
@@ -47,7 +47,7 @@ public class AssemblerRecipeLoader {
                 .inputItems(gear, Titanium, 2)
                 .inputItems(frameGt, Titanium)
                 .circuitMeta(4)
-                .outputItems(CASING_TITANIUM_GEARBOX.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_TITANIUM_GEARBOX.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("tungstensteel_gearbox_casing")
@@ -55,7 +55,7 @@ public class AssemblerRecipeLoader {
                 .inputItems(gear, TungstenSteel, 2)
                 .inputItems(frameGt, TungstenSteel)
                 .circuitMeta(4)
-                .outputItems(CASING_TUNGSTENSTEEL_GEARBOX.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_TUNGSTENSTEEL_GEARBOX.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         // Other
@@ -63,14 +63,14 @@ public class AssemblerRecipeLoader {
                 .inputItems(rotor, Titanium, 2)
                 .inputItems(pipeNormalFluid, Titanium, 4)
                 .inputItems(CASING_TITANIUM_STABLE.asStack())
-                .outputItems(CASING_ENGINE_INTAKE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_ENGINE_INTAKE.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("stable_tungstensteel_casing")
                 .inputItems(rotor, TungstenSteel, 2)
                 .inputItems(pipeNormalFluid, TungstenSteel, 4)
                 .inputItems(CASING_TUNGSTENSTEEL_ROBUST.asStack())
-                .outputItems(CASING_EXTREME_ENGINE_INTAKE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
+                .outputItems(CASING_EXTREME_ENGINE_INTAKE.asStack(RecipeConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).EUt(16).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("spray_can_empty")

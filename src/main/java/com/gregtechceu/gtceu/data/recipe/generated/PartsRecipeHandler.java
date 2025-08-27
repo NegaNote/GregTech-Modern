@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.common.item.TurbineRotorBehaviour;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
@@ -495,7 +495,7 @@ public final class PartsRecipeHandler {
 
             var materialOutput = material.hasFlag(IS_MAGNETIC) && material.hasProperty(PropertyKey.INGOT) ?
                     material.getProperty(PropertyKey.INGOT).getMacerateInto() : material;
-            if (RecipesConfig.HARDER_RODS.get()) {
+            if (RecipeConfig.HARDER_RODS.get()) {
                 builder.outputItems(rod, materialOutput);
                 builder.outputItems(dustSmall, materialOutput, 2);
             } else {

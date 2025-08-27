@@ -3,7 +3,7 @@ package com.gregtechceu.gtceu.data.recipe.misc;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials.Color;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -997,7 +997,7 @@ public class CircuitRecipes {
     }
 
     private static void circuitRecipes(Consumer<FinishedRecipe> provider) {
-        int outputAmount = RecipesConfig.HARDER_CIRCUIT_RECIPES.get() ? 1 : 2;
+        int outputAmount = RecipeConfig.HARDER_CIRCUIT_RECIPES.get() ? 1 : 2;
 
         // T1: Electronic ==============================================================================================
 
@@ -1098,7 +1098,7 @@ public class CircuitRecipes {
                 .inputItems(CustomTags.CAPACITORS, 2)
                 .inputItems(CustomTags.TRANSISTORS, 2)
                 .inputItems(wireFine, Copper, 2)
-                .outputItems(MICROPROCESSOR_LV, RecipesConfig.HARDER_CIRCUIT_RECIPES.get() ? 2 : 3)
+                .outputItems(MICROPROCESSOR_LV, RecipeConfig.HARDER_CIRCUIT_RECIPES.get() ? 2 : 3)
                 .save(provider);
 
         // Microprocessor LV SoC
@@ -1107,7 +1107,7 @@ public class CircuitRecipes {
                 .inputItems(SYSTEM_ON_CHIP)
                 .inputItems(wireFine, Copper, 2)
                 .inputItems(bolt, Tin, 2)
-                .outputItems(MICROPROCESSOR_LV, RecipesConfig.HARDER_CIRCUIT_RECIPES.get() ? 3 : 6)
+                .outputItems(MICROPROCESSOR_LV, RecipeConfig.HARDER_CIRCUIT_RECIPES.get() ? 3 : 6)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
 

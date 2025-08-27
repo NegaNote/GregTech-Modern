@@ -4,7 +4,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 import static com.gregtechceu.gtceu.config.ConfigUtil.*;
 
-public class RecipesConfig {
+public class RecipeConfig {
 
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;

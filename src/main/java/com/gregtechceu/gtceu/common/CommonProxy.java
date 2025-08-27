@@ -35,7 +35,8 @@ import com.gregtechceu.gtceu.common.machine.owner.MachineOwner;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.config.WorldgenConfig;
 import com.gregtechceu.gtceu.core.mixins.registrate.AbstractRegistrateAccessor;
 import com.gregtechceu.gtceu.data.GregTechDatagen;
@@ -104,12 +105,12 @@ public class CommonProxy {
         // trying to read this before the pre-init stage
         GTCEuAPI.materialManager = MaterialRegistryManager.getInstance();
 
-        // Register various configurations
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipesConfig.SPEC, "gtceu-recipes.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipeConfig.SPEC, "gtceu-recipes.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu-worldgen.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MachineConfig.SPEC, "gtceu-machines.toml");
         GTCEuAPI.initializeHighTier();
         if (GTCEu.isDev()) {
-            RecipesConfig.GENERATE_LOW_QUALITY_GEMS.set(true);
+            RecipeConfig.GENERATE_LOW_QUALITY_GEMS.set(true);
             ConfigHolder.INSTANCE.compat.energy.enableFEConverters = true;
         }
 

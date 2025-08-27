@@ -2,7 +2,7 @@ package com.gregtechceu.gtceu.data.recipe.misc;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -89,7 +89,7 @@ public class ComputerRecipes {
                 .inputItems(plate, Glass, 4)
                 .inputItems(wireFine, RedAlloy, 4)
                 .inputFluids(Glowstone, L)
-                .outputItems(MONITOR, RecipesConfig.CASINGS_PER_CRAFT.get())
+                .outputItems(MONITOR, RecipeConfig.CASINGS_PER_CRAFT.get())
                 .duration(1000).EUt(VA[MV])
                 .addMaterialInfo(true).save(provider);
 
@@ -101,7 +101,7 @@ public class ComputerRecipes {
                 .inputItems(wireFine, Copper, 16)
                 .inputItems(wireGtSingle, NiobiumTitanium, 2)
                 .outputItems(HIGH_POWER_CASING,
-                        RecipesConfig.CASINGS_PER_CRAFT.get())
+                        RecipeConfig.CASINGS_PER_CRAFT.get())
                 .duration(100).EUt(VA[IV])
                 .addMaterialInfo(true).save(provider);
 
@@ -113,7 +113,7 @@ public class ComputerRecipes {
                 .inputItems(wireFine, Copper, 32)
                 .inputItems(wireGtSingle, VanadiumGallium, 2)
                 .outputItems(COMPUTER_CASING,
-                        RecipesConfig.CASINGS_PER_CRAFT.get())
+                        RecipeConfig.CASINGS_PER_CRAFT.get())
                 .duration(200).EUt(VA[LuV])
                 .addMaterialInfo(true).save(provider);
 
@@ -135,7 +135,7 @@ public class ComputerRecipes {
                 .inputItems(plate, Copper, 16)
                 .inputItems(wireGtSingle, SamariumIronArsenicOxide)
                 .outputItems(COMPUTER_HEAT_VENT,
-                        RecipesConfig.CASINGS_PER_CRAFT.get())
+                        RecipeConfig.CASINGS_PER_CRAFT.get())
                 .duration(100).EUt(VA[EV])
                 .addMaterialInfo(true).save(provider);
 

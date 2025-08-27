@@ -13,7 +13,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -70,10 +70,10 @@ public class RecyclingRecipes {
         // Calculate the voltage multiplier based on if a Material has a Blast Property
         int voltageMultiplier = calculateVoltageMultiplier(components);
 
-        if (prefix != TagPrefix.dust && RecipesConfig.ENABLE_MACERATOR_RECYCLING.get()) {
+        if (prefix != TagPrefix.dust && RecipeConfig.ENABLE_MACERATOR_RECYCLING.get()) {
             registerMaceratorRecycling(provider, input, components, voltageMultiplier);
         }
-        if (prefix != null && RecipesConfig.ENABLE_MACERATOR_RECYCLING.get()) {
+        if (prefix != null && RecipeConfig.ENABLE_MACERATOR_RECYCLING.get()) {
             registerExtractorRecycling(provider, input, components, voltageMultiplier, prefix);
         }
         if (ignoreArcSmelting) return;
@@ -98,7 +98,7 @@ public class RecyclingRecipes {
                 return;
             }
         }
-        if (RecipesConfig.ENABLE_ARC_RECYCLING.get()) {
+        if (RecipeConfig.ENABLE_ARC_RECYCLING.get()) {
             registerArcRecycling(provider, input, components, prefix);
         }
     }
@@ -106,7 +106,7 @@ public class RecyclingRecipes {
     private static void registerMaceratorRecycling(Consumer<FinishedRecipe> provider, ItemStack input,
                                                    List<MaterialStack> materials, int multiplier) {
         // Finalize the output list.
-        final float maceratorYield = RecipesConfig.MACERATOR_RECYCLING_YIELD.get();
+        final float maceratorYield = RecipeConfig.MACERATOR_RECYCLING_YIELD.get();
         List<ItemStack> outputs = finalizeOutputs(
                 materials,
                 GTRecipeTypes.MACERATOR_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP),
@@ -172,7 +172,7 @@ public class RecyclingRecipes {
             if (prefix == TagPrefix.dust && m.hasProperty(PropertyKey.BLAST)) {
                 return;
             }
-            final float yield = RecipesConfig.EXTRACTOR_RECYCLING_YIELD.get();
+            final float yield = RecipeConfig.EXTRACTOR_RECYCLING_YIELD.get();
             ResourceLocation itemPath = BuiltInRegistries.ITEM.getKey(input.getItem());
             GTRecipeBuilder builder = GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("extract_" + itemPath.getPath())
                     .outputFluids(m.getFluid((int) (ms.amount() * yield * L / M)))
@@ -280,7 +280,7 @@ public class RecyclingRecipes {
                 .collect(Collectors.toList()));
 
         // Finalize the output List
-        final float arcYield = RecipesConfig.ARC_RECYCLING_YIELD.get();
+        final float arcYield = RecipeConfig.ARC_RECYCLING_YIELD.get();
         List<ItemStack> outputs = finalizeOutputs(
                 materials,
                 GTRecipeTypes.ARC_FURNACE_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP),

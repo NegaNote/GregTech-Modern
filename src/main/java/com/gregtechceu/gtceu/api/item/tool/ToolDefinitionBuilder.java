@@ -2,7 +2,7 @@ package com.gregtechceu.gtceu.api.item.tool;
 
 import com.gregtechceu.gtceu.api.item.tool.aoe.AoESymmetrical;
 import com.gregtechceu.gtceu.api.item.tool.behavior.IToolBehavior;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -141,7 +141,7 @@ public class ToolDefinitionBuilder {
     }
 
     public ToolDefinitionBuilder defaultEnchantment(Enchantment enchantment, int level) {
-        if (RecipesConfig.ENCHANTED_TOOLS.get()) {
+        if (RecipeConfig.ENCHANTED_TOOLS.get()) {
             this.defaultEnchantments.put(enchantment, level);
         }
 

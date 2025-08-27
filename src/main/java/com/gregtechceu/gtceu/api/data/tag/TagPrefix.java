@@ -19,7 +19,7 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.config.RecipesConfig;
+import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.integration.kjs.GTRegistryInfo;
 import com.gregtechceu.gtceu.integration.xei.widgets.GTOreByProduct;
@@ -303,7 +303,7 @@ public class TagPrefix {
             .unificationEnabled(true)
             .enableRecycling()
             .generateItem(true)
-            .generationCondition(hasGemProperty.and(unused -> RecipesConfig.GENERATE_LOW_QUALITY_GEMS.get()));
+            .generationCondition(hasGemProperty.and(unused -> RecipeConfig.GENERATE_LOW_QUALITY_GEMS.get()));
 
     // A regular Gem worth two small Dusts.
     public static final TagPrefix gemFlawed = new TagPrefix("flawedGem")
@@ -316,7 +316,7 @@ public class TagPrefix {
             .unificationEnabled(true)
             .enableRecycling()
             .generateItem(true)
-            .generationCondition(hasGemProperty.and(unused -> RecipesConfig.GENERATE_LOW_QUALITY_GEMS.get()));
+            .generationCondition(hasGemProperty.and(unused -> RecipeConfig.GENERATE_LOW_QUALITY_GEMS.get()));
 
     // A regular Gem worth two Dusts.
     public static final TagPrefix gemFlawless = new TagPrefix("flawlessGem")
