@@ -7,9 +7,6 @@ dependencies {
     // Registrate
     jarJar(modApi(forge.registrate.get()))
 
-    // Configuration
-    jarJar(modApi(forge.configuration.get()))
-
     // Mixin (& Extras)
     annotationProcessor(variantOf(libs.mixin) { classifier("processor") })
     compileOnly(annotationProcessor(forge.mixinExtras.common.get()))

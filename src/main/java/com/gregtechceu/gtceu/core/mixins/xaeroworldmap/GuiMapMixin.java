@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.core.mixins.xaeroworldmap;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 import com.gregtechceu.gtceu.integration.map.xaeros.worldmap.gui.GuiTexturedButtonWithSize;
 

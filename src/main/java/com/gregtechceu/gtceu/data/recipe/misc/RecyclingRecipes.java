@@ -13,7 +13,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeCategories;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.config.RecipesConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -70,10 +70,10 @@ public class RecyclingRecipes {
         // Calculate the voltage multiplier based on if a Material has a Blast Property
         int voltageMultiplier = calculateVoltageMultiplier(components);
 
-        if (prefix != TagPrefix.dust && ConfigHolder.INSTANCE.recipes.enableMaceratorRecycling) {
+        if (prefix != TagPrefix.dust && RecipesConfig.ENABLE_MACERATOR_RECYCLING.get()) {
             registerMaceratorRecycling(provider, input, components, voltageMultiplier);
         }
-        if (prefix != null && ConfigHolder.INSTANCE.recipes.enableExtractorRecycling) {
+        if (prefix != null && RecipesConfig.ENABLE_MACERATOR_RECYCLING.get()) {
             registerExtractorRecycling(provider, input, components, voltageMultiplier, prefix);
         }
         if (ignoreArcSmelting) return;
@@ -98,7 +98,7 @@ public class RecyclingRecipes {
                 return;
             }
         }
-        if (ConfigHolder.INSTANCE.recipes.enableArcRecycling) {
+        if (RecipesConfig.ENABLE_ARC_RECYCLING.get()) {
             registerArcRecycling(provider, input, components, prefix);
         }
     }
@@ -106,7 +106,7 @@ public class RecyclingRecipes {
     private static void registerMaceratorRecycling(Consumer<FinishedRecipe> provider, ItemStack input,
                                                    List<MaterialStack> materials, int multiplier) {
         // Finalize the output list.
-        final float maceratorYield = ConfigHolder.INSTANCE.recipes.maceratorRecyclingYield;
+        final float maceratorYield = RecipesConfig.MACERATOR_RECYCLING_YIELD.get();
         List<ItemStack> outputs = finalizeOutputs(
                 materials,
                 GTRecipeTypes.MACERATOR_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP),
@@ -172,7 +172,7 @@ public class RecyclingRecipes {
             if (prefix == TagPrefix.dust && m.hasProperty(PropertyKey.BLAST)) {
                 return;
             }
-            final float yield = ConfigHolder.INSTANCE.recipes.extractorRecyclingYield;
+            final float yield = RecipesConfig.EXTRACTOR_RECYCLING_YIELD.get();
             ResourceLocation itemPath = BuiltInRegistries.ITEM.getKey(input.getItem());
             GTRecipeBuilder builder = GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("extract_" + itemPath.getPath())
                     .outputFluids(m.getFluid((int) (ms.amount() * yield * L / M)))
@@ -280,7 +280,7 @@ public class RecyclingRecipes {
                 .collect(Collectors.toList()));
 
         // Finalize the output List
-        final float arcYield = ConfigHolder.INSTANCE.recipes.arcRecyclingYield;
+        final float arcYield = RecipesConfig.ARC_RECYCLING_YIELD.get();
         List<ItemStack> outputs = finalizeOutputs(
                 materials,
                 GTRecipeTypes.ARC_FURNACE_RECIPES.getMaxOutputs(ItemRecipeCapability.CAP),
@@ -408,7 +408,7 @@ public class RecyclingRecipes {
         // No blast temperature in the list means no multiplier
         if (highestTemp == 0) return 1;
 
-        // If less then 2000K, multiplier of 4
+        // If less than 2000K, multiplier of 4
         if (highestTemp < 2000) return 4; // todo make this a better value?
 
         // If above 2000K, multiplier of 16

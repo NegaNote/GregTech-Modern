@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.integration.map.cache;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTMath;
 
 import net.minecraft.core.BlockPos;

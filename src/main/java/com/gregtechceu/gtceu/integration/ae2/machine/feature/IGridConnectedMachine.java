@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.integration.ae2.machine.feature;
 
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 
 import net.minecraft.core.Direction;
 

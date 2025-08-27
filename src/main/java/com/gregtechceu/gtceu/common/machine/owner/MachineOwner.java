@@ -2,7 +2,6 @@ package com.gregtechceu.gtceu.common.machine.owner;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;

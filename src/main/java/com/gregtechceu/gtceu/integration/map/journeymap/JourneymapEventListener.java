@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.integration.map.journeymap;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 
 import net.minecraftforge.api.distmarker.Dist;

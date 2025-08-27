@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.core.mixins.xaeroworldmap;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.xaeros.worldmap.ore.OreVeinElementRenderer;
 
 import org.spongepowered.asm.mixin.Mixin;

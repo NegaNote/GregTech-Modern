@@ -20,7 +20,7 @@ ChemicalHelper.registerMaterialInfo(GTBlocks.COIL_KANTHAL.get(),
         ); // (1)
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, // (2)
-             "casing_bronze_bricks", GTBlocks.CASING_BRONZE_BRICKS.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), 
+             "casing_bronze_bricks", GTBlocks.CASING_BRONZE_BRICKS.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()), 
              "PhP", "PBP", "PwP", 
              'P', new MaterialEntry(TagPrefix.plate, GTMaterials.Bronze), 
              'B', new ItemStack(Blocks.BRICKS));

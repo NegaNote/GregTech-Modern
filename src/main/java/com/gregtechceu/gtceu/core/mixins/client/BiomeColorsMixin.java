@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.core.mixins.client;
 
 import com.gregtechceu.gtceu.client.EnvironmentalHazardClientHandler;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.SectionPos;

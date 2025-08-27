@@ -35,7 +35,7 @@ import com.gregtechceu.gtceu.common.machine.owner.MachineOwner;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.config.RecipesConfig;
 import com.gregtechceu.gtceu.core.mixins.registrate.AbstractRegistrateAccessor;
 import com.gregtechceu.gtceu.data.GregTechDatagen;
 import com.gregtechceu.gtceu.data.lang.MaterialLangGenerator;
@@ -75,6 +75,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoader;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -100,10 +102,12 @@ public class CommonProxy {
         // must be set here because of KubeJS compat
         // trying to read this before the pre-init stage
         GTCEuAPI.materialManager = MaterialRegistryManager.getInstance();
-        ConfigHolder.init();
+
+        // Register various configurations
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipesConfig.SPEC, "gtceu-common-recipes.toml");
         GTCEuAPI.initializeHighTier();
         if (GTCEu.isDev()) {
-            ConfigHolder.INSTANCE.recipes.generateLowQualityGems = true;
+            RecipesConfig.GENERATE_LOW_QUALITY_GEMS.set(true);
             ConfigHolder.INSTANCE.compat.energy.enableFEConverters = true;
         }
 

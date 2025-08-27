@@ -19,7 +19,7 @@ import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.config.RecipesConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
@@ -736,42 +736,42 @@ public class MachineRecipeLoader {
 
         ASSEMBLER_RECIPES.recipeBuilder("casing_bronze_bricks").EUt(16).inputItems(plate, Bronze, 6)
                 .inputItems(new ItemStack(Blocks.BRICKS)).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_BRONZE_BRICKS.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_BRONZE_BRICKS.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_invar_heatproof").EUt(16).inputItems(plate, Invar, 6)
                 .inputItems(frameGt, Invar).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_INVAR_HEATPROOF.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_INVAR_HEATPROOF.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_steel_solid").EUt(16).inputItems(plate, Steel, 6)
                 .inputItems(frameGt, Steel).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_STEEL_SOLID.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_STEEL_SOLID.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_aluminium_frostproof").EUt(16).inputItems(plate, Aluminium, 6)
                 .inputItems(frameGt, Aluminium).circuitMeta(6)
                 .outputItems(
-                        GTBlocks.CASING_ALUMINIUM_FROSTPROOF.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                        GTBlocks.CASING_ALUMINIUM_FROSTPROOF.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_tungsteensteel_robust").EUt(16).inputItems(plate, TungstenSteel, 6)
                 .inputItems(frameGt, TungstenSteel).circuitMeta(6)
                 .outputItems(
-                        GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                        GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_stainless_clean").EUt(16).inputItems(plate, StainlessSteel, 6)
                 .inputItems(frameGt, StainlessSteel).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_STAINLESS_CLEAN.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_STAINLESS_CLEAN.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_titanium_stable").EUt(16).inputItems(plate, Titanium, 6)
                 .inputItems(frameGt, Titanium).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_TITANIUM_STABLE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_TITANIUM_STABLE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_hsse_sturdy").EUt(16).inputItems(plate, HSSE, 6)
                 .inputItems(frameGt, Europium).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_HSSE_STURDY.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_HSSE_STURDY.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_palladium_substation").EUt(16).inputItems(plate, Palladium, 6)
                 .inputItems(frameGt, Iridium).circuitMeta(6)
                 .outputItems(
-                        GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                        GTBlocks.CASING_PALLADIUM_SUBSTATION.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50).addMaterialInfo(true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("casing_ptfe_inert").EUt(16).inputItems(GTBlocks.CASING_STEEL_SOLID.asStack())
@@ -783,7 +783,7 @@ public class MachineRecipeLoader {
                 .inputItems(rod, Bronze, 3)
                 .inputItems(frameGt, Bronze)
                 .inputItems(plate, Bronze, 3)
-                .outputItems(GTBlocks.FIREBOX_BRONZE, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.FIREBOX_BRONZE, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .addMaterialInfo(true, true)
                 .duration(100)
                 .EUt(VA[LV])
@@ -792,7 +792,7 @@ public class MachineRecipeLoader {
                 .inputItems(rod, Steel, 3)
                 .inputItems(frameGt, Steel)
                 .inputItems(plate, Steel, 3)
-                .outputItems(GTBlocks.FIREBOX_STEEL, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.FIREBOX_STEEL, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .addMaterialInfo(true, true)
                 .duration(200)
                 .EUt(VA[LV])
@@ -801,7 +801,7 @@ public class MachineRecipeLoader {
                 .inputItems(rod, Titanium, 3)
                 .inputItems(frameGt, Titanium)
                 .inputItems(plate, Titanium, 3)
-                .outputItems(GTBlocks.FIREBOX_TITANIUM, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.FIREBOX_TITANIUM, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .addMaterialInfo(true, true)
                 .duration(300)
                 .EUt(VA[HV])
@@ -810,7 +810,7 @@ public class MachineRecipeLoader {
                 .inputItems(rod, TungstenSteel, 3)
                 .inputItems(frameGt, TungstenSteel)
                 .inputItems(plate, TungstenSteel, 3)
-                .outputItems(GTBlocks.FIREBOX_TUNGSTENSTEEL, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.FIREBOX_TUNGSTENSTEEL, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .addMaterialInfo(true, true)
                 .duration(400)
                 .EUt(VA[EV])
@@ -844,43 +844,43 @@ public class MachineRecipeLoader {
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack()).inputItems(NEUTRON_REFLECTOR)
                 .inputItems(ELECTRIC_PUMP_LuV).inputItems(plate, TungstenSteel, 6)
                 .inputFluids(Polybenzimidazole, GTValues.L)
-                .outputItems(GTBlocks.FUSION_CASING.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.FUSION_CASING.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .addMaterialInfo(true, true)
                 .duration(100).cleanroom(CleanroomType.CLEANROOM).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("fusion_casing_mk2").EUt(VA[ZPM])
                 .inputItems(GTBlocks.MACHINE_CASING_ZPM.asStack()).inputItems(GTBlocks.FUSION_COIL.asStack())
                 .inputItems(VOLTAGE_COIL_ZPM.asStack(2)).inputItems(FIELD_GENERATOR_LuV).inputItems(plate, Europium, 6)
                 .inputFluids(Polybenzimidazole, GTValues.L * 2)
-                .outputItems(GTBlocks.FUSION_CASING_MK2.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.FUSION_CASING_MK2.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(100).cleanroom(CleanroomType.CLEANROOM)
                 .addMaterialInfo(true, true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("fusion_casing_mk3").EUt(VA[UV])
                 .inputItems(GTBlocks.MACHINE_CASING_UV.asStack()).inputItems(GTBlocks.FUSION_COIL.asStack())
                 .inputItems(VOLTAGE_COIL_UV.asStack(2)).inputItems(FIELD_GENERATOR_ZPM).inputItems(plate, Americium, 6)
                 .inputFluids(Polybenzimidazole, GTValues.L * 4)
-                .outputItems(GTBlocks.FUSION_CASING_MK3.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.FUSION_CASING_MK3.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(100).cleanroom(CleanroomType.CLEANROOM)
                 .addMaterialInfo(true, true).save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("casing_steel_turbine").EUt(16).inputItems(plate, Magnalium, 6)
                 .inputItems(frameGt, BlueSteel, 1).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_STEEL_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_STEEL_TURBINE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50)
                 .addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_stainless_steel_turbine").EUt(16)
                 .inputItems(GTBlocks.CASING_STEEL_TURBINE.asStack()).inputItems(plate, StainlessSteel, 6).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_STAINLESS_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_STAINLESS_TURBINE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50)
                 .addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_titanium_turbine").EUt(16)
                 .inputItems(GTBlocks.CASING_STEEL_TURBINE.asStack()).inputItems(plate, Titanium, 6).circuitMeta(6)
-                .outputItems(GTBlocks.CASING_TITANIUM_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CASING_TITANIUM_TURBINE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50)
                 .addMaterialInfo(true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("casing_tungstensteel_turbine").EUt(16)
                 .inputItems(GTBlocks.CASING_STEEL_TURBINE.asStack()).inputItems(plate, TungstenSteel, 6).circuitMeta(6)
                 .outputItems(
-                        GTBlocks.CASING_TUNGSTENSTEEL_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                        GTBlocks.CASING_TUNGSTENSTEEL_TURBINE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(50)
                 .addMaterialInfo(true).save(provider);
 
@@ -889,7 +889,7 @@ public class MachineRecipeLoader {
                 .inputItems(frameGt, Steel)
                 .inputItems(ELECTRIC_MOTOR_MV)
                 .inputItems(rotor, Steel)
-                .outputItems(GTBlocks.CASING_GRATE, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.CASING_GRATE, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .duration(800)
                 .EUt(VA[IV])
                 .save(provider);
@@ -899,7 +899,7 @@ public class MachineRecipeLoader {
                 .inputItems(plate, Steel, 4)
                 .inputItems(ROBOT_ARM_IV, 2)
                 .inputItems(frameGt, TungstenSteel)
-                .outputItems(GTBlocks.CASING_ASSEMBLY_LINE, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.CASING_ASSEMBLY_LINE, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .duration(650)
                 .EUt(VA[IV])
                 .save(provider);
@@ -911,18 +911,18 @@ public class MachineRecipeLoader {
                 .inputItems(EMITTER_IV)
                 .inputItems(ELECTRIC_MOTOR_IV)
                 .inputItems(frameGt, TungstenSteel)
-                .outputItems(GTBlocks.CASING_ASSEMBLY_CONTROL, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .outputItems(GTBlocks.CASING_ASSEMBLY_CONTROL, RecipesConfig.CASINGS_PER_CRAFT.get())
                 .duration(650)
                 .EUt(VA[IV])
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("plascrete").EUt(48).inputItems(frameGt, Steel)
                 .inputItems(plate, Polyethylene, 6).inputFluids(Concrete, L)
-                .outputItems(GTBlocks.PLASTCRETE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft)).duration(200)
+                .outputItems(GTBlocks.PLASTCRETE.asStack(RecipesConfig.CASINGS_PER_CRAFT.get())).duration(200)
                 .addMaterialInfo(true, true).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("cleanroom_glass").EUt(48).inputItems(frameGt, Steel)
                 .inputItems(plate, Polyethylene, 6).inputFluids(Glass, L)
-                .outputItems(GTBlocks.CLEANROOM_GLASS.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .outputItems(GTBlocks.CLEANROOM_GLASS.asStack(RecipesConfig.CASINGS_PER_CRAFT.get()))
                 .duration(200)
                 .addMaterialInfo(true, true).save(provider);
 

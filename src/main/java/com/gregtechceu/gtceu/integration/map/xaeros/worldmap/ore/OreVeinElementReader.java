@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.integration.map.xaeros.worldmap.ore;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.GroupingMapRenderer;
 import com.gregtechceu.gtceu.integration.map.layer.builtin.OreRenderLayer;
 

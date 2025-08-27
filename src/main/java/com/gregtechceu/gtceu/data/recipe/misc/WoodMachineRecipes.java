@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.config.RecipesConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.WoodTypeEntry;
 
@@ -319,7 +319,7 @@ public class WoodMachineRecipes {
      * Standardized processing for wood types
      */
     private static void registerWoodRecipes(Consumer<FinishedRecipe> provider) {
-        if (ConfigHolder.INSTANCE.recipes.nerfWoodCrafting) {
+        if (RecipesConfig.NERF_WOOD_CRAFTING.get()) {
             VanillaRecipeHelper.addShapedRecipe(provider, "stick_saw", new ItemStack(Items.STICK, 4), "s", "P", "P",
                     'P', ItemTags.PLANKS);
             VanillaRecipeHelper.addShapedRecipe(provider, "stick_normal", new ItemStack(Items.STICK, 2), "P", "P", 'P',
@@ -356,7 +356,7 @@ public class WoodMachineRecipes {
                 ItemMaterialData.registerMaterialEntry(entry.door, door, entry.material);
             }
             if (entry.addDoorsMaterialInfo) {
-                ItemMaterialData.registerMaterialInfo(entry.door, ConfigHolder.INSTANCE.recipes.hardWoodRecipes ?
+                ItemMaterialData.registerMaterialInfo(entry.door, RecipesConfig.HARD_WOOD_RECIPES.get() ?
                         new ItemMaterialInfo(new MaterialStack(entry.material, M * 2),
                                 new MaterialStack(GTMaterials.Iron, M / 9)) : // screw
                         new ItemMaterialInfo(new MaterialStack(entry.material, M * 2)));
@@ -476,7 +476,7 @@ public class WoodMachineRecipes {
         }
 
         if (entry.generateLogToPlankRecipe) {
-            if (ConfigHolder.INSTANCE.recipes.nerfWoodCrafting) {
+            if (RecipesConfig.NERF_WOOD_CRAFTING.get()) {
                 VanillaRecipeHelper.addShapelessRecipe(provider,
                         hasPlanksRecipe ? entry.planksRecipeName : name + "_planks",
                         new ItemStack(entry.planks, 2), logTag);
@@ -487,7 +487,7 @@ public class WoodMachineRecipes {
 
             // log -> plank saw crafting
             VanillaRecipeHelper.addShapedRecipe(provider, name + "_planks_saw",
-                    new ItemStack(entry.planks, ConfigHolder.INSTANCE.recipes.nerfWoodCrafting ? 4 : 6),
+                    new ItemStack(entry.planks, RecipesConfig.NERF_WOOD_CRAFTING.get() ? 4 : 6),
                     "s", "L", 'L', logTag);
 
             // log -> plank cutting
@@ -505,7 +505,7 @@ public class WoodMachineRecipes {
         // door
         if (entry.door != null) {
             final boolean hasDoorRecipe = entry.doorRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 String recipeName = hasDoorRecipe ? entry.doorRecipeName : name + "_door";
                 if (entry.trapdoor != null) {
                     VanillaRecipeHelper.addShapedRecipe(provider, recipeName, new ItemStack(entry.door),
@@ -560,7 +560,7 @@ public class WoodMachineRecipes {
         if (entry.sign != null && entry.slab != null) {
             final boolean hasSignRecipe = entry.signRecipeName != null;
             String recipeName = hasSignRecipe ? entry.signRecipeName : name + "_sign";
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 VanillaRecipeHelper.addShapedRecipe(provider, recipeName + "_iron", new ItemStack(entry.sign),
                         "LLL", "RPR", "sSd",
                         'P', entry.planks,
@@ -613,7 +613,7 @@ public class WoodMachineRecipes {
                 final boolean hasHangingSignRecipe = entry.hangingSignRecipeName != null;
                 String recipeNameHanging = hasHangingSignRecipe ? entry.hangingSignRecipeName : name + "_hanging_sign";
 
-                if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+                if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                     VanillaRecipeHelper.addShapedRecipe(provider, recipeNameHanging, new ItemStack(entry.hangingSign),
                             "LLL", "C C", "RSR",
                             'C', Items.CHAIN,
@@ -659,7 +659,7 @@ public class WoodMachineRecipes {
         if (entry.trapdoor != null) {
             final boolean hasTrapdoorRecipe = entry.trapdoorRecipeName != null;
             String recipeName = hasTrapdoorRecipe ? entry.trapdoorRecipeName : name + "_trapdoor";
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 VanillaRecipeHelper.addShapedRecipe(provider, recipeName + "_iron", new ItemStack(entry.trapdoor),
                         "BPS", "PdP", "SPB",
                         'P', entry.planks,
@@ -724,7 +724,7 @@ public class WoodMachineRecipes {
 
         // slab
         if (entry.slab != null) {
-            if (entry.addSlabCraftingRecipe && !ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (entry.addSlabCraftingRecipe && !RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 VanillaRecipeHelper.addShapedRecipe(provider, name + "_slab", new ItemStack(entry.slab, 6),
                         "PPP", 'P', entry.planks);
             }
@@ -745,7 +745,7 @@ public class WoodMachineRecipes {
         // fence
         if (entry.fence != null) {
             final boolean hasFenceRecipe = entry.fenceRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
 
                 VanillaRecipeHelper.addShapedRecipe(provider, hasFenceRecipe ? entry.fenceRecipeName : name + "_fence",
                         new ItemStack(entry.fence),
@@ -774,7 +774,7 @@ public class WoodMachineRecipes {
         // fence gate
         if (entry.fenceGate != null) {
             final boolean hasFenceGateRecipe = entry.fenceGateRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
 
                 VanillaRecipeHelper.addShapedRecipe(provider,
                         hasFenceGateRecipe ? entry.fenceGateRecipeName : name + "_fence_gate",
@@ -812,7 +812,7 @@ public class WoodMachineRecipes {
         // boat
         if (entry.boat != null) {
             final boolean hasBoatRecipe = entry.boatRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 if (entry.slab != null) {
                     VanillaRecipeHelper.addShapedRecipe(provider, hasBoatRecipe ? entry.boatRecipeName : name + "_boat",
                             new ItemStack(entry.boat),
@@ -841,7 +841,7 @@ public class WoodMachineRecipes {
             if (entry.chestBoat != null) {
                 final boolean hasChestBoatRecipe = entry.chestBoatRecipeName != null;
                 String recipeName = hasChestBoatRecipe ? entry.chestBoatRecipeName : name + "_chest_boat";
-                if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+                if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                     VanillaRecipeHelper.addShapedRecipe(provider, recipeName,
                             new ItemStack(entry.chestBoat),
                             " B ", "SCS", " w ",
@@ -868,7 +868,7 @@ public class WoodMachineRecipes {
         // button
         if (entry.button != null) {
             final boolean hasButtonRecipe = entry.buttonRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 VanillaRecipeHelper.addShapedRecipe(provider, name + "_button", new ItemStack(entry.button, 6), "sP",
                         'P', new ItemStack(entry.pressurePlate));
             } else {
@@ -891,7 +891,7 @@ public class WoodMachineRecipes {
         // preesure plate
         if (entry.pressurePlate != null) {
             final boolean hasPressurePlateRecipe = entry.pressurePlateRecipeName != null;
-            if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+            if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
                 VanillaRecipeHelper.addShapedRecipe(provider, name + "_pressure_plate",
                         new ItemStack(entry.pressurePlate, 2), "SrS", "LCL", "SdS",
                         'S', new MaterialEntry(bolt, GTMaterials.Wood),
@@ -926,10 +926,10 @@ public class WoodMachineRecipes {
      */
     private static void registerGTWoodRecipes(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(provider, "treated_wood_stick",
-                ChemicalHelper.get(rod, TreatedWood, ConfigHolder.INSTANCE.recipes.nerfWoodCrafting ? 2 : 4),
+                ChemicalHelper.get(rod, TreatedWood, RecipesConfig.NERF_WOOD_CRAFTING.get() ? 2 : 4),
                 "L", "L",
                 'L', GTBlocks.TREATED_WOOD_PLANK.asItem());
-        if (ConfigHolder.INSTANCE.recipes.nerfWoodCrafting) {
+        if (RecipesConfig.NERF_WOOD_CRAFTING.get()) {
             VanillaRecipeHelper.addShapedRecipe(provider, "treated_wood_stick_saw",
                     ChemicalHelper.get(rod, TreatedWood, 4),
                     "s", "L", "L",
@@ -946,7 +946,7 @@ public class WoodMachineRecipes {
     }
 
     public static void hardWoodRecipes(Consumer<ResourceLocation> registry) {
-        if (ConfigHolder.INSTANCE.recipes.nerfWoodCrafting) {
+        if (RecipesConfig.NERF_WOOD_CRAFTING.get()) {
             registry.accept(new ResourceLocation("minecraft:stick"));
         }
         for (WoodTypeEntry entry : getDefaultEntries()) {
@@ -955,19 +955,19 @@ public class WoodMachineRecipes {
     }
 
     private static void hardWoodTypeRecipes(Consumer<ResourceLocation> registry, @NotNull WoodTypeEntry entry) {
-        if (ConfigHolder.INSTANCE.recipes.nerfWoodCrafting) {
+        if (RecipesConfig.NERF_WOOD_CRAFTING.get()) {
             if (entry.planksRecipeName != null) {
                 registry.accept(new ResourceLocation(entry.modid, entry.planksRecipeName));
             }
         }
 
-        if (ConfigHolder.INSTANCE.recipes.harderCharcoalRecipe) {
+        if (RecipesConfig.HARDER_CHARCOAL_RECIPE.get()) {
             if (entry.removeCharcoalRecipe) {
                 registry.accept(new ResourceLocation("charcoal"));
             }
         }
 
-        if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) {
+        if (RecipesConfig.HARD_WOOD_RECIPES.get()) {
             if (entry.door != null) {
                 // hard plank -> door crafting
                 if (entry.doorRecipeName != null) {
@@ -975,7 +975,7 @@ public class WoodMachineRecipes {
                 }
             }
             if (entry.slab != null) {
-                if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes && entry.slabRecipeName != null) {
+                if (RecipesConfig.HARD_WOOD_RECIPES.get() && entry.slabRecipeName != null) {
                     registry.accept(new ResourceLocation(entry.modid, entry.slabRecipeName));
                 }
                 if (entry.boat != null) {

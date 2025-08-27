@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.api.capability.compat;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTMath;
 
 import net.minecraftforge.energy.IEnergyStorage;

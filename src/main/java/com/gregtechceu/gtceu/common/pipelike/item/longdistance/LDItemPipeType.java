@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.common.pipelike.item.longdistance;
 
 import com.gregtechceu.gtceu.api.pipenet.longdistance.LongDistancePipeType;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 
 public class LDItemPipeType extends LongDistancePipeType {
 

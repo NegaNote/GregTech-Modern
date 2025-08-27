@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.common.pipelike.fluidpipe.longdistance;
 
 import com.gregtechceu.gtceu.api.pipenet.longdistance.LongDistancePipeType;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 
 public class LDFluidPipeType extends LongDistancePipeType {
 

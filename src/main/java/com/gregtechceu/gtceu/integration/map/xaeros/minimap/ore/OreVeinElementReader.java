@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.integration.map.xaeros.minimap.ore;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.GroupingMapRenderer;
 
 import net.minecraft.client.Minecraft;

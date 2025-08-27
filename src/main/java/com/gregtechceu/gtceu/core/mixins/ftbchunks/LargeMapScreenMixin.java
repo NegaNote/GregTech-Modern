@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.core.mixins.ftbchunks;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksOptions;
 

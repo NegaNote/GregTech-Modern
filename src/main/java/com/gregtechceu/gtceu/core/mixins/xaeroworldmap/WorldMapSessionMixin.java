@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.core.mixins.xaeroworldmap;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.xaeros.worldmap.fluid.FluidChunkHighlighter;
 
 import net.minecraft.client.multiplayer.ClientPacketListener;

@@ -2,7 +2,7 @@ package com.gregtechceu.gtceu.data.recipe.configurable;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterial;
 import com.gregtechceu.gtceu.api.data.chemical.material.MarkerMaterials;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.config.RecipesConfig;
 import com.gregtechceu.gtceu.data.recipe.misc.WoodMachineRecipes;
 
 import net.minecraft.resources.ResourceLocation;
@@ -16,23 +16,23 @@ public class RecipeRemoval {
     public static void init(Consumer<ResourceLocation> registry) {
         generalRemovals(registry);
         WoodMachineRecipes.hardWoodRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.disableManualCompression) disableManualCompression(registry);
-        if (ConfigHolder.INSTANCE.recipes.harderBrickRecipes) harderBrickRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardWoodRecipes) hardWoodRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardIronRecipes) hardIronRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardRedstoneRecipes) hardRedstoneRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardToolArmorRecipes) hardToolArmorRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardMiscRecipes) hardMiscRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardGlassRecipes) hardGlassRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.nerfPaperCrafting) nerfPaperCrafting(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardAdvancedIronRecipes) hardAdvancedIronRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.hardDyeRecipes) hardDyeRecipes(registry);
-        if (ConfigHolder.INSTANCE.recipes.flintAndSteelRequireSteel) flintAndSteelRequireSteel(registry);
-        if (ConfigHolder.INSTANCE.recipes.removeVanillaBlockRecipes) removeVanillaBlockRecipes(registry);
+        if (RecipesConfig.DISABLE_MANUAL_COMPRESSION.get()) disableManualCompression(registry);
+        if (RecipesConfig.HARDER_BRICK_RECIPES.get()) harderBrickRecipes(registry);
+        if (RecipesConfig.HARD_WOOD_RECIPES.get()) hardWoodRecipes(registry);
+        if (RecipesConfig.HARD_IRON_RECIPES.get()) hardIronRecipes(registry);
+        if (RecipesConfig.HARD_REDSTONE_RECIPES.get()) hardRedstoneRecipes(registry);
+        if (RecipesConfig.HARD_TOOL_ARMOR_RECIPES.get()) hardToolArmorRecipes(registry);
+        if (RecipesConfig.HARD_MISC_RECIPES.get()) hardMiscRecipes(registry);
+        if (RecipesConfig.HARD_GLASS_RECIPES.get()) hardGlassRecipes(registry);
+        if (RecipesConfig.NERF_PAPER_CRAFTING.get()) nerfPaperCrafting(registry);
+        if (RecipesConfig.HARD_ADVANCED_IRON_RECIPES.get()) hardAdvancedIronRecipes(registry);
+        if (RecipesConfig.HARD_DYE_RECIPES.get()) hardDyeRecipes(registry);
+        if (RecipesConfig.FLINT_AND_STEEL_REQUIRE_STEEL.get()) flintAndSteelRequireSteel(registry);
+        if (RecipesConfig.REMOVE_VANILLA_BLOCK_RECIPES.get()) removeVanillaBlockRecipes(registry);
     }
 
     private static void generalRemovals(Consumer<ResourceLocation> registry) {
-        if (ConfigHolder.INSTANCE.recipes.removeVanillaTNTRecipe)
+        if (RecipesConfig.REMOVE_VANILLA_TNT_RECIPE.get())
             registry.accept(new ResourceLocation("minecraft:tnt"));
 
         // todo

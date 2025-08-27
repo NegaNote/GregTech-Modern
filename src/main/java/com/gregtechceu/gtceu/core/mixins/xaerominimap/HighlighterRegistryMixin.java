@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.core.mixins.xaerominimap;
 
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.integration.map.xaeros.minimap.fluid.FluidChunkHighlighter;
 
 import org.spongepowered.asm.mixin.Mixin;
