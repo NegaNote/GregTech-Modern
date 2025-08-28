@@ -9,9 +9,9 @@ public class GameplayConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.BooleanValue MATERIAL_HAZARDS_ENABLED;
-    public static final ForgeConfigSpec.BooleanValue UNIVERSAL_HAZARDS;
-    public static final ForgeConfigSpec.BooleanValue ENVIRONMENTAL_HAZARDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> MATERIAL_HAZARDS_ENABLED;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> UNIVERSAL_HAZARDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENVIRONMENTAL_HAZARDS;
     public static final ForgeConfigSpec.ConfigValue<Float> ENVIRONMENTAL_HAZARD_DECAY_RATE;
 
     static {

@@ -12,15 +12,15 @@ public class ClientConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.BooleanValue MACHINES_HAVE_BERS_BY_DEFAULT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> MACHINES_HAVE_BERS_BY_DEFAULT;
 
-    public static final ForgeConfigSpec.BooleanValue TOOL_USE_SOUNDS;
-    public static final ForgeConfigSpec.BooleanValue TOOL_CRAFTING_SOUNDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> TOOL_USE_SOUNDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> TOOL_CRAFTING_SOUNDS;
 
     public static final ForgeConfigSpec.ConfigValue<String> DEFAULT_PAINTING_COLOR;
     public static final ForgeConfigSpec.ConfigValue<String> DEFAULT_UI_COLOR;
 
-    public static final ForgeConfigSpec.BooleanValue USE_VBO;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> USE_VBO;
 
     public static final ForgeConfigSpec.ConfigValue<Integer> IN_WORLD_PREVIEW_DURATION;
 

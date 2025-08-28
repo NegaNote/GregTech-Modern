@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.data.pack;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.addon.AddonFinder;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.config.DevConfig;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.SharedConstants;
@@ -79,7 +80,7 @@ public class GTDynamicResourcePack implements PackResources {
     }
 
     public static void addResource(ResourceLocation location, byte[] data) {
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(location, null, parent, data);
         }
@@ -90,7 +91,7 @@ public class GTDynamicResourcePack implements PackResources {
         ResourceLocation l = getBlockModelLocation(loc);
         byte[] modelBytes = obj.toString().getBytes(StandardCharsets.UTF_8);
 
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(l, null, parent, modelBytes);
         }
@@ -105,7 +106,7 @@ public class GTDynamicResourcePack implements PackResources {
         ResourceLocation l = getItemModelLocation(loc);
         byte[] modelBytes = obj.toString().getBytes(StandardCharsets.UTF_8);
 
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(l, null, parent, modelBytes);
         }
@@ -120,7 +121,7 @@ public class GTDynamicResourcePack implements PackResources {
         ResourceLocation l = getBlockStateLocation(loc);
         byte[] stateBytes = stateJson.toString().getBytes(StandardCharsets.UTF_8);
 
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(l, null, parent, stateBytes);
         }
@@ -139,7 +140,7 @@ public class GTDynamicResourcePack implements PackResources {
                         error -> GTCEu.LOGGER.error("Failed to encode atlas sprite source. {}", error));
         byte[] sourceBytes = sourceJson.toString().getBytes(StandardCharsets.UTF_8);
 
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(l, null, parent, sourceBytes);
         }
@@ -152,7 +153,7 @@ public class GTDynamicResourcePack implements PackResources {
                 error -> GTCEu.LOGGER.error("Failed to encode atlas sprite source. {}", error));
         byte[] sourceBytes = sourceJson.toString().getBytes(StandardCharsets.UTF_8);
 
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeJson(l, null, parent, sourceBytes);
         }
@@ -161,7 +162,7 @@ public class GTDynamicResourcePack implements PackResources {
 
     public static void addBlockTexture(ResourceLocation loc, byte[] data) {
         ResourceLocation l = getTextureLocation("block", loc);
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeByteArray(l, null, parent, data);
         }
@@ -170,7 +171,7 @@ public class GTDynamicResourcePack implements PackResources {
 
     public static void addItemTexture(ResourceLocation loc, byte[] data) {
         ResourceLocation l = getTextureLocation("item", loc);
-        if (ConfigHolder.INSTANCE.dev.dumpAssets) {
+        if (DevConfig.DUMP_ASSETS.get()) {
             Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/assets");
             writeByteArray(l, null, parent, data);
         }

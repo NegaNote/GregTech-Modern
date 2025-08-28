@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.api.data.worldgen.ores;
 
+import com.gregtechceu.gtceu.config.DevConfig;
 import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -46,7 +47,7 @@ public class OrePlacer {
      * once all of its chunks have been generated.
      */
     public void placeOres(WorldGenLevel level, ChunkGenerator chunkGenerator, ChunkAccess chunk) {
-        if (!ConfigHolder.INSTANCE.dev.doSuperflatOres && chunkGenerator instanceof FlatLevelSource) return;
+        if (!DevConfig.DO_SUPERFLAT_ORES.get() && chunkGenerator instanceof FlatLevelSource) return;
 
         var random = new XoroshiroRandomSource(level.getSeed() ^ chunk.getPos().toLong());
         var generatedVeins = oreGenCache.consumeChunkVeins(level, chunkGenerator, chunk);

@@ -10,23 +10,6 @@ public class ConfigUtil {
         return "Default: %s".formatted(value);
     }
 
-    public static ForgeConfigSpec.BooleanValue createConfigValue(ForgeConfigSpec.Builder builder, String path,
-                                                                 boolean defaultValue, String... comments) {
-        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
-        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
-        return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
-    }
-
-    public static ForgeConfigSpec.BooleanValue createConfigValueExtraDefault(ForgeConfigSpec.Builder builder,
-                                                                             String path,
-                                                                             boolean defaultValue,
-                                                                             String extraDefaultText,
-                                                                             String... comments) {
-        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
-        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + " " + extraDefaultText;
-        return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
-    }
-
     public static ForgeConfigSpec.ConfigValue<Integer> createConfigValue(ForgeConfigSpec.Builder builder, String path,
                                                                          int defaultValue, int min, int max,
                                                                          String... comments) {

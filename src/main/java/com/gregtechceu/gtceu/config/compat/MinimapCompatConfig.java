@@ -22,9 +22,9 @@ public class MinimapCompatConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> X_OFFSET;
     public static ForgeConfigSpec.ConfigValue<Integer> Y_OFFSET;
 
-    public static ForgeConfigSpec.BooleanValue FTB_CHUNKS_INTEGRATION;
-    public static ForgeConfigSpec.BooleanValue JOURNEY_MAP_INTEGRATION;
-    public static ForgeConfigSpec.BooleanValue XAEROS_MAP_INTEGRATION;
+    public static ForgeConfigSpec.ConfigValue<Boolean> FTB_CHUNKS_INTEGRATION;
+    public static ForgeConfigSpec.ConfigValue<Boolean> JOURNEY_MAP_INTEGRATION;
+    public static ForgeConfigSpec.ConfigValue<Boolean> XAEROS_MAP_INTEGRATION;
 
     public enum Anchor {
 

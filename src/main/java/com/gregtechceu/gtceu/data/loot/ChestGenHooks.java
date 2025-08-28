@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.data.loot;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.config.DevConfig;
 import com.gregtechceu.gtceu.core.mixins.LootPoolAccessor;
 import com.gregtechceu.gtceu.utils.GTMath;
 import com.gregtechceu.gtceu.utils.ItemStackHashStrategy;
@@ -65,7 +66,7 @@ public final class ChestGenHooks {
         if (lootEntryItems.containsKey(name)) {
             List<GTLootEntryItem> entryItems = lootEntryItems.get(name);
             for (GTLootEntryItem entry : entryItems) {
-                if (ConfigHolder.INSTANCE.dev.debug) {
+                if (DevConfig.DEBUG.get()) {
                     GTCEu.LOGGER.info("adding {} to lootTable {}", entry, name);
                 }
 

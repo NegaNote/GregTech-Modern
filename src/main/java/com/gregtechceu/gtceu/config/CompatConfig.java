@@ -12,14 +12,14 @@ public class CompatConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.BooleanValue HIDE_FACADES_IN_RECIPE_VIEWER;
-    public static final ForgeConfigSpec.BooleanValue HIDE_FILLED_CELLS_IN_RECIPE_VIEWER;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> HIDE_FACADES_IN_RECIPE_VIEWER;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> HIDE_FILLED_CELLS_IN_RECIPE_VIEWER;
 
-    public static final ForgeConfigSpec.BooleanValue HIDE_ORE_PROCESSING_DIAGRAMS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> HIDE_ORE_PROCESSING_DIAGRAMS;
 
-    public static final ForgeConfigSpec.BooleanValue REMOVE_SMELTING_FOR_EBF_METALS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> REMOVE_SMELTING_FOR_EBF_METALS;
 
-    public static final ForgeConfigSpec.BooleanValue SHOW_DIMENSION_TIER;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOW_DIMENSION_TIER;
 
     static {
         BUILDER.push("compat");

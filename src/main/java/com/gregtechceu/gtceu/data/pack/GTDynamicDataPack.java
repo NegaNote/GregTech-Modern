@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.addon.AddonFinder;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.common.data.GTRecipes;
+import com.gregtechceu.gtceu.config.DevConfig;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -69,7 +70,7 @@ public class GTDynamicDataPack implements PackResources {
         byte[] recipeBytes = recipeJson.toString().getBytes(StandardCharsets.UTF_8);
         Path parent = GTCEu.getGameDir().resolve("gtceu/dumped/data");
         ResourceLocation recipeId = recipe.getId();
-        if (ConfigHolder.INSTANCE.dev.dumpRecipes) {
+        if (DevConfig.DUMP_RECIPES.get()) {
             writeJson(recipeId, "recipes", parent, recipeBytes);
         }
         addToData(getRecipeLocation(recipeId), recipeBytes);
@@ -77,7 +78,7 @@ public class GTDynamicDataPack implements PackResources {
         if (recipe.serializeAdvancement() != null) {
             JsonObject advancement = recipe.serializeAdvancement();
             byte[] advancementBytes = advancement.toString().getBytes(StandardCharsets.UTF_8);
-            if (ConfigHolder.INSTANCE.dev.dumpRecipes) {
+            if (DevConfig.DUMP_RECIPES.get()) {
                 writeJson(recipe.getAdvancementId(), "advancements", parent, advancementBytes);
             }
             addToData(getAdvancementLocation(Objects.requireNonNull(recipe.getAdvancementId())),

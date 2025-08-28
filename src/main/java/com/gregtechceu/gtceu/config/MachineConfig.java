@@ -14,43 +14,43 @@ public class MachineConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.BooleanValue REQUIRE_GT_TOOLS_FOR_BLOCKS;
-    public static final ForgeConfigSpec.BooleanValue SHOULD_WEATHER_OR_TERRAIN_CAUSE_EXPLOSIONS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> REQUIRE_GT_TOOLS_FOR_BLOCKS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SHOULD_WEATHER_OR_TERRAIN_CAUSE_EXPLOSIONS;
     public static final ForgeConfigSpec.ConfigValue<Integer> ENERGY_USAGE_MULTIPLIER;
     public static final ForgeConfigSpec.ConfigValue<Integer> PROSPECTOR_ENERGY_USAGE_MULTIPLIER;
 
-    public static final ForgeConfigSpec.BooleanValue EXPLOSIONS_DAMAGE_TERRAIN;
-    public static final ForgeConfigSpec.BooleanValue HARMLESS_ACTIVE_TRANSFORMERS;
-    public static final ForgeConfigSpec.BooleanValue MACHINE_SOUNDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> EXPLOSIONS_DAMAGE_TERRAIN;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> HARMLESS_ACTIVE_TRANSFORMERS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> MACHINE_SOUNDS;
     public static final ForgeConfigSpec.ConfigValue<Integer> BATCH_DURATION;
 
-    public static final ForgeConfigSpec.BooleanValue STEEL_STEAM_MULTIBLOCKS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> STEEL_STEAM_MULTIBLOCKS;
     public static final ForgeConfigSpec.ConfigValue<Integer> STEAM_MULTI_PARALLEL_AMOUNT;
 
-    public static final ForgeConfigSpec.BooleanValue ENABLE_CLEANROOM;
-    public static final ForgeConfigSpec.BooleanValue CLEAN_MULTIBLOCKS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CLEANROOM;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> CLEAN_MULTIBLOCKS;
 
     public static final ForgeConfigSpec.ConfigValue<String> REPLACE_MINED_BLOCKS_WITH;
 
-    public static final ForgeConfigSpec.BooleanValue ENABLE_RESEARCH;
-    public static final ForgeConfigSpec.BooleanValue ENABLE_MAINTENANCE;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RESEARCH;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAINTENANCE;
     public static final ForgeConfigSpec.ConfigValue<Integer> MAINTENANCE_TIME;
 
-    public static final ForgeConfigSpec.BooleanValue ENABLE_WORLD_ACCELERATORS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_ACCELERATORS;
     public static final ForgeConfigSpec.ConfigValue<String[]> WORLD_ACCELERATOR_BLACKLIST;
 
-    public static final ForgeConfigSpec.BooleanValue GT6_STYLE_PIPES_CABLES;
-    public static final ForgeConfigSpec.BooleanValue GHOST_CIRCUIT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> GT6_STYLE_PIPES_CABLES;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> GHOST_CIRCUIT;
 
-    public static final ForgeConfigSpec.BooleanValue DO_BEDROCK_ORES;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> DO_BEDROCK_ORES;
     public static final ForgeConfigSpec.ConfigValue<String> BEDROCK_ORE_DROP_TAG_PREFIX;
     public static final ForgeConfigSpec.ConfigValue<Integer> MINER_SPEED;
 
     public static final ForgeConfigSpec.ConfigValue<Integer> LONG_DISTANCE_ITEM_PIPE_MIN_DISTANCE;
     public static final ForgeConfigSpec.ConfigValue<Integer> LONG_DISTANCE_FLUID_PIPE_MIN_DISTANCE;
 
-    public static final ForgeConfigSpec.BooleanValue ONLY_OWNER_GUI;
-    public static final ForgeConfigSpec.BooleanValue ONLY_OWNER_BREAK;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ONLY_OWNER_GUI;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ONLY_OWNER_BREAK;
 
     public static final ForgeConfigSpec.ConfigValue<Integer> OWNER_OP_BYPASS;
 
@@ -58,10 +58,10 @@ public class MachineConfig {
      * <strong>Addons mods should not reference this config directly.</strong>
      * Use {@link GTCEuAPI#isHighTier()} instead.
      */
-    public static final ForgeConfigSpec.BooleanValue HIGH_TIER_CONTENT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> HIGH_TIER_CONTENT;
 
-    public static final ForgeConfigSpec.BooleanValue ORDERED_ASSEMBLY_LINE_ITEMS;
-    public static final ForgeConfigSpec.BooleanValue ORDERED_ASSEMBLY_LINE_FLUIDS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ORDERED_ASSEMBLY_LINE_ITEMS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ORDERED_ASSEMBLY_LINE_FLUIDS;
 
     static {
         BUILDER.push("machines");

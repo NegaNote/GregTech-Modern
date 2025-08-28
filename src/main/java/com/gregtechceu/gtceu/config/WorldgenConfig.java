@@ -12,10 +12,10 @@ public class WorldgenConfig {
     public static final ForgeConfigSpec SPEC;
 
     public static final ForgeConfigSpec.ConfigValue<Float> RUBBER_TREE_SPAWN_CHANCE;
-    public static final ForgeConfigSpec.BooleanValue ALL_UNIQUE_STONE_TYPES;
-    public static final ForgeConfigSpec.BooleanValue SAND_ORES_FALL;
-    public static final ForgeConfigSpec.BooleanValue INCREASE_DUNGEON_LOOT;
-    public static final ForgeConfigSpec.BooleanValue ADD_LOOT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ALL_UNIQUE_STONE_TYPES;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SAND_ORES_FALL;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> INCREASE_DUNGEON_LOOT;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ADD_LOOT;
 
     static {
         BUILDER.push("worldgen");

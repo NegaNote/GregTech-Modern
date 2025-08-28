@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.api.recipe.ingredient;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.config.DevConfig;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -67,7 +68,7 @@ public class IntProviderFluidIngredient extends FluidIngredient {
     @Deprecated
     @Override
     public int getAmount() {
-        if (ConfigHolder.INSTANCE.dev.debug) {
+        if (DevConfig.DEBUG.get()) {
             throw new IllegalCallerException("An IPFI should never have getAmount() called on it!");
         }
         return -1;
