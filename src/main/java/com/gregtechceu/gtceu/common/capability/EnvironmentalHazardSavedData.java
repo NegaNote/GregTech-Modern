@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketAddHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketRemoveHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketSyncHazardZoneStrength;
-
 import com.gregtechceu.gtceu.config.GameplayConfig;
 
 import net.minecraft.core.BlockPos;

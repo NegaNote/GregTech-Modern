@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
@@ -150,7 +151,7 @@ public class FisherMachine extends TieredEnergyMachine
     protected CustomItemStackHandler createChargerItemHandler() {
         var handler = new CustomItemStackHandler();
         handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
-                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                (EnergyCompatConfig.NATIVE_EU_TO_FE.get() &&
                         GTCapabilityHelper.getForgeEnergyItem(item) != null));
         return handler;
     }

@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.client.util.DrawUtil;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.GroupingMapRenderer;
 
 import net.minecraft.client.Minecraft;
@@ -40,7 +41,7 @@ public class OreVeinElementRenderer extends MinimapElementRenderer<OreVeinElemen
                                  MinimapElementRenderInfo renderInfo,
                                  GuiGraphics graphics, MultiBufferSource.BufferSource renderTypeBuffers) {
         GeneratedVeinMetadata vein = element.getVein();
-        int iconSize = ConfigHolder.INSTANCE.compat.minimap.oreIconSize;
+        int iconSize = MinimapCompatConfig.ORE_ICON_SIZE.get();
 
         Material firstMaterial = vein.definition().veinGenerator().getAllMaterials().get(0);
         int materialARGB = firstMaterial.getMaterialARGB();
@@ -70,7 +71,7 @@ public class OreVeinElementRenderer extends MinimapElementRenderer<OreVeinElemen
         // }
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        int borderColor = ConfigHolder.INSTANCE.compat.minimap.getBorderColor(materialARGB | 0xFF000000);
+        int borderColor = MinimapCompatConfig.getBorderColor(materialARGB | 0xFF000000);
         if ((borderColor & 0xFF000000) != 0) {
             int thickness = iconSize / 16;
             graphics.fill(-iconSize / 2, -iconSize / 2, iconSize, thickness, borderColor);

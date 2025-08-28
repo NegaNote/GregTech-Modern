@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gregtechceu.gtceu.api.item.capability.ElectricItem;
 import com.gregtechceu.gtceu.api.item.component.forge.IComponentCapability;
 import com.gregtechceu.gtceu.client.renderer.item.ToolChargeBarRenderer;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -131,7 +132,7 @@ public class ElectricStats implements IInteractionItem, ISubItemHandler, IAddInf
         var slotElectricItem = GTCapabilityHelper.getElectricItem(target);
         if (slotElectricItem != null && !slotElectricItem.canProvideChargeExternally()) {
             return chargeElectricItem(maxDischargeAmount, source, slotElectricItem);
-        } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+        } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
             var feEnergyItem = GTCapabilityHelper.getForgeEnergyItem(target);
             if (feEnergyItem != null && feEnergyItem.canReceive() &&
                     feEnergyItem.getEnergyStored() < feEnergyItem.getMaxEnergyStored()) {

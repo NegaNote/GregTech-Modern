@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.integration.ae2.machine.trait;
 
 import com.gregtechceu.gtceu.api.machine.trait.MachineTrait;
+import com.gregtechceu.gtceu.config.compat.AE2CompatConfig;
 import com.gregtechceu.gtceu.integration.ae2.machine.feature.IGridConnectedMachine;
 import com.gregtechceu.gtceu.integration.ae2.utils.SerializableManagedGridNode;
 
@@ -45,7 +46,7 @@ public class GridNodeHolder extends MachineTrait {
                 BlockEntityNodeListener.INSTANCE)
                 .setFlags(GridFlags.REQUIRE_CHANNEL)
                 .setVisualRepresentation(machine.getDefinition().getItem())
-                .setIdlePowerUsage(ConfigHolder.INSTANCE.compat.ae2.meHatchEnergyUsage)
+                .setIdlePowerUsage(AE2CompatConfig.ME_HATCH_ENERGY_USAGE.get())
                 .setInWorldNode(true)
                 .setExposedOnSides(
                         machine.hasFrontFacing() ? EnumSet.of(machine.getFrontFacing()) :

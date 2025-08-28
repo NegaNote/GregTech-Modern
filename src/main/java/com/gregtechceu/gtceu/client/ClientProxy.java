@@ -26,6 +26,7 @@ import com.gregtechceu.gtceu.common.data.GTEntityTypes;
 import com.gregtechceu.gtceu.common.data.GTParticleTypes;
 import com.gregtechceu.gtceu.common.entity.GTBoat;
 import com.gregtechceu.gtceu.common.machine.owner.MachineOwner;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ClientCacheManager;
 import com.gregtechceu.gtceu.integration.map.cache.client.GTClientCache;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksPlugin;
@@ -125,7 +126,7 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public void onClientSetup(FMLClientSetupEvent event) {
         MachineOwner.init();
-        if (ConfigHolder.INSTANCE.compat.minimap.toggle.ftbChunksIntegration &&
+        if (MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get() &&
                 GTCEu.isModLoaded(GTValues.MODID_FTB_CHUNKS)) {
             FTBChunksPlugin.addEventListeners();
         }

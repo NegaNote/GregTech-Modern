@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.core.mixins.ftbchunks;
 
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksOptions;
 
@@ -30,7 +31,7 @@ public abstract class LargeMapScreenMixin extends BaseScreen {
 
     @Inject(method = "addWidgets", at = @At(value = "TAIL"))
     private void gtceu$injectAddWidgets(CallbackInfo ci) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.ftbChunksIntegration) return;
+        if (!MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get()) return;
         gtceu$injectedWidgets.clear();
         var prefix = "gtceu.button.";
         for (var button : ButtonState.getAllButtons()) {
@@ -64,7 +65,7 @@ public abstract class LargeMapScreenMixin extends BaseScreen {
 
     @Inject(method = "alignWidgets", at = @At(value = "TAIL"))
     private void gtceu$injectAlignWidgets(CallbackInfo ci) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.ftbChunksIntegration) return;
+        if (!MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get()) return;
         var buttonCount = gtceu$injectedWidgets.size();
         var startHeight = (height - buttonCount * 18) / 2;
         for (int i = 0; i < buttonCount; i++) {

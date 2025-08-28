@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluidHelper;
+import com.gregtechceu.gtceu.config.CompatConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.rei.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.rei.multipage.MultiblockInfoDisplayCategory;
@@ -47,7 +48,7 @@ public class GTREIPlugin implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         // Categories
         registry.add(new MultiblockInfoDisplayCategory());
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             registry.add(new GTOreProcessingDisplayCategory());
         registry.add(new GTOreVeinDisplayCategory());
         registry.add(new GTBedrockFluidDisplayCategory());
@@ -62,7 +63,7 @@ public class GTREIPlugin implements REIClientPlugin {
 
         // Workstations
         GTRecipeREICategory.registerWorkStations(registry);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingDisplayCategory.registerWorkstations(registry);
         GTOreVeinDisplayCategory.registerWorkstations(registry);
         GTBedrockFluidDisplayCategory.registerWorkstations(registry);
@@ -76,7 +77,7 @@ public class GTREIPlugin implements REIClientPlugin {
     public void registerDisplays(DisplayRegistry registry) {
         GTRecipeREICategory.registerDisplays(registry);
         MultiblockInfoDisplayCategory.registerDisplays(registry);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingDisplayCategory.registerDisplays(registry);
         GTOreVeinDisplayCategory.registerDisplays(registry);
         GTBedrockFluidDisplayCategory.registerDisplays(registry);

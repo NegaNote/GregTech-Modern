@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.config.RecipeConfig;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -1189,7 +1190,7 @@ public class MetaTileEntityLoader {
                 new MaterialEntry(TagPrefix.rotor, GTMaterials.StainlessSteel), 'H', HULL.get(HV), 'M',
                 GTItems.ELECTRIC_MOTOR_HV.asStack(), 'C', CustomTags.HV_CIRCUITS);
 
-        if (ConfigHolder.INSTANCE.compat.energy.enableFEConverters) {
+        if (EnergyCompatConfig.ENABLE_FE_CONVERTERS.get()) {
             registerMachineRecipe(provider, true, GTMachines.ENERGY_CONVERTER_1A, " WW", "RMC", " WW", 'C', CIRCUIT,
                     'M', HULL, 'W', CABLE, 'R', new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.RedAlloy));
             registerMachineRecipe(provider, true, GTMachines.ENERGY_CONVERTER_4A, " WW", "RMC", " WW", 'C', CIRCUIT,

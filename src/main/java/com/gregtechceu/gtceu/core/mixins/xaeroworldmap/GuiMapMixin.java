@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.core.mixins.xaeroworldmap;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 import com.gregtechceu.gtceu.integration.map.xaeros.worldmap.gui.GuiTexturedButtonWithSize;
 
@@ -32,10 +33,10 @@ public abstract class GuiMapMixin extends ScreenBase implements IRightClickableE
 
     @Inject(method = "init", at = @At("TAIL"), remap = true)
     private void gtceu$injectInitGui(CallbackInfo ci) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.xaerosMapIntegration) return;
+        if (!MinimapCompatConfig.XAEROS_MAP_INTEGRATION.get()) return;
         int startX, startY, xOffset, yOffset;
 
-        switch (ConfigHolder.INSTANCE.compat.minimap.direction) {
+        switch (MinimapCompatConfig.DIRECTION.get()) {
             case VERTICAL -> {
                 xOffset = 0;
                 yOffset = 1;
@@ -45,58 +46,58 @@ public abstract class GuiMapMixin extends ScreenBase implements IRightClickableE
                 yOffset = 0;
             }
             default -> throw new IllegalStateException(
-                    "Unexpected value: " + ConfigHolder.INSTANCE.compat.minimap.direction);
+                    "Unexpected value: " + MinimapCompatConfig.DIRECTION.get());
         }
 
-        switch (ConfigHolder.INSTANCE.compat.minimap.buttonAnchor) {
+        switch (MinimapCompatConfig.BUTTON_ANCHOR.get()) {
             case TOP_LEFT -> {
-                startX = ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = MinimapCompatConfig.X_OFFSET.get();
+                startY = MinimapCompatConfig.Y_OFFSET.get();
             }
             case TOP_CENTER -> {
-                startX = width / 2 + ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = width / 2 + MinimapCompatConfig.X_OFFSET.get();
+                startY = MinimapCompatConfig.Y_OFFSET.get();
             }
             case TOP_RIGHT -> {
-                startX = width - 20 - ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = width - 20 - MinimapCompatConfig.X_OFFSET.get();
+                startY = MinimapCompatConfig.Y_OFFSET.get();
                 xOffset = -xOffset;
             }
             case RIGHT_CENTER -> {
-                startX = width - 20 - ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = height / 2 + ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = width - 20 - MinimapCompatConfig.X_OFFSET.get();
+                startY = height / 2 + MinimapCompatConfig.Y_OFFSET.get();
                 xOffset = -xOffset;
                 yOffset = -yOffset;
             }
             case BOTTOM_RIGHT -> {
-                startX = width - 20 - ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = height - 20 - ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = width - 20 - MinimapCompatConfig.X_OFFSET.get();
+                startY = height - 20 - MinimapCompatConfig.Y_OFFSET.get();
                 xOffset = -xOffset;
                 yOffset = -yOffset;
             }
             case BOTTOM_CENTER -> {
-                startX = width / 2 + ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = height - 20 - ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = width / 2 + MinimapCompatConfig.X_OFFSET.get();
+                startY = height - 20 - MinimapCompatConfig.Y_OFFSET.get();
                 yOffset = -yOffset;
             }
             case BOTTOM_LEFT -> {
-                startX = ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = height - 20 - ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = MinimapCompatConfig.X_OFFSET.get();
+                startY = height - 20 - MinimapCompatConfig.Y_OFFSET.get();
                 yOffset = -yOffset;
             }
             case LEFT_CENTER -> {
-                startX = ConfigHolder.INSTANCE.compat.minimap.xOffset;
-                startY = height / 2 + ConfigHolder.INSTANCE.compat.minimap.yOffset;
+                startX = MinimapCompatConfig.X_OFFSET.get();
+                startY = height / 2 + MinimapCompatConfig.Y_OFFSET.get();
                 yOffset = -yOffset;
             }
             default -> throw new IllegalStateException(
-                    "Unexpected value: " + ConfigHolder.INSTANCE.compat.minimap.buttonAnchor);
+                    "Unexpected value: " + MinimapCompatConfig.BUTTON_ANCHOR.get());
         }
 
-        if (ConfigHolder.INSTANCE.compat.minimap.buttonAnchor.isCentered()) {
+        if (MinimapCompatConfig.BUTTON_ANCHOR.get().isCentered()) {
             int totalButtonSize = ButtonState.buttonAmount() * 10;
-            if (ConfigHolder.INSTANCE.compat.minimap.buttonAnchor.usualDirection()
-                    .equals(ConfigHolder.INSTANCE.compat.minimap.direction)) {
+            if (MinimapCompatConfig.BUTTON_ANCHOR.get().usualDirection()
+                    .equals(MinimapCompatConfig.DIRECTION.get())) {
                 startX -= xOffset * totalButtonSize;
                 startY -= yOffset * totalButtonSize;
                 if (xOffset < 0) startX -= 20;

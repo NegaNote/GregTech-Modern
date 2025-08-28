@@ -22,6 +22,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
 import com.gregtechceu.gtceu.common.machine.trait.miner.MinerLogic;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
@@ -116,7 +117,7 @@ public class MinerMachine extends WorkableTieredMachine
     protected CustomItemStackHandler createChargerItemHandler(Object... args) {
         var handler = new CustomItemStackHandler();
         handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
-                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                (EnergyCompatConfig.NATIVE_EU_TO_FE.get() &&
                         GTCapabilityHelper.getForgeEnergyItem(item) != null));
         return handler;
     }

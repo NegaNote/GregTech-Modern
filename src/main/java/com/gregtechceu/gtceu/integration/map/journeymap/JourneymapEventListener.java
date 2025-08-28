@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.map.journeymap;
 
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ButtonState;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,11 +24,11 @@ public class JourneymapEventListener {
 
     @OnlyIn(Dist.CLIENT)
     protected static void onFullscreenAddonButton(FullscreenDisplayEvent.AddonButtonDisplayEvent event) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.journeyMapIntegration) {
+        if (!MinimapCompatConfig.JOURNEY_MAP_INTEGRATION.get()) {
             return;
         }
-        if (ConfigHolder.INSTANCE.compat.minimap.direction !=
-                ConfigHolder.CompatibilityConfigs.MinimapCompatConfig.Direction.VERTICAL) {
+        if (MinimapCompatConfig.DIRECTION.get() !=
+                MinimapCompatConfig.Direction.VERTICAL) {
             return;
         }
         var display = event.getThemeButtonDisplay();
@@ -43,11 +44,11 @@ public class JourneymapEventListener {
 
     @OnlyIn(Dist.CLIENT)
     protected static void onFullscreenToolbarEvent(FullscreenDisplayEvent.CustomToolbarEvent event) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.journeyMapIntegration) {
+        if (!MinimapCompatConfig.JOURNEY_MAP_INTEGRATION.get()) {
             return;
         }
-        if (ConfigHolder.INSTANCE.compat.minimap.direction ==
-                ConfigHolder.CompatibilityConfigs.MinimapCompatConfig.Direction.VERTICAL) {
+        if (MinimapCompatConfig.DIRECTION.get() ==
+                MinimapCompatConfig.Direction.VERTICAL) {
             return;
         }
         var builder = event.getCustomToolBarBuilder();

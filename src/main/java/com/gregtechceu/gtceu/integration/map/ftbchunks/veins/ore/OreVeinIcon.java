@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.client.util.DrawUtil;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksOptions;
 import com.gregtechceu.gtceu.integration.map.layer.builtin.OreRenderLayer;
 
@@ -45,7 +46,7 @@ public class OreVeinIcon implements MapIcon {
 
     @Override
     public double getIconScale(MapType mapType) {
-        return mapType.isLargeMap() ? (double) ConfigHolder.INSTANCE.compat.minimap.oreIconSize / 8 :
+        return mapType.isLargeMap() ? (double) MinimapCompatConfig.ORE_ICON_SIZE.get() / 8 :
                 MapIcon.super.getIconScale(mapType);
     }
 
@@ -153,7 +154,7 @@ public class OreVeinIcon implements MapIcon {
             return;
         }
 
-        var iconSize = ConfigHolder.INSTANCE.compat.minimap.oreIconSize;
+        var iconSize = MinimapCompatConfig.ORE_ICON_SIZE.get();
         var material = getMaterial();
         var color = material.isNull() ? 0xFFFFFFFF : material.getMaterialARGB();
         var colors = DrawUtil.floats(color);
@@ -179,7 +180,7 @@ public class OreVeinIcon implements MapIcon {
         }
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        var borderColor = ConfigHolder.INSTANCE.compat.minimap.getBorderColor(color | 0xFF000000);
+        var borderColor = MinimapCompatConfig.getBorderColor(color | 0xFF000000);
         if ((borderColor & 0xFF000000) != 0) {
             var thickness = iconSize / 16;
             graphics.fill(x, y, x + w, y + h + thickness, borderColor);

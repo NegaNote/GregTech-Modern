@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.CompatConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.jei.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.jei.multipage.MultiblockInfoCategory;
@@ -55,7 +56,7 @@ public class GTJEIPlugin implements IModPlugin {
         GTCEu.LOGGER.info("JEI register categories");
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         registry.addRecipeCategories(new MultiblockInfoCategory(jeiHelpers));
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             registry.addRecipeCategories(new GTOreProcessingInfoCategory(jeiHelpers));
         registry.addRecipeCategories(new GTOreVeinInfoCategory(jeiHelpers));
         registry.addRecipeCategories(new GTBedrockFluidInfoCategory(jeiHelpers));
@@ -73,7 +74,7 @@ public class GTJEIPlugin implements IModPlugin {
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
         if (GTCEu.Mods.isREILoaded() || GTCEu.Mods.isEMILoaded()) return;
         GTRecipeJEICategory.registerRecipeCatalysts(registration);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingInfoCategory.registerRecipeCatalysts(registration);
         GTOreVeinInfoCategory.registerRecipeCatalysts(registration);
         GTBedrockFluidInfoCategory.registerRecipeCatalysts(registration);
@@ -90,7 +91,7 @@ public class GTJEIPlugin implements IModPlugin {
         GTCEu.LOGGER.info("JEI register");
         MultiblockInfoCategory.registerRecipes(registration);
         GTRecipeJEICategory.registerRecipes(registration);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingInfoCategory.registerRecipes(registration);
         GTOreVeinInfoCategory.registerRecipes(registration);
         GTBedrockFluidInfoCategory.registerRecipes(registration);

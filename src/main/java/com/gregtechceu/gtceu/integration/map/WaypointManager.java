@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.integration.map;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksWaypointHandler;
 import com.gregtechceu.gtceu.integration.map.journeymap.JourneymapWaypointHandler;
 import com.gregtechceu.gtceu.integration.map.xaeros.XaeroWaypointHandler;
@@ -27,16 +28,15 @@ public class WaypointManager {
     private static boolean active = false;
 
     public static void init() {
-        var toggle = ConfigHolder.INSTANCE.compat.minimap.toggle;
-        if (toggle.xaerosMapIntegration && GTCEu.isModLoaded(GTValues.MODID_XAEROS_MINIMAP)) {
+        if (MinimapCompatConfig.XAEROS_MAP_INTEGRATION.get() && GTCEu.isModLoaded(GTValues.MODID_XAEROS_MINIMAP)) {
             WaypointManager.registerWaypointHandler(new XaeroWaypointHandler());
             active = true;
         }
-        if (toggle.journeyMapIntegration && GTCEu.isModLoaded(GTValues.MODID_JOURNEYMAP)) {
+        if (MinimapCompatConfig.JOURNEY_MAP_INTEGRATION.get() && GTCEu.isModLoaded(GTValues.MODID_JOURNEYMAP)) {
             WaypointManager.registerWaypointHandler(new JourneymapWaypointHandler());
             active = true;
         }
-        if (toggle.ftbChunksIntegration && GTCEu.isModLoaded(GTValues.MODID_FTB_CHUNKS)) {
+        if (MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get() && GTCEu.isModLoaded(GTValues.MODID_FTB_CHUNKS)) {
             WaypointManager.registerWaypointHandler(new FTBChunksWaypointHandler());
             active = true;
         }

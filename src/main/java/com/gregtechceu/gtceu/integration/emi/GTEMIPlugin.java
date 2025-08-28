@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluid;
 import com.gregtechceu.gtceu.common.fluid.potion.PotionFluidHelper;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.CompatConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.integration.emi.circuit.GTProgrammedCircuitCategory;
 import com.gregtechceu.gtceu.integration.emi.multipage.MultiblockInfoEmiCategory;
@@ -44,7 +45,7 @@ public class GTEMIPlugin implements EmiPlugin {
     public void register(EmiRegistry registry) {
         // Categories
         registry.addCategory(MultiblockInfoEmiCategory.CATEGORY);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             registry.addCategory(GTOreProcessingEmiCategory.CATEGORY);
         registry.addCategory(GTOreVeinEmiCategory.CATEGORY);
         registry.addCategory(GTBedrockFluidEmiCategory.CATEGORY);
@@ -67,7 +68,7 @@ public class GTEMIPlugin implements EmiPlugin {
         // Recipes
         MultiblockInfoEmiCategory.registerDisplays(registry);
         GTRecipeEMICategory.registerDisplays(registry);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingEmiCategory.registerDisplays(registry);
         GTOreVeinEmiCategory.registerDisplays(registry);
         GTBedrockFluidEmiCategory.registerDisplays(registry);
@@ -77,7 +78,7 @@ public class GTEMIPlugin implements EmiPlugin {
 
         // workstations
         GTRecipeEMICategory.registerWorkStations(registry);
-        if (!ConfigHolder.INSTANCE.compat.hideOreProcessingDiagrams)
+        if (!CompatConfig.HIDE_ORE_PROCESSING_DIAGRAMS.get())
             GTOreProcessingEmiCategory.registerWorkStations(registry);
         GTOreVeinEmiCategory.registerWorkStations(registry);
         GTBedrockFluidEmiCategory.registerWorkStations(registry);

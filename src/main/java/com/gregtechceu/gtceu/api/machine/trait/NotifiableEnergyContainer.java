@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.ingredient.EnergyStack;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
@@ -199,7 +200,7 @@ public class NotifiableEnergyContainer extends NotifiableRecipeHandlerTrait<Ener
                 }
                 return true;
             }
-        } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+        } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
             IEnergyStorage energyStorage = GTCapabilityHelper.getForgeEnergyItem(stackInSlot);
             if (energyStorage != null && handleForgeEnergyItem(energyStorage, simulate)) {
                 if (!simulate) {

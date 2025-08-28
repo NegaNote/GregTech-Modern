@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.core.mixins.ftbchunks;
 
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksOptions;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.FTBChunksRenderer;
 import com.gregtechceu.gtceu.integration.map.ftbchunks.veins.fluid.FluidVeinIcon;
@@ -36,7 +37,7 @@ public abstract class RegionMapPanelMixin extends Panel {
     @Inject(method = "addWidgets",
             at = @At(value = "INVOKE", target = "Ldev/ftb/mods/ftbchunks/client/gui/RegionMapPanel;alignWidgets()V"))
     private void gtceu$injectAddWidgets(CallbackInfo ci) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.ftbChunksIntegration) return;
+        if (!MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get()) return;
         if (FTBChunksOptions.showLayer("bedrock_fluids")) {
             FTBChunksRenderer.fluidElements.row(largeMap.currentDimension()).forEach((pos, icon) -> {
                 var widget = new FluidVeinWidget((RegionMapPanel) (Object) this, icon);
@@ -47,7 +48,7 @@ public abstract class RegionMapPanelMixin extends Panel {
 
     @Inject(method = "alignWidgets", at = @At(value = "TAIL"))
     private void gtceu$injectAlignWidgets(CallbackInfo ci) {
-        if (!ConfigHolder.INSTANCE.compat.minimap.toggle.ftbChunksIntegration) return;
+        if (!MinimapCompatConfig.FTB_CHUNKS_INTEGRATION.get()) return;
         var regionSize = largeMap.getRegionTileSize();
         var chunkSize = largeMap.getRegionTileSize() / 32;
         for (var widget : widgets) {

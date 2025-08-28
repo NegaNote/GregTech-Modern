@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.api.capability.compat;
 
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.GTMath;
 
 import net.minecraftforge.energy.IEnergyStorage;
@@ -10,8 +11,8 @@ public class FeCompat {
      * Conversion ratio used by energy converters
      */
     public static int ratio(boolean feToEu) {
-        return feToEu ? ConfigHolder.INSTANCE.compat.energy.feToEuRatio :
-                ConfigHolder.INSTANCE.compat.energy.euToFeRatio;
+        return feToEu ? EnergyCompatConfig.FE_USED_TO_MAKE_EU.get() :
+                EnergyCompatConfig.FE_MADE_FROM_EU.get();
     }
 
     /**

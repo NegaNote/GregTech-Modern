@@ -36,6 +36,7 @@ import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import com.gregtechceu.gtceu.config.*;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.core.mixins.registrate.AbstractRegistrateAccessor;
 import com.gregtechceu.gtceu.data.GregTechDatagen;
 import com.gregtechceu.gtceu.data.lang.MaterialLangGenerator;
@@ -107,6 +108,7 @@ public class CommonProxy {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu/worldgen.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MachineConfig.SPEC, "gtceu/machines.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GameplayConfig.SPEC, "gtceu/gameplay.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CompatConfig.SPEC, "gtceu/compat.toml");
 
         // This is registered as a common type because while mechanically it would affect clients primarily,
         // many of these config values need to be synced across both the client and the server
@@ -117,7 +119,7 @@ public class CommonProxy {
         GTCEuAPI.initializeHighTier();
         if (GTCEu.isDev()) {
             RecipeConfig.GENERATE_LOW_QUALITY_GEMS.set(true);
-            ConfigHolder.INSTANCE.compat.energy.enableFEConverters = true;
+            EnergyCompatConfig.ENABLE_FE_CONVERTERS.set(true);
         }
 
         GTValueProviderTypes.init(eventBus);

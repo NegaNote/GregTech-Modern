@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.client.renderer.block.OreBlockRenderer;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.cache.server.ServerCache;
 
 import net.minecraft.core.BlockPos;
@@ -33,7 +34,7 @@ public class OreBlock extends MaterialBlock {
                     this.material,
                     pos,
                     (ServerPlayer) player,
-                    ConfigHolder.INSTANCE.compat.minimap.oreBlockProspectRange);
+                    MinimapCompatConfig.ORE_BLOCK_PROSPECT_RANGE.get());
         }
         return InteractionResult.PASS;
     }

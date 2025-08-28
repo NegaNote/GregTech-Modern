@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeConditions;
+import com.gregtechceu.gtceu.config.CompatConfig;
 
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
 import com.lowdragmc.lowdraglib.jei.IngredientIO;
@@ -67,7 +68,7 @@ public class DimensionCondition extends RecipeCondition {
         SlotWidget dimSlot = new SlotWidget(handler, 0, xOffset, yOffset, false, false)
                 .setIngredientIO(IngredientIO.INPUT);
         handler.setStackInSlot(0, icon);
-        if (ConfigHolder.INSTANCE.compat.showDimensionTier) {
+        if (CompatConfig.SHOW_DIMENSION_TIER.get()) {
             dimSlot.setOverlay(
                     new TextTexture("T" + (dimMarker.tier >= DimensionMarker.MAX_TIER ? "?" : dimMarker.tier))
                             .scale(0.75f).transform(-3.0f, 5.0f));

@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.api.gui.misc.ProspectorMode;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.GenericMapRenderer;
 import com.gregtechceu.gtceu.integration.map.WaypointManager;
 import com.gregtechceu.gtceu.integration.map.layer.builtin.FluidRenderLayer;
@@ -128,8 +129,8 @@ public class JourneymapRenderer extends GenericMapRenderer {
         @SuppressWarnings("DataFlowIssue")
         MapImage image = new MapImage(createOreImage(vein));
         image.centerAnchors()
-                .setDisplayWidth(ConfigHolder.INSTANCE.compat.minimap.oreIconSize)
-                .setDisplayHeight(ConfigHolder.INSTANCE.compat.minimap.oreIconSize);
+                .setDisplayWidth(MinimapCompatConfig.ORE_ICON_SIZE.get())
+                .setDisplayHeight(MinimapCompatConfig.ORE_ICON_SIZE.get());
 
         MarkerOverlay overlay = new MarkerOverlay(GTCEu.MOD_ID, id, center, image);
 

@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.client.ClientProxy;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.GenericMapRenderer;
 import com.gregtechceu.gtceu.integration.map.layer.MapRenderLayer;
 import com.gregtechceu.gtceu.integration.xei.widgets.GTOreVeinWidget;
@@ -66,13 +67,10 @@ public class OreRenderLayer extends MapRenderLayer {
         tooltip.add(title);
 
         for (var filler : vein.definition().veinGenerator().getAllEntries()) {
-            filler.vein().ifLeft(state -> {
-                tooltip.add(Component.literal(ConfigHolder.INSTANCE.compat.minimap.oreNamePrefix)
-                        .append(state.getBlock().getName()));
-            }).ifRight(material -> {
-                tooltip.add(Component.literal(ConfigHolder.INSTANCE.compat.minimap.oreNamePrefix)
-                        .append(TagPrefix.ore.getLocalizedName(material)));
-            });
+            filler.vein().ifLeft(state -> tooltip.add(Component.literal(MinimapCompatConfig.ORE_NAME_PREFIX.get())
+                    .append(state.getBlock().getName())))
+                    .ifRight(material -> tooltip.add(Component.literal(MinimapCompatConfig.ORE_NAME_PREFIX.get())
+                            .append(TagPrefix.ore.getLocalizedName(material))));
         }
         return tooltip;
     }

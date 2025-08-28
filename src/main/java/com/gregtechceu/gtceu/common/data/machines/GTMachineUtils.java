@@ -57,6 +57,7 @@ import com.gregtechceu.gtceu.common.machine.storage.QuantumTankMachine;
 import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
@@ -423,7 +424,7 @@ public class GTMachineUtils {
     public static MachineDefinition[] registerConverter(GTRegistrate registrate, int amperage) {
         final var tab = registrate.creativeModeTab();
 
-        if (!ConfigHolder.INSTANCE.compat.energy.enableFEConverters) {
+        if (!EnergyCompatConfig.ENABLE_FE_CONVERTERS.get()) {
             registrate.creativeModeTab(() -> null);
         }
 
@@ -448,7 +449,7 @@ public class GTMachineUtils {
                         .register(),
                 ALL_TIERS);
 
-        if (!ConfigHolder.INSTANCE.compat.energy.enableFEConverters) {
+        if (!EnergyCompatConfig.ENABLE_FE_CONVERTERS.get()) {
             registrate.creativeModeTab(() -> tab);
         }
         return converters;

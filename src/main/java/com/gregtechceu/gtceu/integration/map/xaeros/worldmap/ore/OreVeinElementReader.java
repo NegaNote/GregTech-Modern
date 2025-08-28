@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.map.xaeros.worldmap.ore;
 
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.GroupingMapRenderer;
 import com.gregtechceu.gtceu.integration.map.layer.builtin.OreRenderLayer;
 
@@ -52,7 +53,7 @@ public class OreVeinElementReader extends
 
     @Override
     public int getInteractionBoxRight(OreVeinElement element, OreVeinElementContext context, float partialTicks) {
-        return ConfigHolder.INSTANCE.compat.minimap.oreIconSize;
+        return MinimapCompatConfig.ORE_ICON_SIZE.get();
     }
 
     @Override

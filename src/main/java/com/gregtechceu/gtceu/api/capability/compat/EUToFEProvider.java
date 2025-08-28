@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.api.capability.compat;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.GTMath;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -30,7 +31,7 @@ public class EUToFEProvider extends CapabilityCompatProvider {
 
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, Direction facing) {
-        if (!ConfigHolder.INSTANCE.compat.energy.nativeEUToFE ||
+        if (!EnergyCompatConfig.NATIVE_EU_TO_FE.get() ||
                 capability != GTCapability.CAPABILITY_ENERGY_CONTAINER)
             return LazyOptional.empty();
 

@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
@@ -102,7 +103,7 @@ public class ChargerMachine extends TieredEnergyMachine implements IControllable
     protected CustomItemStackHandler createChargerInventory(Object... args) {
         var handler = new CustomItemStackHandler(this.inventorySize);
         handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
-                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                (EnergyCompatConfig.NATIVE_EU_TO_FE.get() &&
                         GTCapabilityHelper.getForgeEnergyItem(item) != null));
         return handler;
     }
@@ -173,7 +174,7 @@ public class ChargerMachine extends TieredEnergyMachine implements IControllable
                 if (electricItem.getCharge() < electricItem.getMaxCharge()) {
                     electricItems.add(electricItem);
                 }
-            } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+            } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
                 var energyStorage = GTCapabilityHelper.getForgeEnergyItem(electricItemStack);
                 if (energyStorage != null) {
                     if (energyStorage.getEnergyStored() < energyStorage.getMaxEnergyStored()) {
@@ -272,7 +273,7 @@ public class ChargerMachine extends TieredEnergyMachine implements IControllable
                 var electricItem = GTCapabilityHelper.getElectricItem(electricItemStack);
                 if (electricItem != null) {
                     energyCapacity += electricItem.getMaxCharge();
-                } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+                } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
                     var energyStorage = GTCapabilityHelper.getForgeEnergyItem(electricItemStack);
                     if (energyStorage != null) {
                         energyCapacity += FeCompat.toEu(energyStorage.getMaxEnergyStored(),
@@ -296,7 +297,7 @@ public class ChargerMachine extends TieredEnergyMachine implements IControllable
                 var electricItem = GTCapabilityHelper.getElectricItem(electricItemStack);
                 if (electricItem != null) {
                     energyStored += electricItem.getCharge();
-                } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+                } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
                     var energyStorage = GTCapabilityHelper.getForgeEnergyItem(electricItemStack);
                     if (energyStorage != null) {
                         energyStored += FeCompat.toEu(energyStorage.getEnergyStored(),

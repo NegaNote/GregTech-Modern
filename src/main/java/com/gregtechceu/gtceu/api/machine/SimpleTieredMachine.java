@@ -22,6 +22,7 @@ import com.gregtechceu.gtceu.api.recipe.ui.GTRecipeTypeUI;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.GTTransferUtils;
 
@@ -134,7 +135,7 @@ public class SimpleTieredMachine extends WorkableTieredMachine
             }
         };
         handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
-                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                (EnergyCompatConfig.NATIVE_EU_TO_FE.get() &&
                         GTCapabilityHelper.getForgeEnergyItem(item) != null));
         return handler;
     }

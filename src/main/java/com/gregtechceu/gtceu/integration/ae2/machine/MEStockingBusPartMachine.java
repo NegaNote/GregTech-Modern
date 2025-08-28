@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.config.compat.AE2CompatConfig;
 import com.gregtechceu.gtceu.integration.ae2.machine.feature.multiblock.IMEStockingPart;
 import com.gregtechceu.gtceu.integration.ae2.slot.ExportOnlyAEItemList;
 import com.gregtechceu.gtceu.integration.ae2.slot.ExportOnlyAEItemSlot;
@@ -112,8 +113,8 @@ public class MEStockingBusPartMachine extends MEInputBusPartMachine implements I
     @Override
     public void autoIO() {
         super.autoIO();
-        if (ticksPerCycle == 0) ticksPerCycle = ConfigHolder.INSTANCE.compat.ae2.updateIntervals; // Emergency Check to
-                                                                                                  // Avoid Crash loops.
+        if (ticksPerCycle == 0) ticksPerCycle = AE2CompatConfig.UPDATE_INTERVALS.get(); // Emergency Check to
+                                                                                        // Avoid Crash loops.
         if (getOffsetTimer() % ticksPerCycle == 0) {
             if (autoPull) {
                 refreshList();

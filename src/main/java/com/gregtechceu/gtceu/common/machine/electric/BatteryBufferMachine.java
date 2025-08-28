@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+import com.gregtechceu.gtceu.config.compat.EnergyCompatConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
@@ -85,7 +86,7 @@ public class BatteryBufferMachine extends TieredEnergyMachine
             }
         };
         handler.setFilter(item -> GTCapabilityHelper.getElectricItem(item) != null ||
-                (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE &&
+                (EnergyCompatConfig.NATIVE_EU_TO_FE.get() &&
                         GTCapabilityHelper.getForgeEnergyItem(item) != null));
         return handler;
     }
@@ -157,7 +158,7 @@ public class BatteryBufferMachine extends TieredEnergyMachine
                 if (electricItem.getCharge() < electricItem.getMaxCharge()) {
                     batteries.add(electricItem);
                 }
-            } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+            } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
                 IEnergyStorage energyStorage = GTCapabilityHelper.getForgeEnergyItem(batteryStack);
                 if (energyStorage != null) {
                     if (energyStorage.getEnergyStored() < energyStorage.getMaxEnergyStored()) {
@@ -190,7 +191,7 @@ public class BatteryBufferMachine extends TieredEnergyMachine
             var electricItem = GTCapabilityHelper.getElectricItem(batteryStack);
             if (electricItem != null) {
                 batteries.add(electricItem);
-            } else if (ConfigHolder.INSTANCE.compat.energy.nativeEUToFE) {
+            } else if (EnergyCompatConfig.NATIVE_EU_TO_FE.get()) {
                 IEnergyStorage energyStorage = GTCapabilityHelper.getForgeEnergyItem(batteryStack);
                 if (energyStorage != null) {
                     batteries.add(energyStorage);

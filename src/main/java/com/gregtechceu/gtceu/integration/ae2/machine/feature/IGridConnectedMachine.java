@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.integration.ae2.machine.feature;
 
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
+import com.gregtechceu.gtceu.config.compat.AE2CompatConfig;
 
 import net.minecraft.core.Direction;
 
@@ -13,7 +14,7 @@ import appeng.me.helpers.IGridConnectedBlockEntity;
  */
 public interface IGridConnectedMachine extends IMachineFeature, IGridConnectedBlockEntity {
 
-    int ME_UPDATE_INTERVAL = ConfigHolder.INSTANCE.compat.ae2.updateIntervals;
+    int ME_UPDATE_INTERVAL = AE2CompatConfig.UPDATE_INTERVALS.get();
 
     /**
      * @return return {@code true} if current machine connected to a valid ME network, {@code false} otherwise.

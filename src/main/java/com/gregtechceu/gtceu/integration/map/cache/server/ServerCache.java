@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.network.packets.prospecting.SPacketProspectOre;
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.cache.DimensionCache;
 import com.gregtechceu.gtceu.integration.map.cache.WorldCache;
 
@@ -58,7 +59,7 @@ public class ServerCache extends WorldCache {
     public void prospectSurfaceRockMaterial(ResourceKey<Level> dim, Material material, BlockPos pos,
                                             ServerPlayer player) {
         prospectBySurfaceRockMaterial(dim, material, pos, player,
-                ConfigHolder.INSTANCE.compat.minimap.surfaceRockProspectRange);
+                MinimapCompatConfig.SURFACE_ROCK_PROSPECT_RANGE.get());
     }
 
     public void prospectBySurfaceRockMaterial(ResourceKey<Level> dim, final Material material, BlockPos pos,

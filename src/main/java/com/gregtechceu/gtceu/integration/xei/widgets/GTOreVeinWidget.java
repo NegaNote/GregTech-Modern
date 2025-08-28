@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.api.transfer.fluid.CustomFluidTank;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.client.ClientProxy;
+import com.gregtechceu.gtceu.config.CompatConfig;
 
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
@@ -200,7 +201,7 @@ public class GTOreVeinWidget extends WidgetGroup {
                         yPosition + 18 * row,
                         false, false).setIngredientIO(IngredientIO.CATALYST);
                 handler.setStackInSlot(i, icon);
-                if (ConfigHolder.INSTANCE.compat.showDimensionTier) {
+                if (CompatConfig.SHOW_DIMENSION_TIER.get()) {
                     dimSlot.setOverlay(
                             new TextTexture("T" + (dimMarker.tier >= DimensionMarker.MAX_TIER ? "?" : dimMarker.tier))
                                     .scale(0.75F)

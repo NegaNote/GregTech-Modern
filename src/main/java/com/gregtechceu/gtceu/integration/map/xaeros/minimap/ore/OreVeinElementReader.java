@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.map.xaeros.minimap.ore;
 
+import com.gregtechceu.gtceu.config.compat.MinimapCompatConfig;
 import com.gregtechceu.gtceu.integration.map.GroupingMapRenderer;
 
 import net.minecraft.client.Minecraft;
@@ -36,7 +37,7 @@ public class OreVeinElementReader extends MinimapElementReader<OreVeinElement, O
 
     @Override
     public int getInteractionBoxRight(OreVeinElement element, OreVeinElementContext context, float partialTicks) {
-        return ConfigHolder.INSTANCE.compat.minimap.oreIconSize;
+        return MinimapCompatConfig.ORE_ICON_SIZE.get();
     }
 
     @Override
