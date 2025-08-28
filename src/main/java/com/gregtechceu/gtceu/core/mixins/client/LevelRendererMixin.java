@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SteamMachine;
 import com.gregtechceu.gtceu.api.pipenet.IPipeNode;
 import com.gregtechceu.gtceu.common.blockentity.CableBlockEntity;
+import com.gregtechceu.gtceu.config.client.RendererConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.client.Camera;
@@ -174,7 +175,6 @@ public abstract class LevelRendererMixin {
                                                  Entity entity, double camX, double camY, double camZ,
                                                  BlockPos pos, BlockState state, Operation<Void> original) {
         assert level != null;
-        var rendererCfg = ConfigHolder.INSTANCE.client.renderer;
         int rgb = 0;
         boolean doRenderColoredOutline = false;
 
@@ -185,7 +185,7 @@ public abstract class LevelRendererMixin {
             doRenderColoredOutline = true;
             rgb = materialEntry.material().getMaterialRGB();
         } else if (level.getBlockEntity(pos) instanceof IMachineBlockEntity mbe) {
-            if (rendererCfg.coloredTieredMachineOutline) {
+            if (RendererConfig.COLORED_TIERED_MACHINE_OUTLINE.get()) {
                 if (mbe.getMetaMachine() instanceof SteamMachine steam) {
                     doRenderColoredOutline = true;
                     rgb = steam.isHighPressure() ? GTValues.VC_HP_STEAM : GTValues.VC_LP_STEAM;
@@ -194,7 +194,7 @@ public abstract class LevelRendererMixin {
                     rgb = GTValues.VCM[tiered.getTier()];
                 }
             }
-        } else if (rendererCfg.coloredWireOutline && level.getBlockEntity(pos) instanceof IPipeNode<?, ?> pipe) {
+        } else if (RendererConfig.COLORED_WIRE_OUTLINE.get() && level.getBlockEntity(pos) instanceof IPipeNode<?, ?> pipe) {
             doRenderColoredOutline = true;
             if (!pipe.getFrameMaterial().isNull()) {
                 rgb = pipe.getFrameMaterial().getMaterialRGB();

@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.api.item.armor;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.capability.IElectricItem;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.gregtechceu.gtceu.config.client.ArmorHudConfig;
 import com.gregtechceu.gtceu.core.mixins.ServerGamePacketListenerImplAccessor;
 import com.gregtechceu.gtceu.utils.ItemStackHashStrategy;
 
@@ -239,24 +240,24 @@ public class ArmorUtils {
             int windowHeight = mc.getWindow().getGuiScaledHeight();
             int windowWidth = mc.getWindow().getGuiScaledWidth();
             int stringWidth = mc.font.width(stringList.get(index));
-            switch (ConfigHolder.INSTANCE.client.armorHud.hudLocation) {
+            switch (ArmorHudConfig.HUD_LOCATION.get()) {
                 case 1 -> {
-                    posX = 1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetX;
-                    posY = 1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetY + (fontHeight * index);
+                    posX = 1 + ArmorHudConfig.HUD_OFFSET_X.get();
+                    posY = 1 + ArmorHudConfig.HUD_OFFSET_Y.get() + (fontHeight * index);
                 }
                 case 2 -> {
-                    posX = windowWidth - (1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetX) - stringWidth;
-                    posY = 1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetY + (fontHeight * index);
+                    posX = windowWidth - (1 + ArmorHudConfig.HUD_OFFSET_X.get()) - stringWidth;
+                    posY = 1 + ArmorHudConfig.HUD_OFFSET_Y.get() + (fontHeight * index);
                 }
                 case 3 -> {
-                    posX = 1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetX;
+                    posX = 1 + ArmorHudConfig.HUD_OFFSET_X.get();
                     posY = windowHeight - fontHeight * (stringAmount - index) - 1 -
-                            ConfigHolder.INSTANCE.client.armorHud.hudOffsetY;
+                            ArmorHudConfig.HUD_OFFSET_Y.get();
                 }
                 case 4 -> {
-                    posX = windowWidth - (1 + ConfigHolder.INSTANCE.client.armorHud.hudOffsetX) - stringWidth;
+                    posX = windowWidth - (1 + ArmorHudConfig.HUD_OFFSET_X.get()) - stringWidth;
                     posY = windowHeight - fontHeight * (stringAmount - index) - 1 -
-                            ConfigHolder.INSTANCE.client.armorHud.hudOffsetY;
+                            ArmorHudConfig.HUD_OFFSET_Y.get();
                 }
                 default -> throw new IllegalArgumentException(
                         "Armor Hud config hudLocation is improperly configured. Allowed values: [1,2,3,4]");

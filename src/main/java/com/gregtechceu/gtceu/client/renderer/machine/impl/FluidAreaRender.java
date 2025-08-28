@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.gregtechceu.gtceu.client.util.RenderUtil;
 
+import com.gregtechceu.gtceu.config.client.RendererConfig;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.Direction;
@@ -76,7 +77,7 @@ public class FluidAreaRender extends DynamicRender<IFluidRenderMulti, FluidAreaR
     public void render(IFluidRenderMulti machine, float partialTick,
                        PoseStack poseStack, MultiBufferSource buffer,
                        int packedLight, int packedOverlay) {
-        if (!ConfigHolder.INSTANCE.client.renderer.renderFluids) return;
+        if (RendererConfig.RENDER_FLUIDS.get()) return;
         if (!machine.isFormed() || machine.getFluidOffsets() == null) {
             return;
         }

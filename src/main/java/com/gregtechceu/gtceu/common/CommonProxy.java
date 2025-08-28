@@ -35,6 +35,7 @@ import com.gregtechceu.gtceu.common.machine.owner.MachineOwner;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.config.RecipeConfig;
 import com.gregtechceu.gtceu.config.WorldgenConfig;
@@ -108,6 +109,13 @@ public class CommonProxy {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipeConfig.SPEC, "gtceu-recipes.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu-worldgen.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MachineConfig.SPEC, "gtceu-machines.toml");
+
+        // This is registered as a common type because while mechanically it would only affect clients,
+        // many of these config values need to be synced across both the client and the server
+        // due to affecting registration, sounds being played for multiple players, etc.
+        // More thought needs to be put in as to how this could potentially be further split,
+        // though for now the functionality is intended to be identical to before the ForgeConfig migration.
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ClientConfig.SPEC, "gtceu-client.toml");
         GTCEuAPI.initializeHighTier();
         if (GTCEu.isDev()) {
             RecipeConfig.GENERATE_LOW_QUALITY_GEMS.set(true);

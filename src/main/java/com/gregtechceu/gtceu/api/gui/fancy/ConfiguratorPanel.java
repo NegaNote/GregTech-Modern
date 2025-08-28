@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.api.gui.fancy;
 
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.lowdragmc.lowdraglib.gui.animation.Animation;
 import com.lowdragmc.lowdraglib.gui.animation.Transform;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
@@ -443,6 +444,6 @@ public class ConfiguratorPanel extends WidgetGroup {
     }
 
     private static int getAnimationTime() {
-        return ConfigHolder.INSTANCE.client.animationTime;
+        return ClientConfig.ANIMATION_TIME.get();
     }
 }

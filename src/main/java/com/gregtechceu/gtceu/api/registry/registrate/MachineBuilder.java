@@ -25,6 +25,7 @@ import com.gregtechceu.gtceu.client.renderer.BlockEntityWithBERModelRenderer;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.models.GTMachineModels;
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.data.model.builder.MachineModelBuilder;
 
@@ -115,7 +116,7 @@ public class MachineBuilder<DEFINITION extends MachineDefinition> extends Builde
     @Setter
     private boolean allowExtendedFacing = false;
     @Setter
-    private boolean hasBER = ConfigHolder.INSTANCE.client.machinesHaveBERsByDefault;
+    private boolean hasBER = ClientConfig.MACHINES_HAVE_BERS_BY_DEFAULT.get();
     @Setter
     private boolean renderMultiblockWorldPreview = true;
     @Setter
@@ -140,7 +141,7 @@ public class MachineBuilder<DEFINITION extends MachineDefinition> extends Builde
     @Setter
     private Object2IntMap<RecipeCapability<?>> recipeOutputLimits = new Object2IntOpenHashMap<>();
     @Setter
-    private int paintingColor = ConfigHolder.INSTANCE.client.getDefaultPaintingColor();
+    private int paintingColor = ClientConfig.getDefaultPaintingColor();
     @Setter
     private BiFunction<ItemStack, Integer, Integer> itemColor = ((itemStack, tintIndex) -> tintIndex == 2 ?
             GTValues.VC[tier] : tintIndex == 1 ? paintingColor : -1);

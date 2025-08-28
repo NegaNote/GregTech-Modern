@@ -54,6 +54,7 @@ import com.gregtechceu.gtceu.common.machine.storage.CrateMachine;
 import com.gregtechceu.gtceu.common.machine.storage.DrumMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumChestMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumTankMachine;
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
@@ -289,7 +290,7 @@ public class GTMachineUtils {
                 (tier, builder) -> builder
                         .rotationState(RotationState.ALL)
                         .itemColor((itemStack, index) -> switch (index) {
-                            case 1 -> ConfigHolder.INSTANCE.client.getDefaultPaintingColor();
+                            case 1 -> ClientConfig.getDefaultPaintingColor();
                             case 2 -> VC[tier + 1];
                             case 3 -> VC[tier];
                             default -> -1;

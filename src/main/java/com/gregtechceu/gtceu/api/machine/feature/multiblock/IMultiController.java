@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.pattern.BlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.gregtechceu.gtceu.client.renderer.MultiblockInWorldPreviewRenderer;
 
+import com.gregtechceu.gtceu.config.ClientConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -202,7 +203,7 @@ public interface IMultiController extends IMachineFeature, IInteractedMachine {
         if (!self().isFormed() && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
             if (world.isClientSide()) {
                 MultiblockInWorldPreviewRenderer.showPreview(pos, self(),
-                        ConfigHolder.INSTANCE.client.inWorldPreviewDuration * 20);
+                        ClientConfig.IN_WORLD_PREVIEW_DURATION.get() * 20);
             }
             return InteractionResult.SUCCESS;
         }

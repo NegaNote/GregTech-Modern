@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.pattern.BlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.integration.xei.handlers.item.CycleItemStackHandler;
 
 import com.lowdragmc.lowdraglib.client.scene.WorldSceneRenderer;
@@ -154,7 +155,7 @@ public class PatternPreviewWidget extends WidgetGroup {
         scrollableWidgetGroup.setScrollYOffset(0);
         addWidget(scrollableWidgetGroup);
 
-        if (ConfigHolder.INSTANCE.client.useVBO) {
+        if (ClientConfig.USE_VBO.get()) {
             if (!RenderSystem.isOnRenderThread()) {
                 RenderSystem.recordRenderCall(sceneWidget::useCacheBuffer);
             } else {

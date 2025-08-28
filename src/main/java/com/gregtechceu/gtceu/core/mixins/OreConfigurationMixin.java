@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.core.mixins;
 
+import com.gregtechceu.gtceu.config.WorldgenConfig;
 import com.gregtechceu.gtceu.config.worldgen.OreVeinConfig;
 
 import net.minecraft.world.level.block.Block;
@@ -31,7 +32,7 @@ public class OreConfigurationMixin {
 
     @ModifyVariable(method = "<init>(Ljava/util/List;IF)V", at = @At("HEAD"), index = 1, argsOnly = true)
     private static List<TargetBlockState> gtceu$init(List<TargetBlockState> targetStates) {
-        if (!OreVeinConfig.REMOVE_VANILLA_ORE_GEN.get())
+        if (!WorldgenConfig.SPEC.isLoaded() || !OreVeinConfig.REMOVE_VANILLA_ORE_GEN.get())
             return targetStates;
 
         return targetStates.stream()

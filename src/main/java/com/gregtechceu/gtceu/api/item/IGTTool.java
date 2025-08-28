@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.api.item.tool.aoe.AoESymmetrical;
 import com.gregtechceu.gtceu.api.item.tool.behavior.IToolBehavior;
 import com.gregtechceu.gtceu.api.item.tool.behavior.IToolUIBehavior;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
+import com.gregtechceu.gtceu.config.ClientConfig;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -848,7 +849,7 @@ public interface IGTTool extends HeldItemUIFactory.IHeldItemUIHolder, ItemLike, 
     // Sound Playing
     default void playCraftingSound(Player player, ItemStack stack) {
         // player null check for things like auto-crafters
-        if (ConfigHolder.INSTANCE.client.toolCraftingSounds && getSound() != null && player != null) {
+        if (ClientConfig.TOOL_CRAFTING_SOUNDS.get() && getSound() != null && player != null) {
             if (canPlaySound(stack)) {
                 setLastCraftingSoundTime(stack);
                 playSound(player);
@@ -865,7 +866,7 @@ public interface IGTTool extends HeldItemUIFactory.IHeldItemUIHolder, ItemLike, 
     }
 
     default void playSound(Player player) {
-        if (ConfigHolder.INSTANCE.client.toolUseSounds && getSound() != null) {
+        if (ClientConfig.TOOL_USE_SOUNDS.get() && getSound() != null) {
             player.level().playSound(null, player.position().x, player.position().y, player.position().z,
                     getSound().getMainEvent(), SoundSource.PLAYERS, 1F, 1F);
         }
