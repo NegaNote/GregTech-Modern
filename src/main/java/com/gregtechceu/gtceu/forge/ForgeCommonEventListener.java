@@ -48,6 +48,7 @@ import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketAddHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketRemoveHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketSyncLevelHazards;
 import com.gregtechceu.gtceu.config.GameplayConfig;
+import com.gregtechceu.gtceu.config.tools.NanoSaberConfig;
 import com.gregtechceu.gtceu.data.loader.BedrockFluidLoader;
 import com.gregtechceu.gtceu.data.loader.BedrockOreLoader;
 import com.gregtechceu.gtceu.data.loader.GTOreLoader;
@@ -402,7 +403,7 @@ public class ForgeCommonEventListener {
         Mob entity = event.getEntity();
         Difficulty difficulty = entity.level().getDifficulty();
         if (difficulty == Difficulty.HARD && entity.getRandom().nextFloat() <= 0.03f) {
-            if (entity instanceof Zombie zombie && ConfigHolder.INSTANCE.tools.nanoSaber.zombieSpawnWithSabers) {
+            if (entity instanceof Zombie zombie && NanoSaberConfig.ZOMBIES_SPAWN_WITH_SABERS.get()) {
                 ItemStack itemStack = GTItems.NANO_SABER.get().getInfiniteChargedStack();
                 ToggleEnergyConsumerBehavior.setItemActive(itemStack, true);
                 entity.setItemSlot(EquipmentSlot.MAINHAND, itemStack);

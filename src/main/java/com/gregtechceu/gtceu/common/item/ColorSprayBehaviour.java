@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.item.component.IDurabilityBar;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
 import com.gregtechceu.gtceu.api.pipenet.IPipeNode;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.gregtechceu.gtceu.config.ToolConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.BreadthFirstBlockSearch;
 import com.gregtechceu.gtceu.utils.GradientUtil;
@@ -173,7 +174,7 @@ public class ColorSprayBehaviour implements IDurabilityBar, IInteractionItem, IA
             return InteractionResult.PASS;
         }
 
-        int maxBlocksToRecolor = player.isShiftKeyDown() ? ConfigHolder.INSTANCE.tools.sprayCanChainLength : 1;
+        int maxBlocksToRecolor = player.isShiftKeyDown() ? ToolConfig.SPRAY_CAN_CHAIN_LENGTH.get() : 1;
 
         var first = level.getBlockEntity(pos);
         if (first == null || !handleSpecialBlockEntities(first, maxBlocksToRecolor, context)) {

@@ -23,7 +23,7 @@ public class ConfigUtil {
                                                                              String extraDefaultText,
                                                                              String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
-        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + " " + extraDefaultText;
         return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
     }
 
@@ -41,7 +41,7 @@ public class ConfigUtil {
                                                                                      String extraDefaultText,
                                                                                      String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
-        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + " " + extraDefaultText;
         return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
     }
 
@@ -58,7 +58,7 @@ public class ConfigUtil {
                                                                                    String extraDefaultText,
                                                                                    String... comments) {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
-        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + extraDefaultText;
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue) + " " + extraDefaultText;
         return builder.comment(commentsPlusDefaultText).define(path, defaultValue);
     }
 
@@ -68,5 +68,13 @@ public class ConfigUtil {
         String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
         commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
         return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max, Float.class);
+    }
+
+    public static ForgeConfigSpec.ConfigValue<Double> createConfigValue(ForgeConfigSpec.Builder builder, String path,
+                                                                        double defaultValue, double min, double max,
+                                                                        String... comments) {
+        String[] commentsPlusDefaultText = Arrays.copyOf(comments, comments.length + 1);
+        commentsPlusDefaultText[comments.length] = defaultValueText(defaultValue);
+        return builder.comment(commentsPlusDefaultText).defineInRange(path, defaultValue, min, max);
     }
 }

@@ -24,6 +24,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.ToolConfig;
 import com.gregtechceu.gtceu.utils.DummyMachineBlockEntity;
 import com.gregtechceu.gtceu.utils.InfiniteEnergyContainer;
 
@@ -211,7 +212,7 @@ public class ToolHelper {
                     if (electricItem != null) {
                         electricItem.discharge(electricDamage, tool.getElectricTier(), true, false, false);
                         if (electricItem.getCharge() > 0 &&
-                                random.nextInt(100) >= ConfigHolder.INSTANCE.tools.rngDamageElectricTools) {
+                                random.nextInt(100) >= ToolConfig.RNG_DAMAGE_ELECTRIC_TOOLS.get()) {
                             return;
                         }
                     } else {

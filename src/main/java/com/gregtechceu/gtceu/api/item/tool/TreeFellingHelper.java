@@ -1,6 +1,7 @@
 package com.gregtechceu.gtceu.api.item.tool;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.config.ToolConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -94,7 +95,7 @@ public class TreeFellingHelper {
                         iterator.remove();
                         continue;
                     }
-                    if (helper.tick % ConfigHolder.INSTANCE.tools.treeFellingDelay == 0)
+                    if (helper.tick % ToolConfig.TREE_FELLING_DELAY.get() == 0)
                         ToolHelper.breakBlockRoutine(helper.player, helper.tool, helper.orderedBlocks.removeLast(),
                                 true);
                     helper.tick++;

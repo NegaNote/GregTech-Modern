@@ -31,6 +31,7 @@ import com.gregtechceu.gtceu.common.item.modules.TextModuleBehaviour;
 import com.gregtechceu.gtceu.common.item.tool.behavior.LighterBehavior;
 import com.gregtechceu.gtceu.common.item.tool.behavior.MetaMachineConfigCopyBehaviour;
 import com.gregtechceu.gtceu.config.MachineConfig;
+import com.gregtechceu.gtceu.config.ToolConfig;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -2273,8 +2274,8 @@ public class GTItems {
                     (p) -> new ArmorComponentItem(GTArmorMaterials.GOGGLES, ArmorItem.Type.HELMET, p)
                             .setArmorLogic(new NightvisionGoggles(2,
                                     80_000L * (long) Math.max(1,
-                                            Math.pow(1, ConfigHolder.INSTANCE.tools.voltageTierNightVision - 1)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierNightVision, ArmorItem.Type.HELMET)))
+                                            Math.pow(1, ToolConfig.VOLTAGE_TIER_NIGHT_VISION.get() - 1)),
+                                    ToolConfig.VOLTAGE_TIER_NIGHT_VISION.get(), ArmorItem.Type.HELMET)))
             .lang("Nightvision Goggles")
             .tag(Tags.Items.ARMORS_HELMETS)
             .register();
@@ -2285,8 +2286,8 @@ public class GTItems {
                             .setArmorLogic(new NanoMuscleSuite(ArmorItem.Type.CHESTPLATE,
                                     512,
                                     6_400_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierNanoSuit - 3)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierNanoSuit)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_NANO_SUIT.get() - 3)),
+                                    ToolConfig.VOLTAGE_TIER_NANO_SUIT.get())))
             .lang("NanoMuscle™ Suite Chestplate")
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tag(Tags.Items.ARMORS_CHESTPLATES)
@@ -2297,8 +2298,8 @@ public class GTItems {
                             .setArmorLogic(new NanoMuscleSuite(ArmorItem.Type.LEGGINGS,
                                     512,
                                     6_400_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierNanoSuit - 3)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierNanoSuit)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_NANO_SUIT.get() - 3)),
+                                    ToolConfig.VOLTAGE_TIER_NANO_SUIT.get())))
             .lang("NanoMuscle™ Suite Leggings")
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tag(Tags.Items.ARMORS_LEGGINGS)
@@ -2308,8 +2309,8 @@ public class GTItems {
                     .setArmorLogic(new NanoMuscleSuite(ArmorItem.Type.BOOTS,
                             512,
                             6_400_000L * (long) Math.max(1,
-                                    Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierNanoSuit - 3)),
-                            ConfigHolder.INSTANCE.tools.voltageTierNanoSuit)))
+                                    Math.pow(4, ToolConfig.VOLTAGE_TIER_NANO_SUIT.get() - 3)),
+                            ToolConfig.VOLTAGE_TIER_NANO_SUIT.get())))
             .lang("NanoMuscle™ Suite Boots")
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tag(Tags.Items.ARMORS_BOOTS)
@@ -2320,8 +2321,8 @@ public class GTItems {
                     .setArmorLogic(new NanoMuscleSuite(ArmorItem.Type.HELMET,
                             512,
                             6_400_000L * (long) Math.max(1,
-                                    Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierNanoSuit - 3)),
-                            ConfigHolder.INSTANCE.tools.voltageTierNanoSuit)))
+                                    Math.pow(4, ToolConfig.VOLTAGE_TIER_NANO_SUIT.get() - 3)),
+                            ToolConfig.VOLTAGE_TIER_NANO_SUIT.get())))
             .lang("NanoMuscle™ Suite Helmet")
             .tag(Tags.Items.ARMORS_HELMETS)
             .properties(p -> p.rarity(Rarity.UNCOMMON))
@@ -2394,8 +2395,8 @@ public class GTItems {
                             .setArmorLogic(new QuarkTechSuite(ArmorItem.Type.CHESTPLATE,
                                     8192,
                                     100_000_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierQuarkTech - 5)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierQuarkTech)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_QUARKTECH.get() - 5)),
+                                    ToolConfig.VOLTAGE_TIER_QUARKTECH.get())))
             .lang("QuarkTech™ Suite Chestplate")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_CHESTPLATES)
@@ -2408,8 +2409,8 @@ public class GTItems {
                             .setArmorLogic(new QuarkTechSuite(ArmorItem.Type.LEGGINGS,
                                     8192,
                                     100_000_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierQuarkTech - 5)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierQuarkTech)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_QUARKTECH.get() - 5)),
+                                    ToolConfig.VOLTAGE_TIER_QUARKTECH.get())))
             .lang("QuarkTech™ Suite Leggings")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_LEGGINGS)
@@ -2420,8 +2421,8 @@ public class GTItems {
                     .setArmorLogic(new QuarkTechSuite(ArmorItem.Type.BOOTS,
                             8192,
                             100_000_000L * (long) Math.max(1,
-                                    Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierQuarkTech - 5)),
-                            ConfigHolder.INSTANCE.tools.voltageTierQuarkTech)))
+                                    Math.pow(4, ToolConfig.VOLTAGE_TIER_QUARKTECH.get() - 5)),
+                            ToolConfig.VOLTAGE_TIER_QUARKTECH.get())))
             .lang("QuarkTech™ Suite Boots")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_BOOTS)
@@ -2433,8 +2434,8 @@ public class GTItems {
                     .setArmorLogic(new QuarkTechSuite(ArmorItem.Type.HELMET,
                             8192,
                             100_000_000L * (long) Math.max(1,
-                                    Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierQuarkTech - 5)),
-                            ConfigHolder.INSTANCE.tools.voltageTierQuarkTech)))
+                                    Math.pow(4, ToolConfig.VOLTAGE_TIER_QUARKTECH.get() - 5)),
+                            ToolConfig.VOLTAGE_TIER_QUARKTECH.get())))
             .lang("QuarkTech™ Suite Helmet")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_HELMETS)
@@ -2454,8 +2455,8 @@ public class GTItems {
                     (p) -> new ArmorComponentItem(GTArmorMaterials.JETPACK, ArmorItem.Type.CHESTPLATE, p)
                             .setArmorLogic(new Jetpack(30,
                                     1_000_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierImpeller - 2)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierImpeller)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_IMPELLER.get() - 2)),
+                                    ToolConfig.VOLTAGE_TIER_IMPELLER.get())))
             .lang("Electric Jetpack")
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tag(Tags.Items.ARMORS_CHESTPLATES)
@@ -2468,8 +2469,8 @@ public class GTItems {
                     (p) -> new ArmorComponentItem(GTArmorMaterials.JETPACK, ArmorItem.Type.CHESTPLATE, p)
                             .setArmorLogic(new AdvancedJetpack(512,
                                     6_400_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierAdvImpeller - 4)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierAdvImpeller)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_ADVANCED_IMPELLER.get() - 4)),
+                                    ToolConfig.VOLTAGE_TIER_ADVANCED_IMPELLER.get())))
             .lang("Advanced Electric Jetpack")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_CHESTPLATES)
@@ -2479,8 +2480,8 @@ public class GTItems {
                     (p) -> new ArmorComponentItem(GTArmorMaterials.ARMOR, ArmorItem.Type.CHESTPLATE, p)
                             .setArmorLogic(new AdvancedNanoMuscleSuite(512,
                                     12_800_000L * (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierAdvNanoSuit - 3)),
-                                    ConfigHolder.INSTANCE.tools.voltageTierAdvNanoSuit)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_ADVANCED_NANO_SUIT.get() - 3)),
+                                    ToolConfig.VOLTAGE_TIER_ADVANCED_NANO_SUIT.get())))
             .lang("Advanced NanoMuscle™ Suite Chestplate")
             .properties(p -> p.rarity(Rarity.RARE))
             .tag(Tags.Items.ARMORS_CHESTPLATES)
@@ -2492,8 +2493,8 @@ public class GTItems {
                     .setArmorLogic(new AdvancedQuarkTechSuite(8192,
                             1_000_000_000L *
                                     (long) Math.max(1,
-                                            Math.pow(4, ConfigHolder.INSTANCE.tools.voltageTierAdvQuarkTech - 6)),
-                            ConfigHolder.INSTANCE.tools.voltageTierAdvQuarkTech)))
+                                            Math.pow(4, ToolConfig.VOLTAGE_TIER_ADVANCED_QUARKTECH.get() - 6)),
+                            ToolConfig.VOLTAGE_TIER_ADVANCED_QUARKTECH.get())))
             .lang("Advanced QuarkTech™ Suite Chestplate")
             .properties(p -> p.rarity(Rarity.EPIC))
             .tag(Tags.Items.ARMORS_CHESTPLATES)

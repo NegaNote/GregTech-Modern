@@ -3,6 +3,7 @@ package com.gregtechceu.gtceu.common.item;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.item.component.IEnchantableItem;
 import com.gregtechceu.gtceu.api.item.component.IItemAttributes;
+import com.gregtechceu.gtceu.config.tools.NanoSaberConfig;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -26,9 +27,9 @@ public class NanoSaberBehavior extends ToggleEnergyConsumerBehavior implements I
     private final double additionalAttackDamage;
 
     public NanoSaberBehavior() {
-        super(ConfigHolder.INSTANCE.tools.nanoSaber.energyConsumption);
-        this.baseAttackDamage = ConfigHolder.INSTANCE.tools.nanoSaber.nanoSaberBaseDamage;
-        this.additionalAttackDamage = ConfigHolder.INSTANCE.tools.nanoSaber.nanoSaberDamageBoost;
+        super(NanoSaberConfig.NANO_SABER_ENERGY_CONSUMPTION.get());
+        this.baseAttackDamage = NanoSaberConfig.NANO_SABER_BASE_DAMAGE.get();
+        this.additionalAttackDamage = NanoSaberConfig.NANO_SABER_DAMAGE_BOOST.get();
     }
 
     @Override
