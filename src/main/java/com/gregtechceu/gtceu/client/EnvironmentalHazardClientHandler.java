@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.client;
 
 import com.gregtechceu.gtceu.common.capability.EnvironmentalHazardSavedData;
 import com.gregtechceu.gtceu.common.particle.HazardParticleOptions;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.core.mixins.client.ClientLevelAccessor;
 
 import net.minecraft.client.Minecraft;
@@ -34,7 +35,7 @@ public class EnvironmentalHazardClientHandler {
     public static final EnvironmentalHazardClientHandler INSTANCE = new EnvironmentalHazardClientHandler();
 
     private EnvironmentalHazardClientHandler() {
-        if (ConfigHolder.INSTANCE.gameplay.hazardsEnabled) {
+        if (GameplayConfig.MATERIAL_HAZARDS_ENABLED.get()) {
             MinecraftForge.EVENT_BUS.register(this);
         }
     }
@@ -47,7 +48,7 @@ public class EnvironmentalHazardClientHandler {
     private final Map<ChunkPos, FloatIntPair> chunkColorCache = new ConcurrentHashMap<>();
 
     public void onClientTick() {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -92,7 +93,7 @@ public class EnvironmentalHazardClientHandler {
     }
 
     public void updateHazardMap(Map<ChunkPos, EnvironmentalHazardSavedData.HazardZone> newZones) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -114,7 +115,7 @@ public class EnvironmentalHazardClientHandler {
     }
 
     public void updateHazardStrength(ChunkPos pos, float newStrength) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -128,7 +129,7 @@ public class EnvironmentalHazardClientHandler {
     }
 
     public void addHazardZone(ChunkPos pos, EnvironmentalHazardSavedData.HazardZone zone) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 

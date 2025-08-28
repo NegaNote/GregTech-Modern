@@ -55,6 +55,7 @@ import com.gregtechceu.gtceu.common.machine.storage.DrumMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumChestMachine;
 import com.gregtechceu.gtceu.common.machine.storage.QuantumTankMachine;
 import com.gregtechceu.gtceu.config.ClientConfig;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.config.MachineConfig;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
@@ -173,7 +174,7 @@ public class GTMachineUtils {
                                 .apply(GTMedicalConditions.CARBON_MONOXIDE_POISONING, 100 * tier),
                                 GTRecipeModifiers.OC_NON_PERFECT)
                                 .conditionalTooltip(defaultEnvironmentRequirement(),
-                                        ConfigHolder.INSTANCE.gameplay.environmentalHazards);
+                                        GameplayConfig.ENVIRONMENTAL_HAZARDS.get());
                     } else {
                         builder.recipeModifier(GTRecipeModifiers.OC_NON_PERFECT);
                     }

@@ -47,6 +47,7 @@ import com.gregtechceu.gtceu.common.network.packets.SPacketSyncOreVeins;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketAddHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketRemoveHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketSyncLevelHazards;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.data.loader.BedrockFluidLoader;
 import com.gregtechceu.gtceu.data.loader.BedrockOreLoader;
 import com.gregtechceu.gtceu.data.loader.GTOreLoader;
@@ -169,7 +170,7 @@ public class ForgeCommonEventListener {
         if (tracker == null) {
             return;
         }
-        if (!ConfigHolder.INSTANCE.gameplay.hazardsEnabled) {
+        if (!GameplayConfig.MATERIAL_HAZARDS_ENABLED.get()) {
             for (MedicalCondition medicalCondition : tracker.getMedicalConditions().keySet()) {
                 tracker.removeMedicalCondition(medicalCondition);
             }
@@ -260,7 +261,7 @@ public class ForgeCommonEventListener {
     public static void levelTick(TickEvent.LevelTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.level instanceof ServerLevel serverLevel) {
             TaskHandler.onTickUpdate(serverLevel);
-            if (ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+            if (GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
                 EnvironmentalHazardSavedData.getOrCreate(serverLevel).tick();
                 LocalizedHazardSavedData.getOrCreate(serverLevel).tick();
             }
@@ -316,7 +317,7 @@ public class ForgeCommonEventListener {
         if (player instanceof ServerPlayer serverPlayer) {
             GTNetwork.sendToPlayer(serverPlayer, new SPacketSendWorldID());
 
-            if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards)
+            if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get())
                 return;
 
             ServerLevel level = serverPlayer.serverLevel();
@@ -412,7 +413,7 @@ public class ForgeCommonEventListener {
 
     @SubscribeEvent
     public static void onPlayerLevelChange(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 

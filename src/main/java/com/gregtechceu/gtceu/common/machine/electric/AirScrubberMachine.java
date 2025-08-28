@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketRemoveHazardZone;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -64,7 +65,7 @@ public class AirScrubberMachine extends SimpleTieredMachine implements IEnvironm
     @Override
     public boolean isRecipeLogicAvailable() {
         // Don't run recipes if hazards are off
-        return ConfigHolder.INSTANCE.gameplay.environmentalHazards;
+        return GameplayConfig.ENVIRONMENTAL_HAZARDS.get();
     }
 
     @Override
@@ -79,7 +80,7 @@ public class AirScrubberMachine extends SimpleTieredMachine implements IEnvironm
 
     @Override
     public boolean onWorking() {
-        if (!super.onWorking() || !ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!super.onWorking() || !GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return false;
         }
 

@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.capability.IMedicalConditionTracker;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.HazardProperty;
 import com.gregtechceu.gtceu.api.data.medicalcondition.MedicalCondition;
 import com.gregtechceu.gtceu.common.particle.HazardParticleOptions;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.utils.BreadthFirstBlockSearch;
 
 import net.minecraft.core.BlockPos;
@@ -55,7 +56,7 @@ public class LocalizedHazardSavedData extends SavedData {
 
     public LocalizedHazardSavedData(ServerLevel serverLevel, CompoundTag tag) {
         this(serverLevel);
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -71,7 +72,7 @@ public class LocalizedHazardSavedData extends SavedData {
     }
 
     public void tick() {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -179,7 +180,7 @@ public class LocalizedHazardSavedData extends SavedData {
     }
 
     public boolean expandHazard(BlockPos source, int blocksToAdd) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return true;
         }
 

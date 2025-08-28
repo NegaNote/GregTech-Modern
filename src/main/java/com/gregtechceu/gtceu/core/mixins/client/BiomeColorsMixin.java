@@ -2,6 +2,7 @@ package com.gregtechceu.gtceu.core.mixins.client;
 
 import com.gregtechceu.gtceu.client.EnvironmentalHazardClientHandler;
 
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.SectionPos;
 import net.minecraft.world.level.ChunkPos;
@@ -32,7 +33,7 @@ public class BiomeColorsMixin {
     private static ColorResolver gtceu$wrapResolver(ColorResolver resolver) {
         return (biome, x, z) -> {
             var originalColor = resolver.getColor(biome, x, z);
-            if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+            if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
                 return originalColor;
             }
 

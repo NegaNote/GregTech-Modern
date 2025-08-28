@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.capability.IMedicalConditionTracker;
 import com.gregtechceu.gtceu.api.data.medicalcondition.MedicalCondition;
 import com.gregtechceu.gtceu.api.item.component.IAddInformation;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.network.chat.Component;
@@ -68,7 +69,7 @@ public record AntidoteBehavior(Set<MedicalCondition> types, int removePercent)
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents,
                                 TooltipFlag isAdvanced) {
-        if (!ConfigHolder.INSTANCE.gameplay.hazardsEnabled) return;
+        if (!GameplayConfig.MATERIAL_HAZARDS_ENABLED.get()) return;
 
         if (GTUtil.isShiftDown()) {
             tooltipComponents.add(Component.translatable("gtceu.medical_condition.antidote.description_shift"));

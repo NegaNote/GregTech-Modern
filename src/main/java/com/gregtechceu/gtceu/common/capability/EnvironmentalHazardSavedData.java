@@ -9,6 +9,8 @@ import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketAddHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketRemoveHazardZone;
 import com.gregtechceu.gtceu.common.network.packets.hazard.SPacketSyncHazardZoneStrength;
 
+import com.gregtechceu.gtceu.config.GameplayConfig;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -60,7 +62,7 @@ public class EnvironmentalHazardSavedData extends SavedData {
 
     public EnvironmentalHazardSavedData(ServerLevel serverLevel, CompoundTag tag) {
         this(serverLevel);
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -76,7 +78,7 @@ public class EnvironmentalHazardSavedData extends SavedData {
     }
 
     public void tick() {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 
@@ -90,7 +92,7 @@ public class EnvironmentalHazardSavedData extends SavedData {
                             .equals(entry.getKey()));
             tickPlayerHazards(zone, playersInZone);
 
-            zone = zone.removeStrength(ConfigHolder.INSTANCE.gameplay.environmentalHazardDecayRate);
+            zone = zone.removeStrength(GameplayConfig.ENVIRONMENTAL_HAZARD_DECAY_RATE.get());
             if (zone == null) {
                 zonesToRemove.add(entry.getKey());
             } else if (zone.canSpread() && zone.strength() > MIN_STRENGTH_FOR_SPREAD) {
@@ -214,7 +216,7 @@ public class EnvironmentalHazardSavedData extends SavedData {
     }
 
     public void addZone(ChunkPos source, HazardZone zone) {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 

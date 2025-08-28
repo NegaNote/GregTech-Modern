@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.item.GTBucketItem;
 import com.gregtechceu.gtceu.api.item.TagPrefixItem;
 import com.gregtechceu.gtceu.api.item.armor.ArmorComponentItem;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.util.StringRepresentable;
@@ -179,11 +180,11 @@ public class HazardProperty implements IMaterialProperty {
             material = prefixItem.material;
             prefix = prefixItem.tagPrefix;
         } else if (item.getItem() instanceof BucketItem bucket) {
-            if (ConfigHolder.INSTANCE.gameplay.universalHazards || bucket instanceof GTBucketItem) {
+            if (GameplayConfig.UNIVERSAL_HAZARDS.get() || bucket instanceof GTBucketItem) {
                 material = ChemicalHelper.getMaterial(bucket.getFluid());
                 isFluid = true;
             }
-        } else if (ConfigHolder.INSTANCE.gameplay.universalHazards) {
+        } else if (GameplayConfig.UNIVERSAL_HAZARDS.get()) {
             MaterialEntry entry = ChemicalHelper.getMaterialEntry(item.getItem());
             if (!entry.isEmpty()) {
                 material = entry.material();

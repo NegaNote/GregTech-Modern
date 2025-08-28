@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.medicalcondition.MedicalCondition;
 import com.gregtechceu.gtceu.common.capability.EnvironmentalHazardSavedData;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import net.minecraft.server.level.ServerLevel;
 
 /**
@@ -27,7 +28,7 @@ public interface IEnvironmentalHazardEmitter extends IMachineFeature {
     float getHazardStrengthPerOperation();
 
     default void spreadEnvironmentalHazard() {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 

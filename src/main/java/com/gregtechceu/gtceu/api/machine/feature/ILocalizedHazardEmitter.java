@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.medicalcondition.MedicalCondition;
 import com.gregtechceu.gtceu.common.capability.LocalizedHazardSavedData;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 
+import com.gregtechceu.gtceu.config.GameplayConfig;
 import net.minecraft.server.level.ServerLevel;
 
 /**
@@ -27,7 +28,7 @@ public interface ILocalizedHazardEmitter extends IMachineFeature {
     int getHazardSizePerOperation();
 
     default void spreadLocalizedHazard() {
-        if (!ConfigHolder.INSTANCE.gameplay.environmentalHazards) {
+        if (!GameplayConfig.ENVIRONMENTAL_HAZARDS.get()) {
             return;
         }
 

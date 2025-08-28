@@ -35,10 +35,7 @@ import com.gregtechceu.gtceu.common.machine.owner.MachineOwner;
 import com.gregtechceu.gtceu.common.network.GTNetwork;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
-import com.gregtechceu.gtceu.config.ClientConfig;
-import com.gregtechceu.gtceu.config.MachineConfig;
-import com.gregtechceu.gtceu.config.RecipeConfig;
-import com.gregtechceu.gtceu.config.WorldgenConfig;
+import com.gregtechceu.gtceu.config.*;
 import com.gregtechceu.gtceu.core.mixins.registrate.AbstractRegistrateAccessor;
 import com.gregtechceu.gtceu.data.GregTechDatagen;
 import com.gregtechceu.gtceu.data.lang.MaterialLangGenerator;
@@ -106,11 +103,12 @@ public class CommonProxy {
         // trying to read this before the pre-init stage
         GTCEuAPI.materialManager = MaterialRegistryManager.getInstance();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipeConfig.SPEC, "gtceu-recipes.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu-worldgen.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MachineConfig.SPEC, "gtceu-machines.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RecipeConfig.SPEC, "gtceu/recipes.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WorldgenConfig.SPEC, "gtceu/worldgen.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MachineConfig.SPEC, "gtceu/machines.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GameplayConfig.SPEC, "gtceu/gameplay.toml");
 
-        // This is registered as a common type because while mechanically it would only affect clients,
+        // This is registered as a common type because while mechanically it would affect clients primarily,
         // many of these config values need to be synced across both the client and the server
         // due to affecting registration, sounds being played for multiple players, etc.
         // More thought needs to be put in as to how this could potentially be further split,
