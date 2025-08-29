@@ -110,7 +110,7 @@ public class CommonProxy {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GameplayConfig.SPEC, "gtceu/gameplay.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CompatConfig.SPEC, "gtceu/compat.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ToolConfig.SPEC, "gtceu/tools.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ToolConfig.SPEC, "gtceu/dev.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DevConfig.SPEC, "gtceu/dev.toml");
 
         // This is registered as a common type because while mechanically it would affect clients primarily,
         // many of these config values need to be synced across both the client and the server
