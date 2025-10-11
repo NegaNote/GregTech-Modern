@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.mui.base.layout.IViewportStack;
 import com.gregtechceu.gtceu.api.mui.base.widget.IGuiAction;
 import com.gregtechceu.gtceu.api.mui.base.widget.IWidget;
 import com.gregtechceu.gtceu.api.mui.base.widget.Interactable;
-import com.gregtechceu.gtceu.api.mui.drawable.Stencil;
 import com.gregtechceu.gtceu.api.mui.utils.HoveredWidgetList;
 import com.gregtechceu.gtceu.api.mui.widget.scroll.HorizontalScrollData;
 import com.gregtechceu.gtceu.api.mui.widget.scroll.ScrollArea;
@@ -110,22 +109,21 @@ public abstract class AbstractScrollWidget<I extends IWidget, W extends Abstract
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
-        this.scroll.drag(getContext().getAbsMouseX(), getContext().getAbsMouseY());
+    public void onMouseDrag(double mouseX, double mouseY, int button, double dragX, double dragY) {
+        this.scroll.drag(getContext().getMouseX(), getContext().getMouseY());
     }
 
     @Override
     public void preDraw(ModularGuiContext context, boolean transformed) {
         if (!transformed) {
-            Stencil.applyAtZero(this.scroll, context);
+            context.getStencil().pushAtZero(this.scroll);
         }
     }
 
     @Override
     public void postDraw(ModularGuiContext context, boolean transformed) {
         if (!transformed) {
-            Stencil.remove();
+            context.getStencil().pop();
             this.scroll.drawScrollbar(context);
         }
     }
