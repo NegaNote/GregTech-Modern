@@ -3,8 +3,6 @@ package com.gregtechceu.gtceu.common.mui;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.mui.base.GuiAxis;
-import com.gregtechceu.gtceu.api.mui.base.drawable.IDrawable;
-import com.gregtechceu.gtceu.api.mui.base.drawable.IKey;
 import com.gregtechceu.gtceu.api.mui.drawable.ColorType;
 import com.gregtechceu.gtceu.api.mui.drawable.TabTexture;
 import com.gregtechceu.gtceu.api.mui.drawable.UITexture;
@@ -34,6 +32,7 @@ public class GTGuiTextures {
     }
 
     // ICONS
+
     /** @apiNote You may want {@link GTGuiTextures#getLogo} instead. */
     public static final UITexture GREGTECH_LOGO = fullImage("textures/gui/icon/gregtech_logo.png");
     /** @apiNote You may want {@link GTGuiTextures#getLogo} instead. */
@@ -63,6 +62,13 @@ public class GTGuiTextures {
             .adaptable(4)
             .name(IDs.COVER_BACKGROUND)
             .canApplyTheme()
+            .build();
+
+    public static final UITexture BACKGROUND_TITLE = UITexture.builder()
+            .location(GTCEu.MOD_ID, "textures/gui/base/background.png")
+            .imageSize(16, 16)
+            .adaptable(4)
+            .subAreaUV(0, 0, 1f, .75f)
             .build();
 
     public static final UITexture BACKGROUND_INVERSE = UITexture.builder()
@@ -156,6 +162,9 @@ public class GTGuiTextures {
             .canApplyTheme()
             .build();
 
+    public static final UITexture[] BUTTON_POWER = slice("textures/gui/widget/button_power.png", 16, 32, 16, 16,
+            ColorType.DEFAULT);
+
     public static final UITexture[] BUTTON_BLACKLIST = slice("textures/gui/widget/button_blacklist.png",
             16, 32, 16, 16, ColorType.DEFAULT);
     public static final UITexture[] BUTTON_IGNORE_DAMAGE = slice("textures/gui/widget/button_filter_damage.png",
@@ -179,8 +188,8 @@ public class GTGuiTextures {
     public static final UITexture OREDICT_WAITING = fullImage("textures/gui/widget/ore_filter/waiting.png");
     public static final UITexture OREDICT_WARN = fullImage("textures/gui/widget/ore_filter/warn.png");
 
-    public static final IDrawable PLUS = IKey.str("+").asIcon().marginLeft(1);
-    public static final IDrawable MINUS = IKey.str("-").asIcon().marginLeft(1);
+    // public static final IDrawable PLUS = IKey.str("+").asIcon().marginLeft(1);
+    // public static final IDrawable MINUS = IKey.str("-").asIcon().marginLeft(1);
 
     public static final UITexture[] MANUAL_IO_OVERLAY_IN = slice("textures/gui/overlay/manual_io_overlay_in.png",
             18, 18 * 3, 18, 18, ColorType.DEFAULT);
