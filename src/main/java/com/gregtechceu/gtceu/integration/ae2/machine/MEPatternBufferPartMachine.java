@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.ae2.machine;
 
+import appeng.crafting.pattern.EncodedPatternItem;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -10,11 +11,23 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
+import com.gregtechceu.gtceu.api.mui.factory.PosGuiData;
+import com.gregtechceu.gtceu.api.mui.value.sync.PanelSyncManager;
+import com.gregtechceu.gtceu.api.mui.value.sync.SyncHandlers;
+import com.gregtechceu.gtceu.api.mui.widgets.SlotGroupWidget;
+import com.gregtechceu.gtceu.api.mui.widgets.layout.Grid;
+import com.gregtechceu.gtceu.api.mui.widgets.slot.ItemSlot;
+import com.gregtechceu.gtceu.api.mui.widgets.slot.SlotGroup;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
+import com.gregtechceu.gtceu.client.mui.screen.ModularPanel;
+import com.gregtechceu.gtceu.client.mui.screen.UISettings;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
+import com.gregtechceu.gtceu.common.data.mui.GTMuiWidgets;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
+import com.gregtechceu.gtceu.common.mui.GTGuis;
 import com.gregtechceu.gtceu.integration.ae2.machine.trait.InternalSlotRecipeHandler;
 import com.gregtechceu.gtceu.syncsystem.annotations.SaveField;
 import com.gregtechceu.gtceu.syncsystem.annotations.SyncToClient;
@@ -259,6 +272,33 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
     //////////////////////////////////////
     // ********** GUI ***********//
     //////////////////////////////////////
+
+    @Override
+    public ModularPanel buildUI(PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
+        var panel = GTGuis.createPanel(this, 176, 168);
+
+        panel.child(GTMuiWidgets.createTitleBar(getDefinition(), 176));
+
+        SlotGroup patternSlotGroup = new SlotGroup("pattern_slots", 9, 0,true);
+
+        panel.child(new Grid()
+                .top(7)
+                .height(18 * (MAX_PATTERN_COUNT / 9))
+                .minElementMargin(0, 0)
+                .minColWidth(18).minRowHeight(18)
+                .alignX(0.5f)
+                .mapTo(9, MAX_PATTERN_COUNT, index -> new ItemSlot()
+                        .slot(SyncHandlers.itemSlot(patternInventory, index)
+                                .slotGroup(patternSlotGroup)
+                                .accessibility(true, true)
+                                .filter(stack -> stack.getItem() instanceof EncodedPatternItem))
+                        .background(GTGuiTextures.SLOT, GTGuiTextures.PATTERN_OVERLAY)));
+
+        panel.child(SlotGroupWidget.playerInventory(true).bottom(7));
+
+        return panel;
+    }
+
     /*
      * @Override
      * public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
