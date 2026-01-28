@@ -12,6 +12,9 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
 import com.gregtechceu.gtceu.api.mui.base.IPanelHandler;
 import com.gregtechceu.gtceu.api.mui.base.drawable.IKey;
+import com.gregtechceu.gtceu.api.mui.drawable.DrawableStack;
+import com.gregtechceu.gtceu.api.mui.drawable.DynamicDrawable;
+import com.gregtechceu.gtceu.api.mui.drawable.ItemDrawable;
 import com.gregtechceu.gtceu.api.mui.factory.PosGuiData;
 import com.gregtechceu.gtceu.api.mui.value.sync.BooleanSyncValue;
 import com.gregtechceu.gtceu.api.mui.value.sync.PanelSyncManager;
@@ -51,6 +54,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
@@ -330,8 +334,11 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                 .top(26)
                                 .alignX(0.5f)));
 
-        BooleanSyncValue refundValue = SyncHandlers.bool(this::isShouldRefund, this::setShouldRefund);
-        syncManager.syncValue("should_refund", refundValue);
+        BooleanSyncValue shouldRefundValue = SyncHandlers.bool(this::isShouldRefund, this::setShouldRefund);
+        syncManager.syncValue("should_refund", shouldRefundValue);
+
+        BooleanSyncValue canRefundValue = SyncHandlers.bool(this::canRefund, b -> {});
+        syncManager.syncValue("can_refund", canRefundValue);
 
         panel.child(new Column()
                 .coverChildren()
@@ -341,7 +348,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .padding(0, 8, 4, 4)
                 .childPadding(2)
                 .child(GTMuiWidgets.createCircuitSlotPanel(this, panel, syncManager))
-                .child(new ButtonWidget<>()
+                .child(new ButtonWidget<>() // Shared items subpanel
                         .size(18)
                         .onMousePressed((x, y, b) -> {
                             sharedItemsPanelHandler.openPanel();
@@ -351,7 +358,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                         .tooltip(new RichTooltip()
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.0"))
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1"))))
-                .child(new ButtonWidget<>()
+                .child(new ButtonWidget<>() // Shared fluids subpanel
                         .size(18)
                         .onMousePressed((x, y, b) -> {
                             sharedFluidsPanelHandler.openPanel();
@@ -361,13 +368,24 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                         .tooltip(new RichTooltip()
                                 .addLine(IKey.lang("gui.gtceu.share_tank.desc.0"))
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1"))))
-                .child(new ButtonWidget<>()
+                .child(new ButtonWidget<>() // Refund button
                         .size(18)
                         .onMousePressed((x, y, b) -> {
-                            refundValue.setBoolValue(true);
-                            return true;
+                            if (canRefundValue.getBoolValue()) {
+                                shouldRefundValue.setBoolValue(true);
+                                return true;
+                            }
+                            return false;
                         })
-                        .overlay(GTGuiTextures.REFUND_OVERLAY)
+                        .overlay(new DynamicDrawable(() -> {
+                            if (canRefundValue.getBoolValue()) {
+                                return GTGuiTextures.REFUND_OVERLAY
+                                        .asIcon().size(16);
+                            } else {
+                                return new DrawableStack(GTGuiTextures.REFUND_OVERLAY, new ItemDrawable(Items.BARRIER))
+                                        .asIcon().size(16);
+                            }
+                        }))
                         .tooltip(new RichTooltip()
                                 .addLine(IKey.lang("gui.gtceu.refund_all.desc")))));
 
@@ -434,6 +452,10 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
      * return group;
      * }
      */
+
+    public boolean canRefund() {
+        return Arrays.stream(internalInventory).anyMatch(slot -> !slot.isEmpty());
+    }
 
     @Override
     public List<IPatternDetails> getAvailablePatterns() {
