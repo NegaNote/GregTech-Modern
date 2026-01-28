@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
 import com.gregtechceu.gtceu.api.mui.base.IPanelHandler;
 import com.gregtechceu.gtceu.api.mui.base.drawable.IKey;
 import com.gregtechceu.gtceu.api.mui.factory.PosGuiData;
+import com.gregtechceu.gtceu.api.mui.value.sync.BooleanSyncValue;
 import com.gregtechceu.gtceu.api.mui.value.sync.PanelSyncManager;
 import com.gregtechceu.gtceu.api.mui.value.sync.SyncHandlers;
 import com.gregtechceu.gtceu.api.mui.widgets.ButtonWidget;
@@ -25,6 +26,7 @@ import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.client.mui.screen.ModularPanel;
+import com.gregtechceu.gtceu.client.mui.screen.RichTooltip;
 import com.gregtechceu.gtceu.client.mui.screen.UISettings;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.data.mui.GTMuiMachineUtil;
@@ -37,8 +39,6 @@ import com.gregtechceu.gtceu.syncsystem.annotations.SaveField;
 import com.gregtechceu.gtceu.syncsystem.annotations.SyncToClient;
 import com.gregtechceu.gtceu.utils.GTMath;
 import com.gregtechceu.gtceu.utils.ItemStackHashStrategy;
-
-import com.lowdragmc.lowdraglib.gui.util.ClickData;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -77,11 +77,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -147,6 +143,10 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
 
     @Nullable
     protected TickableSubscription updateSubs;
+
+    @Getter
+    @Setter
+    protected boolean shouldRefund = false;
 
     public MEPatternBufferPartMachine(BlockEntityCreationInfo info) {
         super(info, IO.IN);
@@ -225,6 +225,10 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
             ICraftingProvider.requestUpdate(getMainNode());
             this.needPatternSync = false;
         }
+        if (shouldRefund) {
+            refundAll();
+            shouldRefund = false;
+        }
     }
 
     public void addProxy(MEPatternBufferProxyPartMachine proxy) {
@@ -250,11 +254,9 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
         return Collections.unmodifiableSet(proxyMachines);
     }
 
-    private void refundAll(ClickData clickData) {
-        if (!clickData.isRemote) {
-            for (InternalSlot internalSlot : internalInventory) {
-                internalSlot.refund();
-            }
+    private void refundAll() {
+        for (InternalSlot internalSlot : internalInventory) {
+            internalSlot.refund();
         }
     }
 
@@ -296,7 +298,8 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                         .slot(SyncHandlers.itemSlot(patternInventory, index)
                                 .slotGroup(patternSlotGroup)
                                 .accessibility(true, true)
-                                .filter(stack -> stack.getItem() instanceof EncodedPatternItem))
+                                .filter(stack -> stack.getItem() instanceof EncodedPatternItem)
+                                .changeListener((i, o, c, init) -> onPatternChange(index)))
                         .background(GTGuiTextures.SLOT, GTGuiTextures.PATTERN_OVERLAY)));
 
         IPanelHandler sharedItemsPanelHandler = syncManager.syncedPanel("shared_items", true,
@@ -327,6 +330,9 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                 .top(26)
                                 .alignX(0.5f)));
 
+        BooleanSyncValue refundValue = SyncHandlers.bool(this::isShouldRefund, this::setShouldRefund);
+        syncManager.syncValue("should_refund", refundValue);
+
         panel.child(new Column()
                 .coverChildren()
                 .leftRel(1.0f)
@@ -342,7 +348,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                             return true;
                         })
                         .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
-                        .tooltipBuilder(richTooltip -> richTooltip
+                        .tooltip(new RichTooltip()
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.0"))
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1"))))
                 .child(new ButtonWidget<>()
@@ -352,9 +358,18 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                             return true;
                         })
                         .overlay(GTGuiTextures.BUTTON_FLUID_OUTPUT)
-                        .tooltipBuilder(richTooltip -> richTooltip
+                        .tooltip(new RichTooltip()
                                 .addLine(IKey.lang("gui.gtceu.share_tank.desc.0"))
-                                .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1")))));
+                                .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1"))))
+                .child(new ButtonWidget<>()
+                        .size(18)
+                        .onMousePressed((x, y, b) -> {
+                            refundValue.setBoolValue(true);
+                            return true;
+                        })
+                        .overlay(GTGuiTextures.REFUND_OVERLAY)
+                        .tooltip(new RichTooltip()
+                                .addLine(IKey.lang("gui.gtceu.refund_all.desc")))));
 
         panel.child(SlotGroupWidget.playerInventory(true).bottom(7));
 
@@ -552,6 +567,10 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
 
         public boolean isFluidEmpty() {
             return fluidInventory.isEmpty();
+        }
+
+        public boolean isEmpty() {
+            return isItemEmpty() && isFluidEmpty();
         }
 
         public void onContentsChanged() {

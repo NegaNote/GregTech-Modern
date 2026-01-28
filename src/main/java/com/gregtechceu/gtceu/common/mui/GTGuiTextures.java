@@ -363,6 +363,8 @@ public class GTGuiTextures {
             ColorType.DEFAULT);
     public static final UITexture PRESS_OVERLAY_4 = fullImage("textures/gui/overlay/press_overlay_4.png",
             ColorType.DEFAULT);
+    public static final UITexture REFUND_OVERLAY = fullImage("textures/gui/widget/refund_overlay.png",
+            ColorType.DEFAULT);
     public static final UITexture SAWBLADE_OVERLAY = fullImage("textures/gui/overlay/sawblade_overlay.png",
             ColorType.DEFAULT);
     public static final UITexture SOLIDIFIER_OVERLAY = fullImage("textures/gui/overlay/solidifier_overlay.png",
