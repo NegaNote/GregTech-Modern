@@ -27,6 +27,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.client.mui.screen.ModularPanel;
 import com.gregtechceu.gtceu.client.mui.screen.UISettings;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
+import com.gregtechceu.gtceu.common.data.mui.GTMuiMachineUtil;
 import com.gregtechceu.gtceu.common.data.mui.GTMuiWidgets;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.gregtechceu.gtceu.common.mui.GTGuiTextures;
@@ -303,7 +304,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                     SlotGroup sharedItemSlotGroup = new SlotGroup("shared_item_slots", 3, false);
 
                     return GTGuis.createPopupPanel("shared_items_panel", 80, 86)
-                            .child(IKey.lang("gui.gtceu.share_inventory.title").asWidget().padding(4))
+                            .child(IKey.lang("gui.gtceu.share_inventory.title").asWidget().margin(4))
                             .child(new Grid()
                                     .name("shared_item_grid")
                                     .top(26)
@@ -316,6 +317,15 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                                     .slotGroup(sharedItemSlotGroup)
                                                     .accessibility(true, true))));
                 });
+
+        IPanelHandler sharedFluidsPanelHandler = syncManager.syncedPanel("shared_fluids", true,
+                (syncManager1, panelHandler) -> GTGuis.createPopupPanel("shared_fluids_panel", 88, 86)
+                        .child(IKey.lang("gui.gtceu.share_tank.title").asWidget().margin(4))
+                        .child(GTMuiMachineUtil.createSlotGroupFromInventory(syncManager1, shareTank,
+                                "shared_fluid_slots", 9, 'F',
+                                GTMuiMachineUtil.createSquareMatrix(9, 'F'))
+                                .top(26)
+                                .alignX(0.5f)));
 
         panel.child(new Column()
                 .coverChildren()
@@ -334,6 +344,16 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                         .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                         .tooltipBuilder(richTooltip -> richTooltip
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.0"))
+                                .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1"))))
+                .child(new ButtonWidget<>()
+                        .size(18)
+                        .onMousePressed((x, y, b) -> {
+                            sharedFluidsPanelHandler.openPanel();
+                            return true;
+                        })
+                        .overlay(GTGuiTextures.BUTTON_FLUID_OUTPUT)
+                        .tooltipBuilder(richTooltip -> richTooltip
+                                .addLine(IKey.lang("gui.gtceu.share_tank.desc.0"))
                                 .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1")))));
 
         panel.child(SlotGroupWidget.playerInventory(true).bottom(7));
