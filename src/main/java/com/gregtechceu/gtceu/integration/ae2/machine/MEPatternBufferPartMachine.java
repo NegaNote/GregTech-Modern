@@ -148,10 +148,6 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
     @Nullable
     protected TickableSubscription updateSubs;
 
-    @Getter
-    @Setter
-    protected boolean shouldRefund = false;
-
     public MEPatternBufferPartMachine(BlockEntityCreationInfo info) {
         super(info, IO.IN);
         patternInventory.setOnContentsChanged(() -> getSyncDataHolder().markClientSyncFieldDirty("patternInventory"));
@@ -228,10 +224,6 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
         if (needPatternSync) {
             ICraftingProvider.requestUpdate(getMainNode());
             this.needPatternSync = false;
-        }
-        if (shouldRefund) {
-            refundAll();
-            shouldRefund = false;
         }
     }
 
@@ -334,11 +326,10 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                 .top(26)
                                 .alignX(0.5f)));
 
-        BooleanSyncValue shouldRefundValue = SyncHandlers.bool(this::isShouldRefund, this::setShouldRefund);
-        syncManager.syncValue("should_refund", shouldRefundValue);
-
         BooleanSyncValue canRefundValue = SyncHandlers.bool(this::canRefund, b -> {});
         syncManager.syncValue("can_refund", canRefundValue);
+
+        syncManager.registerServerSyncedAction("refundButtonPressed", packet -> refundAll());
 
         panel.child(new Column()
                 .coverChildren()
@@ -371,8 +362,8 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .child(new ButtonWidget<>() // Refund button
                         .size(18)
                         .onMousePressed((x, y, b) -> {
-                            if (canRefundValue.getBoolValue()) {
-                                shouldRefundValue.setBoolValue(true);
+                            if (canRefundValue.getBoolValue() && b == 0) {
+                                syncManager.callSyncedAction("refundButtonPressed");
                                 return true;
                             }
                             return false;
