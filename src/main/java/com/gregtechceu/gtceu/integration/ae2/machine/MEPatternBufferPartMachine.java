@@ -1,6 +1,5 @@
 package com.gregtechceu.gtceu.integration.ae2.machine;
 
-import appeng.crafting.pattern.EncodedPatternItem;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -11,10 +10,14 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
+import com.gregtechceu.gtceu.api.mui.base.IPanelHandler;
+import com.gregtechceu.gtceu.api.mui.base.drawable.IKey;
 import com.gregtechceu.gtceu.api.mui.factory.PosGuiData;
 import com.gregtechceu.gtceu.api.mui.value.sync.PanelSyncManager;
 import com.gregtechceu.gtceu.api.mui.value.sync.SyncHandlers;
+import com.gregtechceu.gtceu.api.mui.widgets.ButtonWidget;
 import com.gregtechceu.gtceu.api.mui.widgets.SlotGroupWidget;
+import com.gregtechceu.gtceu.api.mui.widgets.layout.Column;
 import com.gregtechceu.gtceu.api.mui.widgets.layout.Grid;
 import com.gregtechceu.gtceu.api.mui.widgets.slot.ItemSlot;
 import com.gregtechceu.gtceu.api.mui.widgets.slot.SlotGroup;
@@ -62,6 +65,7 @@ import appeng.api.networking.crafting.ICraftingProvider;
 import appeng.api.stacks.*;
 import appeng.api.storage.MEStorage;
 import appeng.api.storage.StorageHelper;
+import appeng.crafting.pattern.EncodedPatternItem;
 import appeng.crafting.pattern.ProcessingPatternItem;
 import appeng.helpers.patternprovider.PatternContainer;
 import com.google.common.collect.BiMap;
@@ -279,7 +283,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
 
         panel.child(GTMuiWidgets.createTitleBar(getDefinition(), 176));
 
-        SlotGroup patternSlotGroup = new SlotGroup("pattern_slots", 9, 0,true);
+        SlotGroup patternSlotGroup = new SlotGroup("pattern_slots", 9, 0, true);
 
         panel.child(new Grid()
                 .top(7)
@@ -294,13 +298,50 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                 .filter(stack -> stack.getItem() instanceof EncodedPatternItem))
                         .background(GTGuiTextures.SLOT, GTGuiTextures.PATTERN_OVERLAY)));
 
+        IPanelHandler sharedItemsPanelHandler = syncManager.syncedPanel("shared_items", true,
+                (syncManager1, panelHandler) -> {
+                    SlotGroup sharedItemSlotGroup = new SlotGroup("shared_item_slots", 3, false);
+
+                    return GTGuis.createPopupPanel("shared_items_panel", 80, 86)
+                            .child(IKey.lang("gui.gtceu.share_inventory.title").asWidget().padding(4))
+                            .child(new Grid()
+                                    .name("shared_item_grid")
+                                    .top(26)
+                                    .height(18 * 3)
+                                    .minElementMargin(0, 0)
+                                    .minColWidth(18).minRowHeight(18)
+                                    .alignX(0.5f)
+                                    .mapTo(3, 9, index -> new ItemSlot()
+                                            .slot(SyncHandlers.itemSlot(shareInventory, index)
+                                                    .slotGroup(sharedItemSlotGroup)
+                                                    .accessibility(true, true))));
+                });
+
+        panel.child(new Column()
+                .coverChildren()
+                .leftRel(1.0f)
+                .reverseLayout(true)
+                .bottom(16)
+                .padding(0, 8, 4, 4)
+                .childPadding(2)
+                .child(GTMuiWidgets.createCircuitSlotPanel(this, panel, syncManager))
+                .child(new ButtonWidget<>()
+                        .size(18)
+                        .onMousePressed((x, y, b) -> {
+                            sharedItemsPanelHandler.openPanel();
+                            return true;
+                        })
+                        .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
+                        .tooltipBuilder(richTooltip -> richTooltip
+                                .addLine(IKey.lang("gui.gtceu.share_inventory.desc.0"))
+                                .addLine(IKey.lang("gui.gtceu.share_inventory.desc.1")))));
+
         panel.child(SlotGroupWidget.playerInventory(true).bottom(7));
 
         return panel;
     }
 
     /*
-     * @Override
      * public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
      * configuratorPanel.attachConfigurators(new ButtonConfigurator(
      * new GuiTextureGroup(GuiTextures.BUTTON, GuiTextures.REFUND_OVERLAY), this::refundAll)
@@ -320,7 +361,6 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
      * Component.translatable("gui.gtceu.share_inventory.desc.1"))));
      * }
      *
-     * @Override
      * public Widget createUIWidget() {
      * int rowSize = 9;
      * int colSize = 3;
