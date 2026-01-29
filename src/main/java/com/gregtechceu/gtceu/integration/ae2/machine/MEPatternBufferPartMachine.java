@@ -25,6 +25,7 @@ import com.gregtechceu.gtceu.api.mui.widgets.layout.Column;
 import com.gregtechceu.gtceu.api.mui.widgets.layout.Grid;
 import com.gregtechceu.gtceu.api.mui.widgets.slot.ItemSlot;
 import com.gregtechceu.gtceu.api.mui.widgets.slot.SlotGroup;
+import com.gregtechceu.gtceu.api.mui.widgets.textfield.TextFieldWidget;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
@@ -286,7 +287,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
         SlotGroup patternSlotGroup = new SlotGroup("pattern_slots", 9, 0, true);
 
         panel.child(new Grid()
-                .top(7)
+                .top(25)
                 .height(18 * (MAX_PATTERN_COUNT / 9))
                 .minElementMargin(0, 0)
                 .minColWidth(18).minRowHeight(18)
@@ -298,6 +299,27 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                                 .filter(stack -> stack.getItem() instanceof EncodedPatternItem)
                                 .changeListener((i, o, c, init) -> onPatternChange(index)))
                         .background(GTGuiTextures.SLOT, GTGuiTextures.PATTERN_OVERLAY)));
+
+        BooleanSyncValue isOnlineValue = SyncHandlers.bool(this::isOnline, this::setOnline);
+        syncManager.syncValue("is_online", isOnlineValue);
+
+        panel.child(IKey.dynamic(() -> isOnlineValue.getBoolValue() ?
+                Component.translatable("gtceu.gui.me_network.online") :
+                Component.translatable("gtceu.gui.me_network.offline"))
+                .asWidget()
+                .top(10)
+                .margin(2)
+                .left(9));
+
+        IPanelHandler renamingPanelHandler = syncManager.syncedPanel("renaming", true,
+                ((syncManager1, syncHandler) -> GTGuis.createPopupPanel("renaming_panel", 110, 40)
+                        .child(new Column()
+                                .coverChildren()
+                                .child(IKey.lang("gtceu.gui.pattern_buffer.set_custom_name").asWidget())
+                                .child(new TextFieldWidget()
+                                        .size(90, 20)
+                                        .value(SyncHandlers.string(() -> this.customName, this::setCustomName)))
+                                .margin(5))));
 
         IPanelHandler sharedItemsPanelHandler = syncManager.syncedPanel("shared_items", true,
                 (syncManager1, panelHandler) -> {
@@ -319,7 +341,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 });
 
         IPanelHandler sharedFluidsPanelHandler = syncManager.syncedPanel("shared_fluids", true,
-                (syncManager1, panelHandler) -> GTGuis.createPopupPanel("shared_fluids_panel", 88, 86)
+                (syncManager1, panelHandler) -> GTGuis.createPopupPanel("shared_fluids_panel", 120, 86)
                         .child(IKey.lang("gui.gtceu.share_tank.title").asWidget().margin(4))
                         .child(GTMuiMachineUtil.createSlotGroupFromInventory(syncManager1, shareTank,
                                 "shared_fluid_slots", 9, 'F',
@@ -385,7 +407,21 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                             }
                         }))
                         .tooltip(new RichTooltip()
-                                .addLine(IKey.lang("gui.gtceu.refund_all.desc")))));
+                                .addLine(IKey.lang("gui.gtceu.refund_all.desc"))))
+                .child(new ButtonWidget<>() // Renaming button
+                        .size(18)
+                        .onMousePressed((x, y, b) -> {
+                            if (b == InputConstants.MOUSE_BUTTON_LEFT) {
+                                renamingPanelHandler.openPanel();
+                                return true;
+                            }
+                            return false;
+                        })
+                        .overlay(IKey.str("✎")
+                                .asIcon()
+                                .size(16))
+                        .tooltip(new RichTooltip()
+                                .addLine(IKey.lang("gui.gtceu.rename.desc")))));
 
         panel.child(SlotGroupWidget.playerInventory(true).bottom(7));
 
