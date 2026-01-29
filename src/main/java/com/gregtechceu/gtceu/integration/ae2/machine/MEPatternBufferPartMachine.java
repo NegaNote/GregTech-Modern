@@ -75,6 +75,7 @@ import appeng.crafting.pattern.ProcessingPatternItem;
 import appeng.helpers.patternprovider.PatternContainer;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.mojang.blaze3d.platform.InputConstants;
 import it.unimi.dsi.fastutil.objects.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -342,8 +343,11 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .child(new ButtonWidget<>() // Shared items subpanel
                         .size(18)
                         .onMousePressed((x, y, b) -> {
-                            sharedItemsPanelHandler.openPanel();
-                            return true;
+                            if (b == InputConstants.MOUSE_BUTTON_LEFT) {
+                                sharedItemsPanelHandler.openPanel();
+                                return true;
+                            }
+                            return false;
                         })
                         .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                         .tooltip(new RichTooltip()
@@ -352,8 +356,11 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .child(new ButtonWidget<>() // Shared fluids subpanel
                         .size(18)
                         .onMousePressed((x, y, b) -> {
-                            sharedFluidsPanelHandler.openPanel();
-                            return true;
+                            if (b == InputConstants.MOUSE_BUTTON_LEFT) {
+                                sharedFluidsPanelHandler.openPanel();
+                                return true;
+                            }
+                            return false;
                         })
                         .overlay(GTGuiTextures.BUTTON_FLUID_OUTPUT)
                         .tooltip(new RichTooltip()
@@ -362,7 +369,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .child(new ButtonWidget<>() // Refund button
                         .size(18)
                         .onMousePressed((x, y, b) -> {
-                            if (canRefundValue.getBoolValue() && b == 0) {
+                            if (canRefundValue.getBoolValue() && b == InputConstants.MOUSE_BUTTON_LEFT) {
                                 syncManager.callSyncedAction("refundButtonPressed");
                                 return true;
                             }
