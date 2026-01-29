@@ -428,65 +428,6 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
         return panel;
     }
 
-    /*
-     * public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-     * configuratorPanel.attachConfigurators(new ButtonConfigurator(
-     * new GuiTextureGroup(GuiTextures.BUTTON, GuiTextures.REFUND_OVERLAY), this::refundAll)
-     * .setTooltips(List.of(Component.translatable("gui.gtceu.refund_all.desc"))));
-     * if (isHasCircuitSlot() && isCircuitSlotEnabled()) {
-     * configuratorPanel.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
-     * }
-     * configuratorPanel.attachConfigurators(new FancyInvConfigurator(
-     * shareInventory.storage, Component.translatable("gui.gtceu.share_inventory.title"))
-     * .setTooltips(List.of(
-     * Component.translatable("gui.gtceu.share_inventory.desc.0"),
-     * Component.translatable("gui.gtceu.share_inventory.desc.1"))));
-     * configuratorPanel.attachConfigurators(new FancyTankConfigurator(
-     * shareTank.getStorages(), Component.translatable("gui.gtceu.share_tank.title"))
-     * .setTooltips(List.of(
-     * Component.translatable("gui.gtceu.share_tank.desc.0"),
-     * Component.translatable("gui.gtceu.share_inventory.desc.1"))));
-     * }
-     *
-     * public Widget createUIWidget() {
-     * int rowSize = 9;
-     * int colSize = 3;
-     * var group = new WidgetGroup(0, 0, 18 * rowSize + 16, 18 * colSize + 16);
-     * int index = 0;
-     * for (int y = 0; y < colSize; ++y) {
-     * for (int x = 0; x < rowSize; ++x) {
-     * int finalI = index;
-     * var slot = new AEPatternViewSlotWidget(patternInventory, index++, 8 + x * 18, 14 + y * 18)
-     * .setOccupiedTexture(GuiTextures.SLOT)
-     * .setItemHook(stack -> {
-     * if (!stack.isEmpty() && stack.getItem() instanceof EncodedPatternItem iep) {
-     * final ItemStack out = iep.getOutput(stack);
-     * if (!out.isEmpty()) {
-     * return out;
-     * }
-     * }
-     * return stack;
-     * })
-     * .setChangeListener(() -> onPatternChange(finalI))
-     * .setBackground(GuiTextures.SLOT, GuiTextures.PATTERN_OVERLAY);
-     * group.addWidget(slot);
-     * }
-     * }
-     * // ME Network status
-     * group.addWidget(new LabelWidget(
-     * 8,
-     * 2,
-     * () -> this.isOnline ? "gtceu.gui.me_network.online" : "gtceu.gui.me_network.offline"));
-     *
-     * group.addWidget(new AETextInputButtonWidget(18 * rowSize + 8 - 70, 2, 70, 10)
-     * .setText(customName)
-     * .setOnConfirm(this::setCustomName)
-     * .setButtonTooltips(Component.translatable("gui.gtceu.rename.desc")));
-     *
-     * return group;
-     * }
-     */
-
     public boolean canRefund() {
         return Arrays.stream(internalInventory).anyMatch(slot -> !slot.isEmpty());
     }
