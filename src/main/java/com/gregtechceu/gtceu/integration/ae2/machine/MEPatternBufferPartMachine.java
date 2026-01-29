@@ -361,6 +361,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 .bottom(16)
                 .padding(0, 8, 4, 4)
                 .childPadding(2)
+                .background(GTGuiTextures.BACKGROUND.getSubArea(0.25f, 0f, 1.0f, 1.0f))
                 .child(GTMuiWidgets.createCircuitSlotPanel(this, panel, syncManager))
                 .child(new ButtonWidget<>() // Shared items subpanel
                         .size(18)
