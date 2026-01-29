@@ -341,7 +341,7 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
                 });
 
         IPanelHandler sharedFluidsPanelHandler = syncManager.syncedPanel("shared_fluids", true,
-                (syncManager1, panelHandler) -> GTGuis.createPopupPanel("shared_fluids_panel", 120, 86)
+                (syncManager1, panelHandler) -> GTGuis.createPopupPanel("shared_fluids_panel", 85, 86)
                         .child(IKey.lang("gui.gtceu.share_tank.title").asWidget().margin(4))
                         .child(GTMuiMachineUtil.createSlotGroupFromInventory(syncManager1, shareTank,
                                 "shared_fluid_slots", 9, 'F',
